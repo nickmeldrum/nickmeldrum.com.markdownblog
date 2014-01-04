@@ -5,6 +5,7 @@ namespace MarkdownBlog.Net.Web.Models
     public class PostMetadata
     {
         public string Title { get; set; }
+        public string Slug { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime LastUpdatedDate { get; set; }
         public string Author { get; set; }

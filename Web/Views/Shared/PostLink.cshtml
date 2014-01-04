@@ -1,6 +1,6 @@
 ﻿@model MarkdownBlog.Net.Web.Models.PostMetadata
 
 @if (Model != null) {
-    <a href="/blog/@Model.Title">@Model.Title - <i>Posted @Model.PublishDate by @Model.Author</i></a>
+    <a href="/blog/@Model.Slug">@Model.Title - <i>Posted @Model.PublishDate by @Model.Author</i></a>
 <p>@Model.ShortDescription</p>
 }

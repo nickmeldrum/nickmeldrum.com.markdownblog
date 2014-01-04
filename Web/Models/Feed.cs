@@ -51,7 +51,7 @@ namespace MarkdownBlog.Net.Web.Models {
                     PublishDate = post.PublishDate,
                     LastUpdatedTime = post.PublishDate
                 };
-                item.Links.Add(SyndicationLink.CreateSelfLink(_contextWrapper.GetAbsoluteUrl("~/blog/" + post.Title)));
+                item.Links.Add(SyndicationLink.CreateSelfLink(_contextWrapper.GetAbsoluteUrl("~/blog/" + post.Slug)));
                 item.Authors.Add(new SyndicationPerson { Name = post.Author });
 
                 feedItems.Add(item);

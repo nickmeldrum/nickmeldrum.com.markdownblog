@@ -17,12 +17,12 @@ namespace MarkdownBlog.Net.Web.Models {
         {
             _postName = postName;
 
-            if (!File.Exists(PostBodyPath) || !Posts.List.Any(p => p.Title == _postName))
+            if (!File.Exists(PostBodyPath) || !Posts.List.Any(p => p.Slug == _postName))
             {
                 throw new FileNotFoundException();
             }
 
-            Metadata = Posts.List.Single(p => p.Title == _postName);
+            Metadata = Posts.List.Single(p => p.Slug == _postName);
         }
 
         private string PostBodyPath { get { return HttpContext.Server.MapPath(Posts.PostsRoot + _postName + _postExtension); } }
@@ -44,7 +44,7 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public Disqus Disqus
         {
-            get { return new Disqus {ForumShortName = SiteData.DisqusShortName, PageIdentifier = Metadata.Title}; }
+            get { return new Disqus {ForumShortName = SiteData.DisqusShortName, PageIdentifier = Metadata.Slug}; }
         }
     }
 }
