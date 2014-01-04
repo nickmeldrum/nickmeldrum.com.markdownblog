@@ -5,13 +5,158 @@
 		"PublishDate" : "2013-10-10T09:32:00Z",
 		"LastUpdatedDate" : "2013-10-10T09:32:00Z",
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Developer Productivity tip no. 43: VsVim plugin for Visual Studio. Or How I Learned to Stop Worrying and Love the Keyboard."
+		"ShortDescription" : "Or How I Learned to Stop Worrying and Love the Keyboard"
 	},
 	{
-		"Title" : "test blog post 2",
-		"PublishDate" : "2009-02-15T00:00:00Z",
-		"LastUpdatedDate" : "2012-05-11T09:47:12Z",
+		"Title" : "Developer Productivity tip no. 42: Mouse-less Browsing with Vimium",
+        "Slug" : "mouseless-browsing-with-vimium", 
+		"PublishDate" : "2013-09-26T09:00:00Z",
+		"LastUpdatedDate" : "2013-09-26T09:00:00Z",
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "This is the short desc for test blog post 2"
+		"ShortDescription" : "All about making things more efficient"
+	},
+	{
+		"Title" : "How to run PowerShell scripts from Solution Explorer in Visual Studio 2010",
+        "Slug" : "how-to-run-powershell-scripts-from-solution-explorer-in-visual-studio-2010", 
+		"PublishDate" : "2012-05-10T09:00:00Z",
+		"LastUpdatedDate" : "2012-05-10T09:00:00Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Customizing Visual Studio for PowerShell users"
+	},
+	{
+		"Title" : "Where's my customers Gherkin editor?",
+        "Slug" : "wheres-my-customers-gherkin-editor", 
+		"PublishDate" : "2011-09-24T09:00:00Z",
+		"LastUpdatedDate" : "2011-09-24T09:00:00Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Who should write your bdd features"
+	},
+	{
+		"Title" : "Mary and Tom talk about lean and 'A tale of two terminals'",
+        "Slug" : "mary-and-tom-talk-on-lean-and-a-tale-of-two-terminals", 
+		"PublishDate" : "2011-05-25T09:00:00Z",
+		"LastUpdatedDate" : "2011-05-25T09:00:00Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "A roundup of a talk by Mary Poppendieck"
+	},
+	{
+		"Title" : "Presentation ideas",
+        "Slug" : "presentation-ideas",
+		"PublishDate" : "2011-05-19T10:54:23Z",
+		"LastUpdatedDate" : "2011-05-19T10:54:23Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Encouraging our developers to present to the team"
+	},
+	{
+		"Title" : "Am I a farmer or a miner?",
+        "Slug" : "am-i-a-farmer-or-a-miner", 
+		"PublishDate" : "2011-04-09T11:47:59Z",
+		"LastUpdatedDate" : "2011-04-09T11:47:59Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "On developers helping businesses grow"
+	},
+	{
+		"Title" : "Watch more tv",
+        "Slug" : "watch-more-tv", 
+		"PublishDate" : "2010-11-17T01:48:15Z",
+		"LastUpdatedDate" : "2010-11-17T01:48:15Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Learning through podcasts: some recommendations"
+	},
+	{
+		"Title" : "What's going on?",
+        "Slug" : "whats-going-on", 
+		"PublishDate" : "2010-05-16T20:05:33Z",
+		"LastUpdatedDate" : "2010-05-16T20:05:33Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Changing blogs again - how and why"
+	},
+	{
+		"Title" : "Adventures in Linq and GroupBy",
+        "Slug" : "adventures-in-linq-and-groupby", 
+		"PublishDate" : "2010-05-24T12:41:43Z",
+		"LastUpdatedDate" : "2010-05-24T12:41:43Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Aggregating results using Linq"
+	},
+	{
+		"Title" : "Beerware lol",
+        "Slug" : "beerware", 
+		"PublishDate" : "2010-02-24T07:48:05Z",
+		"LastUpdatedDate" : "2010-02-24T07:48:05Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "An amusing end user license agreement"
+	},
+	{
+		"Title" : "my lovely Abit IP35 Pro - dead :(",
+        "Slug" : "my-lovely-abit-ip35-pro-dead", 
+		"PublishDate" : "2010-02-10T08:34:04Z",
+		"LastUpdatedDate" : "2010-02-10T08:34:04Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Upgrading my home built pc"
+	},
+	{
+		"Title" : "CI and Automated Deployments - Delete don't just Overwrite",
+        "Slug" : "ci-and-automated-deployments-delete-dont-just-overwrite", 
+		"PublishDate" : "2010-02-08T14:59:34Z",
+		"LastUpdatedDate" : "2010-02-08T14:59:34Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "A lesson learnt about automatically updating production sites"
+	},
+	{
+		"Title" : "Table Default Constraints usage",
+        "Slug" : "table-default-constraints-usage", 
+		"PublishDate" : "2010-02-05T16:39:54Z",
+		"LastUpdatedDate" : "2010-02-05T16:39:54Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Getting specific about my sql"
+	},
+	{
+		"Title" : "Problem solving and priorities",
+        "Slug" : "problem-solving-and-priorities", 
+		"PublishDate" : "2010-02-02T13:24:21Z",
+		"LastUpdatedDate" : "2010-02-02T13:24:21Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Learning when NOT to solve the problem"
+	},
+	{
+		"Title" : "Problem saving images as non-bmp with Internet Explorer",
+        "Slug" : "problem-saving-images-as-non-bmp-with-internet-explorer", 
+		"PublishDate" : "2010-02-01T11:26:26Z",
+		"LastUpdatedDate" : "2010-02-01T11:26:26Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Oh 3rd party components and proprietary code"
+	},
+	{
+		"Title" : "Moved to SubText",
+        "Slug" : "moved-to-subtext", 
+		"PublishDate" : "2010-01-28T20:14:40Z",
+		"LastUpdatedDate" : "2010-01-28T20:14:40Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Moved my blog from WordPress to SubText"
+	},
+	{
+		"Title" : "Technical Debt and ASP.Net Web Forms",
+        "Slug" : "technical-debt-and-asp.net-web-forms", 
+		"PublishDate" : "2010-01-22T15:00:29Z",
+		"LastUpdatedDate" : "2010-01-22T15:00:29Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Go fast now or go fast later?"
+	},
+	{
+		"Title" : "Hard Drive Speeds",
+        "Slug" : "hard-drive-speeds", 
+		"PublishDate" : "2010-01-19T12:10:39Z",
+		"LastUpdatedDate" : "2010-01-19T12:10:39Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "The bottleneck is the rotating disks!"
+	},
+	{
+		"Title" : "First post!", 
+        "Slug" : "first-post", 
+		"PublishDate" : "2010-01-16T12:41:43Z",
+		"LastUpdatedDate" : "2010-01-16T12:41:43Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "I've started a blog!"
 	}
 ]
