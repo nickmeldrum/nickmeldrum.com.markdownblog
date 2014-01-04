@@ -1,10 +1,11 @@
 ﻿[
 	{
-		"Title" : "test blog post",
-		"PublishDate" : "2013-05-01T09:32:00Z",
-		"LastUpdatedDate" : "2013-05-11T09:47:12Z",
+		"Title" : "Developer Productivity tip no. 43: VsVim plugin for Visual Studio",
+        "Slug" : "vsvim-plugin-for-visual-studio",
+		"PublishDate" : "2013-10-10T09:32:00Z",
+		"LastUpdatedDate" : "2013-10-10T09:32:00Z",
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "This is the short desc for test blog post"
+		"ShortDescription" : "Developer Productivity tip no. 43: VsVim plugin for Visual Studio. Or How I Learned to Stop Worrying and Love the Keyboard."
 	},
 	{
 		"Title" : "test blog post 2",
