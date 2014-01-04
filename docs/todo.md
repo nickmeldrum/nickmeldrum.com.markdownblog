@@ -1,6 +1,7 @@
 TODO:
 =====
 
+  * migrate existing posts
   * microformats?
   * add blog config for user specific settings
   * add gravatar plugin + author email in metadata
@@ -8,7 +9,6 @@ TODO:
   * add some nicer styling - bootstrap theme?
   * fix up bug where disqus comments go below floated elements
   * add sitemap + ga
-  * fork for nickmeldrum.com specific
   * add ability to add "pages" using md as well as blog posts
   * add search
   * setup github deploy/publishing
