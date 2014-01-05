@@ -6,6 +6,8 @@ Web/bin
 [Rr]elease*/
 [Pp]ackages/*/**
 *.ncb
+oldblogfiles/*/**
+oldblogfiles
 
 # squishit compilation: (all source css and js should be in subdirectories)
 syntax: glob

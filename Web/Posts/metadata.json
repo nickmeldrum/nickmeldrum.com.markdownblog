@@ -152,6 +152,14 @@
 		"ShortDescription" : "The bottleneck is the rotating disks!"
 	},
 	{
+		"Title" : "Never let your domain expire", 
+        "Slug" : "never-let-your-domain-expire", 
+		"PublishDate" : "2010-01-15T05:00:00Z",
+		"LastUpdatedDate" : "2010-01-15T05:00:00Z",
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "dns lessons learnt"
+	},
+	{
 		"Title" : "First post!", 
         "Slug" : "first-post", 
 		"PublishDate" : "2010-01-16T12:41:43Z",
