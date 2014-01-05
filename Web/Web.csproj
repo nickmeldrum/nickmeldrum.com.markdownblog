@@ -163,6 +163,7 @@
     <Content Include="Posts\moved-to-subtext.md" />
     <Content Include="Posts\hard-drive-speeds.md" />
     <Content Include="Posts\first-post.md" />
+    <Content Include="Posts\never-let-your-domain-expire.md" />
     <None Include="Posts\presentation-ideas.md" />
     <Content Include="Views\Shared\Disqus.cshtml" />
     <Content Include="App_Code\LinkHelpers.cshtml" />
