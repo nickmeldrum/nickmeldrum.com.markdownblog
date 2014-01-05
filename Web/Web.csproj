@@ -177,6 +177,7 @@
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\ArchiveItem.cs" />
     <Compile Include="Models\ArchiveItemGrouping.cs" />
+    <Compile Include="Models\StackOverflowFlair.cs" />
     <Compile Include="Models\Disqus.cs" />
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\FeedResult.cs" />
@@ -186,7 +187,7 @@
     <Compile Include="Models\Posts.cs" />
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\SiteViewModel.cs" />
-    <Compile Include="Models\StackOverflowFlair.cs" />
+    <Compile Include="Models\StackOverflowFlairViewModel.cs" />
     <Compile Include="Models\TwitterTimeline.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
@@ -276,7 +277,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>10161</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:23015/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

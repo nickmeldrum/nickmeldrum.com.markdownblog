@@ -5,7 +5,20 @@ using System.Web;
 using MarkdownBlog.Net.Web.Controllers;
 
 namespace MarkdownBlog.Net.Web.Models {
-    public class Feed {
+    public class Feed
+    {
+        private readonly Site _site;
+        private readonly HttpContextWrapper _contextWrapper;
+        private SyndicationFeed _feed;
+
+        public Feed(Posts posts, HttpContextWrapper contextWrapper) {
+            _site = new Site();
+            _contextWrapper = contextWrapper;
+
+            SetupFeed();
+
+            AddPostsToFeed(posts);
+        }
 
         public FeedResult GetFeedXml(FeedType feedType) {
             switch (feedType) {
@@ -18,22 +31,11 @@ namespace MarkdownBlog.Net.Web.Models {
             throw new Exception("Unknown feed type");
         }
 
-        public Feed(Posts posts, HttpContextWrapper contextWrapper) {
-            _contextWrapper = contextWrapper;
-
-            SetupFeed();
-
-            AddPostsToFeed(posts);
-        }
-
-        private HttpContextWrapper _contextWrapper;
-        private SyndicationFeed _feed;
-
         private void SetupFeed() {
             _feed = new SyndicationFeed {
-                Title = SyndicationContent.CreatePlaintextContent(Site.SiteData.Name),
-                Description = SyndicationContent.CreatePlaintextContent(Site.SiteData.Description),
-                Copyright = SyndicationContent.CreatePlaintextContent("Copyright " + Site.SiteData.Owner),
+                Title = SyndicationContent.CreatePlaintextContent(_site.Name),
+                Description = SyndicationContent.CreatePlaintextContent(_site.Description),
+                Copyright = SyndicationContent.CreatePlaintextContent("Copyright " + _site.Owner),
                 Language = "en-gb"
             };
 

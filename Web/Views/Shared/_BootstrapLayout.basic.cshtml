@@ -1,12 +1,11 @@
 @model MarkdownBlog.Net.Web.Models.SiteViewModel
 @using System.Web.Optimization
-@using MarkdownBlog.Net.Web.Models
 @using MarkdownBlog.Net.Web.NavigationRoutes
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.Title - @Site.SiteData.Name</title>
+    <title>@ViewBag.Title - @Model.SiteData.Name</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="@Styles.Url("~/content/css")" rel="stylesheet"/>
     @RenderSection("head", required: false)
@@ -22,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="/" title="@Site.SiteData.Name">@Site.SiteData.Name</a>
+                <a class="brand" href="/" title="@Model.SiteData.Name">@Model.SiteData.Name</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         @Html.Navigation()
@@ -33,17 +32,7 @@
     </div>
     <div class="container">
         <aside>
-            @if (IsSectionDefined("asides")) {
-                @RenderSection("asides")
-            }
-            else {
-
-                @Html.Partial("StackOverflowFlair", Model.SiteData.StackOverflowFlair)
-
-                @Html.Partial("ArchiveLinks", Model.Posts.MonthlyArchiveLinks)
-
-                @Html.Partial("TwitterTimeline", Model.SiteData.TwitterTimeline)
-            }
+             @RenderSection("Asides")
         </aside>
 
         @Html.Partial("_alerts")
@@ -51,7 +40,7 @@
         @RenderBody()
         <hr>
         <footer>
-            <p>&copy; @Site.SiteData.Owner @System.DateTime.Now.ToString("yyyy")</p>
+            <p>&copy; @Model.SiteData.Owner @DateTime.Now.ToString("yyyy")</p>
         </footer>
     </div>
     @Scripts.Render("~/js")
