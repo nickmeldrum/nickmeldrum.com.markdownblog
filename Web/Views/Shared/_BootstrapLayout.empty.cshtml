@@ -1,5 +1,6 @@
+@model MarkdownBlog.Net.Web.Models.SiteViewModel
 @using System.Web.Optimization
-@using MarkdownBlog.Net.Web.Models
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +52,7 @@
         @RenderBody()
         <hr>
         <footer>
-            <p>&copy; @Site.SiteData.Owner @System.DateTime.Now.ToString("yyyy")</p>
+            <p>&copy; @Model.SiteData.Owner 2010 - @DateTime.Now.ToString("yyyy")</p>
         </footer>
 
     </div> <!-- container -->

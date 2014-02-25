@@ -40,11 +40,12 @@
         @RenderBody()
         <hr>
         <footer>
-            <p>&copy; @Model.SiteData.Owner @DateTime.Now.ToString("yyyy")</p>
+            <p>&copy; @Model.SiteData.Owner 2010 -  @DateTime.Now.ToString("yyyy")</p>
         </footer>
     </div>
     @Scripts.Render("~/js")
     @RenderSection("Scripts", required: false)
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </body>
 </html>
 
