@@ -1,14 +1,14 @@
 ﻿<span style="font-size: small;">**If there was 1 thing I wish I had learnt earlier **in my professional career it would be: "read more blogs and watch/ listen to more podcasts/webcasts." Of course neither of these things were around when I started my career. (_"Geroff my lawn," etc. etc_.) But still I was late into the game and playing catch up with these tremendous resources.
 
-![podcasts](/Media/Default/images/blog/podcasts_thumb.jpg)I am using podcasts, webcasts, whatever you call them, to bring seminars, professional conferences and top shelf training courses right to me. In my car or train on the way to work or wherever, I'm learning for free and I encourage you to do the same.
+![podcasts](/Media/podcasts_thumb.jpg)I am using podcasts, webcasts, whatever you call them, to bring seminars, professional conferences and top shelf training courses right to me. In my car or train on the way to work or wherever, I'm learning for free and I encourage you to do the same.
 
-![girl on a train](/Media/Default/images/blog/girl-on-train_thumb.jpg)With that in mind I thought I would share some of the great places I go to to get my video and audio fix. Of course, they are very much tailored towards someone developing on the Microsoft .Net stack with some open source loveliness piled on top. All of them are interesting in my mind.
+![girl on a train](/Media/girl-on-train_thumb.jpg)With that in mind I thought I would share some of the great places I go to to get my video and audio fix. Of course, they are very much tailored towards someone developing on the Microsoft .Net stack with some open source loveliness piled on top. All of them are interesting in my mind.
 
 (Rant: I like listening to this stuff on my terms. In the bath, on the train, whereever. Therefore I need to download it. Some people make this easy, others don't - I will be making this clear in my list!)
 
 So with no further ado, here's the list:  &nbsp;
 
-## ![InfoQ](/Media/Default/images/blog/infoQ_logo_thumb.gif)InfoQ
+## ![InfoQ](/Media/infoQ_logo_thumb.gif)InfoQ
 
 **<span style="color: #000000;">URL:** [http://www.infoq.com/](http://www.infoq.com/)
 
@@ -24,7 +24,7 @@ So with no further ado, here's the list:  &nbsp;
 *   Hear not just from Microsoft people, but Ruby, Java, Clojure, Scala, MongoDb, CouchDb, Neo4J etc.
 &nbsp;
 
-## ![Hanselminutes](/Media/Default/images/blog/hanselminutes_logo_thumb.jpg)Hanselminutes
+## ![Hanselminutes](/Media/hanselminutes_logo_thumb.jpg)Hanselminutes
 
 **<span style="color: #000000;">URL:** [http://www.hanselminutes.com/](http://www.hanselminutes.com/)
 
@@ -40,7 +40,7 @@ So with no further ado, here's the list:  &nbsp;
 *   The ultimate .Net evangelist talks about the best Microsoft technologies and to the best Microsoft technical minds
 &nbsp;
 
-## ![Google](/Media/Default/images/blog/google_logo_thumb.png)Google TechTalks
+## ![Google](/Media/google_logo_thumb.png)Google TechTalks
 
 **URL:** [http://www.youtube.com/user/GoogleTechTalks](http://www.youtube.com/user/GoogleTechTalks)
 
@@ -58,7 +58,7 @@ So with no further ado, here's the list:  &nbsp;
 *   A real gold mine - thanks Google!
 &nbsp;
 
-## ![Tekpub](/Media/Default/images/blog/tekpub-logo_thumb.jpg)Tekpub
+## ![Tekpub](/Media/tekpub-logo_thumb.jpg)Tekpub
 
 **URL:** [http://www.tekpub.com/](http://www.tekpub.com/)
 
@@ -73,7 +73,7 @@ So with no further ado, here's the list:  &nbsp;
 *   Great file/video formats
 &nbsp;
 
-## ![channel9](/Media/Default/images/blog/channel9_logo_thumb.png)Channel 9
+## ![channel9](/Media/channel9_logo_thumb.png)Channel 9
 
 **URL:** [http://channel9.msdn.com/](http://channel9.msdn.com/)
 
@@ -91,7 +91,7 @@ So with no further ado, here's the list:  &nbsp;
 *   They have a load of stuff from Microsoft Research in Cambridge posted here too.
 &nbsp;
 
-## ![Deep fried bytes](/Media/Default/images/blog/deepfriedbytes_logo_thumb.png)Deep Fried Bytes
+## ![Deep fried bytes](/Media/deepfriedbytes_logo_thumb.png)Deep Fried Bytes
 
 **URL:** [http://deepfriedbytes.com/](http://deepfriedbytes.com/)
 
@@ -101,7 +101,7 @@ So with no further ado, here's the list:  &nbsp;
 
 &nbsp;
 
-## ![Developmentor](/Media/Default/images/blog/developmentor_logo_thumb.gif)Developmentor
+## ![Developmentor](/Media/developmentor_logo_thumb.gif)Developmentor
 
 **URL:** [http://www.develop.com/webcasts/](http://www.develop.com/webcasts/)
 
@@ -117,7 +117,7 @@ So with no further ado, here's the list:  &nbsp;
 *   They have standard tech webcasts, e.g. MVC, Entity Framework etc. as well as more team/business focused ones e.g. "Selling Agility at your company"
 &nbsp;
 
-## ![Dimecasts](/Media/Default/images/blog/dimecasts_logo_thumb.png)Dimecasts
+## ![Dimecasts](/Media/dimecasts_logo_thumb.png)Dimecasts
 
 **URL:** [http://www.dimecasts.net/](http://www.dimecasts.net/)**Tag**
 
@@ -130,7 +130,7 @@ So with no further ado, here's the list:  &nbsp;
 *   Just a flavour of a lesson - 10 minutes a time - Now who doesn't have time for that?
 &nbsp;
 
-## ![Dotnetrocks](/Media/Default/images/blog/dotnetrocks_logo_thumb.jpg)DotNetRocks
+## ![Dotnetrocks](/Media/dotnetrocks_logo_thumb.jpg)DotNetRocks
 
 **URL:** [http://www.dotnetrocks.com/](http://www.dotnetrocks.com/)
 
@@ -142,7 +142,7 @@ So with no further ado, here's the list:  &nbsp;
 
 &nbsp;
 
-## ![pdc 10](/Media/Default/images/blog/pdc-logo_thumb.jpg)PDC &lsquo;10
+## ![pdc 10](/Media/pdc-logo_thumb.jpg)PDC &lsquo;10
 
 **URL:** [http://player.microsoftpdc.com/schedule/sessions](http://player.microsoftpdc.com/schedule/sessions "http://player.microsoftpdc.com/schedule/sessions")
 
@@ -154,7 +154,7 @@ So with no further ado, here's the list:  &nbsp;
 
 ## 
 
-## ![skillsmatter](/Media/Default/images/blog/smlogoblackmanga_thumb.gif)Skillsmatter
+## ![skillsmatter](/Media/smlogoblackmanga_thumb.gif)Skillsmatter
 
 **URL:** [http://skillsmatter.com/](http://skillsmatter.com/)
 
@@ -168,7 +168,7 @@ So with no further ado, here's the list:  &nbsp;
 *   None - I can't download their stuff - ARGH! :(
 &nbsp;
 
-## ![teched](/Media/Default/images/blog/teched-logo_thumb.jpg)TechEd Online
+## ![teched](/Media/teched-logo_thumb.jpg)TechEd Online
 
 **URL:** [http://www.microsoft.com/techedonline/](http://www.microsoft.com/techedonline/)
 

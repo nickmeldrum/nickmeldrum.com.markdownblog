@@ -4,7 +4,7 @@
 
 <div>One area that I really wanted to get rid of the mouse is browsing the web. Most people look at me a bit funny when I say this, but trust me, just try it, it makes browsing so much quicker and easier. Enter Vimium.
 <div>&nbsp;
-<div>[![Vimium](/Media/Default/images/blog/vimium_logo.png)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en "Vimium Chrome Extension")
+<div>[![Vimium](/Media/vimium_logo.png)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en "Vimium Chrome Extension")
 <div>&nbsp;
 
 ### You don't use Chrome?

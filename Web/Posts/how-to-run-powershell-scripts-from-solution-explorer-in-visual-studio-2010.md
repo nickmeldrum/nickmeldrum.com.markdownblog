@@ -8,7 +8,7 @@ I find this a very useful customization to Visual Studio to run project specific
 
 It's nice to be able to right-click them (or use a shortcut key) to execute them in place just like this:
 
-![](/Media/Default/images/blog/run%20powershell%20context%20menu.png)
+![](/Media/run%20powershell%20context%20menu.png)
 
 ## So on to how to set it up:
 
@@ -40,7 +40,7 @@ It's nice to be able to right-click them (or use a shortcut key) to execute them
 
 They should look something like this:
 
-![](/Media/Default/images/blog/powershell%20script%20external%20tools%20dialog.png)
+![](/Media/powershell%20script%20external%20tools%20dialog.png)
 
 ### Step 2: Weird Step, trust me!
 
@@ -59,7 +59,7 @@ Check the index position it is in the external tools list. By default mine are a
 9.  Hit the "Ok" button again
 10.  Move them around till you are happy with their order (I usually put them somewhere below "Open With...")
 
-![](/Media/Default/images/blog/powershell%20customize%20context%20menu.png)
+![](/Media/powershell%20customize%20context%20menu.png)
 
 ### Step 4: Add your keyboard shortcuts
 
@@ -68,7 +68,7 @@ Check the index position it is in the external tools list. By default mine are a
 3.  Find the Tools.ExternalCommand**N** item in the list (nightmare long list again, type "Tools" to get you roughly there again)
 4.  Select your shortcut key for each command: I like <CTRL> <SHIFT> <P> and <CTRL> <SHIFT> <ALT> <P> respectively
 
-![](/Media/Default/images/blog/shortcut%20mapping%20external%20tools.png)
+![](/Media/shortcut%20mapping%20external%20tools.png)
 
 ## You are all done, enjoy your PowerShell efficiency!
 

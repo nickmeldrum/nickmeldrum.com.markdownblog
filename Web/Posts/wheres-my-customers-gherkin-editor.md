@@ -1,7 +1,7 @@
 ﻿There's a request I have been hearing a few times recently. It goes something like this:
 
 > "Where is a friendlier editor for my customer/BA/PM to write my Gherkin features? I can't expect them to use Visual Studio!"
-<div style="display: inline; float: right;" align="right">[![](http://nickmeldrum.com/Media/Default/images/blog/gherkin-building.jpg)](http://nickmeldrum.com/Media/Default/images/blog/gherkin-building.jpg "Okay so this is a different type of Gherkin... *shrug*")
+<div style="display: inline; float: right;" align="right">[![](http://nickmeldrum.com/Media/gherkin-building.jpg)](http://nickmeldrum.com/Media/gherkin-building.jpg "Okay so this is a different type of Gherkin... *shrug*")
 <div style="font-size: 0.7em;" about="http://www.geograph.org.uk/photo/3324" xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#"><span property="dct:title">The Gherkin, City of London ([Fan Yang](http://www.geograph.org.uk/profile/143))
 / [CC BY-SA 2.0](http://creativecommons.org/licenses/by-sa/2.0/)
 
@@ -21,7 +21,7 @@ A tool could encourage the feature and scenarios to be written by the customer o
 
 But [BDD is about the conversation](http://dannorth.net/whats-in-a-story/ "Dan North"). I don&rsquo;t want to have a tool separating the team. Instead I want to use Gherkin as a platform for agreeing the formal language the whole team uses to communicate their understanding of the project.
 
-<div style="display: inline; float: left;" align="left">[![](http://nickmeldrum.com/Media/Default/images/blog/2headssharing.jpg)](http://www.flickr.com/people/dailypic/ "2 Heads sharing some thoughts?")
+<div style="display: inline; float: left;" align="left">[![](http://nickmeldrum.com/Media/2headssharing.jpg)](http://www.flickr.com/people/dailypic/ "2 Heads sharing some thoughts?")
 <div style="font-size: 0.7em;">Image reproduced with kind permission
 from [dailypic at flickr](http://www.flickr.com/people/dailypic/)
 
@@ -40,7 +40,7 @@ One last point: Another added value of ensuring that a representative from the b
 
 Who&rsquo;s making the incorrect assumption here?
 
-[![](http://nickmeldrum.com/Media/Default/images/blog/geekandpoke-followingme.jpg)](http://geekandpoke.typepad.com/geekandpoke/2008/02/minigeek---ed3.html "Is there an implicit assumption being made here?")
+[![](http://nickmeldrum.com/Media/geekandpoke-followingme.jpg)](http://geekandpoke.typepad.com/geekandpoke/2008/02/minigeek---ed3.html "Is there an implicit assumption being made here?")
 
 <div style="font-size: 0.7em;">Image reproduced with kind permission from [geekandpoke](http://geekandpoke.typepad.com/geekandpoke/2008/02/minigeek---ed3.html)
 
