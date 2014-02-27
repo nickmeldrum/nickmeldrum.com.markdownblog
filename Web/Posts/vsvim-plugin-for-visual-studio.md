@@ -16,7 +16,7 @@ Because of its upsides, it is still an important tool in my tool belt, but the d
 
 When I really started grokking Resharper and the power of all that refactoring goodness I really started appreciating how using the right tools, and learning them well, could improve my coding. I started to get frustrated that a lot of my time while coding was moving down to the arrow keys to navigate around a file, then moving up to the delete or backspace key, then back to the keyboard to start typing. I know it can sound like that's not a big deal, but when you move into the Vim world and don't have to move your hand at all to accomplish this you realise how disruptive it really can be.
 
-I code at different speeds throughout the day, but when I'm really in the flow I feel my hands getting in the way and I wanted that fixed. (I have another reason to always want to stay on the home keys but I'm saving that for a future post.) I wanted to reduce the friction that occurs in our imperfect mechanisms for expressing our ideas in code, ie. brain -&gt; hands -&gt; keyboard -&gt; IDE -&gt; program. I wanted to get ever closer to that slightly cyberpunk ideal of being able to just think a design and have it materialise as a functioning system.
+I code at different speeds throughout the day, but when I'm really in the flow I feel my hands getting in the way and I wanted that fixed. (I have another reason to always want to stay on the home keys but I'm saving that for a future post.) I wanted to reduce the friction that occurs in our imperfect mechanisms for expressing our ideas in code, ie. brain -> hands -> keyboard -> IDE -> program. I wanted to get ever closer to that slightly cyberpunk ideal of being able to just think a design and have it materialise as a functioning system.
 
 ### Or in simpler terms: Less Friction = More Fun
 
@@ -47,7 +47,7 @@ From [https://help.ubuntu.com/community/VimHowto](https://help.ubuntu.com/commun
 > *   Ex: To issue colon commands
 > *   Visual To select text visually
 > 
-> The Insert mode is not default, you must press i to move into insert mode. Type some text in the screen. Press the &lt;Esc&gt; button to get out of insert mode into Command mode. The command mode is used to move about, and to manipulate text, sometimes in interesting ways. The Visual mode is used to select text, press v to enter it and select some text, then you can issue commands that will apply only to the selected area, type&lt;Esc&gt; again to return to Command mode."
+> The Insert mode is not default, you must press i to move into insert mode. Type some text in the screen. Press the <Esc> button to get out of insert mode into Command mode. The command mode is used to move about, and to manipulate text, sometimes in interesting ways. The Visual mode is used to select text, press v to enter it and select some text, then you can issue commands that will apply only to the selected area, type<Esc> again to return to Command mode."
 
 From [http://stackoverflow.com/questions/597077/is-learning-vim-worth-the-effort](http://stackoverflow.com/questions/597077/is-learning-vim-worth-the-effort "Is Vim worth the effort"):
 

@@ -66,7 +66,7 @@ Check the index position it is in the external tools list. By default mine are a
 1.  Go to the menu: Tools | Options
 2.  Select the Environment | Keyboard section
 3.  Find the Tools.ExternalCommand**N** item in the list (nightmare long list again, type "Tools" to get you roughly there again)
-4.  Select your shortcut key for each command: I like &lt;CTRL&gt; &lt;SHIFT&gt; &lt;P&gt; and &lt;CTRL&gt; &lt;SHIFT&gt; &lt;ALT&gt; &lt;P&gt; respectively
+4.  Select your shortcut key for each command: I like <CTRL> <SHIFT> <P> and <CTRL> <SHIFT> <ALT> <P> respectively
 
 ![](/Media/Default/images/blog/shortcut%20mapping%20external%20tools.png)
 

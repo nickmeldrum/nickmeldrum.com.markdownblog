@@ -2,9 +2,9 @@
 
 > "Where is a friendlier editor for my customer/BA/PM to write my Gherkin features? I can't expect them to use Visual Studio!"
 <div style="display: inline; float: right;" align="right">[![](http://nickmeldrum.com/Media/Default/images/blog/gherkin-building.jpg)](http://nickmeldrum.com/Media/Default/images/blog/gherkin-building.jpg "Okay so this is a different type of Gherkin... *shrug*")
-<div style="font-size: 0.7em;" about="http://www.geograph.org.uk/photo/3324" xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#"><span property="dct:title">The Gherkin, City of London</span> ([Fan Yang](http://www.geograph.org.uk/profile/143))
-/ [CC BY-SA 2.0](http://creativecommons.org/licenses/by-sa/2.0/)</div>
-</div>
+<div style="font-size: 0.7em;" about="http://www.geograph.org.uk/photo/3324" xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#"><span property="dct:title">The Gherkin, City of London ([Fan Yang](http://www.geograph.org.uk/profile/143))
+/ [CC BY-SA 2.0](http://creativecommons.org/licenses/by-sa/2.0/)
+
 
 I started hearing it so much I thought: "Ah hah! A gap in the very overcrowded open source &lsquo;development/ productivity tools&rsquo; market. I could become famous and write the first .Net Gherkin editor for business users. Now, to think of a cute name..."
 
@@ -23,8 +23,8 @@ But [BDD is about the conversation](http://dannorth.net/whats-in-a-story/ "Dan N
 
 <div style="display: inline; float: left;" align="left">[![](http://nickmeldrum.com/Media/Default/images/blog/2headssharing.jpg)](http://www.flickr.com/people/dailypic/ "2 Heads sharing some thoughts?")
 <div style="font-size: 0.7em;">Image reproduced with kind permission
-from [dailypic at flickr](http://www.flickr.com/people/dailypic/)</div>
-</div>
+from [dailypic at flickr](http://www.flickr.com/people/dailypic/)
+
 
 So instead, make Gherkin a part of your conversations with your customer. Get a technical team member and a customer together to discuss the scenarios. This discussion is where the real value is. It&rsquo;s where we get to attack the assumptions we are all making when we think about that feature.
 
@@ -42,7 +42,7 @@ Who&rsquo;s making the incorrect assumption here?
 
 [![](http://nickmeldrum.com/Media/Default/images/blog/geekandpoke-followingme.jpg)](http://geekandpoke.typepad.com/geekandpoke/2008/02/minigeek---ed3.html "Is there an implicit assumption being made here?")
 
-<div style="font-size: 0.7em;">Image reproduced with kind permission from [geekandpoke](http://geekandpoke.typepad.com/geekandpoke/2008/02/minigeek---ed3.html)</div>
+<div style="font-size: 0.7em;">Image reproduced with kind permission from [geekandpoke](http://geekandpoke.typepad.com/geekandpoke/2008/02/minigeek---ed3.html)
 
 &nbsp;
 

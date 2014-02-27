@@ -1,4 +1,4 @@
-﻿<span style="font-size: small;">**If there was 1 thing I wish I had learnt earlier **</span>in my professional career it would be: "read more blogs and watch/ listen to more podcasts/webcasts." Of course neither of these things were around when I started my career. (_"Geroff my lawn," etc. etc_.) But still I was late into the game and playing catch up with these tremendous resources.
+﻿<span style="font-size: small;">**If there was 1 thing I wish I had learnt earlier **in my professional career it would be: "read more blogs and watch/ listen to more podcasts/webcasts." Of course neither of these things were around when I started my career. (_"Geroff my lawn," etc. etc_.) But still I was late into the game and playing catch up with these tremendous resources.
 
 ![podcasts](/Media/Default/images/blog/podcasts_thumb.jpg)I am using podcasts, webcasts, whatever you call them, to bring seminars, professional conferences and top shelf training courses right to me. In my car or train on the way to work or wherever, I'm learning for free and I encourage you to do the same.
 
@@ -10,15 +10,15 @@ So with no further ado, here's the list:  &nbsp;
 
 ## ![InfoQ](/Media/Default/images/blog/infoQ_logo_thumb.gif)InfoQ
 
-**<span style="color: #000000;">URL:</span>** [http://www.infoq.com/](http://www.infoq.com/)
+**<span style="color: #000000;">URL:** [http://www.infoq.com/](http://www.infoq.com/)
 
-**<span style="color: #000000;">Tagline:</span> <span style="color: #666666;">Tracking change and innovation in the enterprise software development community</span>**
+**<span style="color: #000000;">Tagline: <span style="color: #666666;">Tracking change and innovation in the enterprise software development community**
 
-**<span style="color: #666666;">&nbsp;</span><span style="color: #000000;">Easy to Download?</span>** Not bad. A lot of the webcasts are missing slides though and it's audio + pdf slides only. No video. Not a big problem as you don't really lose any content though.
+**<span style="color: #666666;">&nbsp;<span style="color: #000000;">Easy to Download?** Not bad. A lot of the webcasts are missing slides though and it's audio + pdf slides only. No video. Not a big problem as you don't really lose any content though.
 
-**<span style="color: #000000;">Why I watch it:</span>** Here I get to hear the really important stuff in my opinion. They have a firm focus on architecture and agile methodologies. I get to hear about how other teams are implementing agile and improving software quality. I hear how the big boys (e.g. facebook) are architecting scalable solutions. You get real stories from the field from a variety of technology camps. If I had to choose just 1 place, I would choose InfoQ.
+**<span style="color: #000000;">Why I watch it:** Here I get to hear the really important stuff in my opinion. They have a firm focus on architecture and agile methodologies. I get to hear about how other teams are implementing agile and improving software quality. I hear how the big boys (e.g. facebook) are architecting scalable solutions. You get real stories from the field from a variety of technology camps. If I had to choose just 1 place, I would choose InfoQ.
 
-**<span style="color: #000000;">Highlights: </span>**
+**<span style="color: #000000;">Highlights: **
 
 *   Awesome quality of speakers and institutions reporting on their real world successes and failures
 *   Hear not just from Microsoft people, but Ruby, Java, Clojure, Scala, MongoDb, CouchDb, Neo4J etc.
@@ -26,15 +26,15 @@ So with no further ado, here's the list:  &nbsp;
 
 ## ![Hanselminutes](/Media/Default/images/blog/hanselminutes_logo_thumb.jpg)Hanselminutes
 
-**<span style="color: #000000;">URL:</span>** [http://www.hanselminutes.com/](http://www.hanselminutes.com/)
+**<span style="color: #000000;">URL:** [http://www.hanselminutes.com/](http://www.hanselminutes.com/)
 
-**<span style="color: #000000;">Tagline:</span>** **<span style="color: #666666;">Hanselminutes is a weekly audio talk show with noted web developer and technologist Scott Hanselman and hosted by Carl Franklin. Scott discusses utilities and tools, gives practical how-to advice, and discusses ASP.NET or Windows issues and workarounds.</span>**
+**<span style="color: #000000;">Tagline:** **<span style="color: #666666;">Hanselminutes is a weekly audio talk show with noted web developer and technologist Scott Hanselman and hosted by Carl Franklin. Scott discusses utilities and tools, gives practical how-to advice, and discusses ASP.NET or Windows issues and workarounds.**
 
-**<span style="color: #666666;">&nbsp;</span><span style="color: #000000;">Easy to Download?</span>** Yes very, as he has the downloads in his RSS feed ([http://feeds.feedburner.com/HanselminutesCompleteMP3)](http://feeds.feedburner.com/HanselminutesCompleteMP3)). Using "DownThemAll" made this a breeze!
+**<span style="color: #666666;">&nbsp;<span style="color: #000000;">Easy to Download?** Yes very, as he has the downloads in his RSS feed ([http://feeds.feedburner.com/HanselminutesCompleteMP3)](http://feeds.feedburner.com/HanselminutesCompleteMP3)). Using "DownThemAll" made this a breeze!
 
-**<span style="color: #000000;">Why I watch it:</span>** Scott Hanselman is extremely important and influential person in the .Net world. He's now the Principal Senior Program Manager of the world now or something. He also speaks very well. He is also a generally interesting person. I have learnt more from him than anyone else. He focuses on not wasting your time and learning about all kinds of cool technologies.
+**<span style="color: #000000;">Why I watch it:** Scott Hanselman is extremely important and influential person in the .Net world. He's now the Principal Senior Program Manager of the world now or something. He also speaks very well. He is also a generally interesting person. I have learnt more from him than anyone else. He focuses on not wasting your time and learning about all kinds of cool technologies.
 
-**<span style="color: #000000;">Highlights: </span>**
+**<span style="color: #000000;">Highlights: **
 
 *   Scott Hanselman
 *   The ultimate .Net evangelist talks about the best Microsoft technologies and to the best Microsoft technical minds
@@ -44,9 +44,9 @@ So with no further ado, here's the list:  &nbsp;
 
 **URL:** [http://www.youtube.com/user/GoogleTechTalks](http://www.youtube.com/user/GoogleTechTalks)
 
-**Tagline:** **<span style="color: #666666;">Google TechTalks are designed to disseminate a wide spectrum of views on topics including Current Affairs, Science, Medicine, Engineering, Business, Humanities, Law, Entertainment, and the Arts.</span>**
+**Tagline:** **<span style="color: #666666;">Google TechTalks are designed to disseminate a wide spectrum of views on topics including Current Affairs, Science, Medicine, Engineering, Business, Humanities, Law, Entertainment, and the Arts.**
 
-**<span style="color: #666666;">&nbsp;</span><span style="color: #000000;">Easy to Download?</span>** No - a real pain as they are on YouTube. I had to use the DownloadHelper Firefox add-on to get them. Then I used SUPER to transcode them from .flv into an MPEG-2/MP3-Lame avi.
+**<span style="color: #666666;">&nbsp;<span style="color: #000000;">Easy to Download?** No - a real pain as they are on YouTube. I had to use the DownloadHelper Firefox add-on to get them. Then I used SUPER to transcode them from .flv into an MPEG-2/MP3-Lame avi.
 
 **Why I watch it:** From the tagline you would think it's more fluff. Although they have virtually no Microsoft .Net stuff here, they have some important talks on technology and computer science that are worth discovering.
 
@@ -77,7 +77,7 @@ So with no further ado, here's the list:  &nbsp;
 
 **URL:** [http://channel9.msdn.com/](http://channel9.msdn.com/)
 
-**Tagline: <span style="color: #666666;">Videos about the people building Microsoft Products &amp; Services</span>**
+**Tagline: <span style="color: #666666;">Videos about the people building Microsoft Products &amp; Services**
 
 **Why I watch it: **Well it's from Microsoft, so that's a good and bad thing! We get interesting stuff from the big boys at Microsoft sometimes, but there is *alot* of "Microsft yay" shilling going on too.
 
@@ -95,7 +95,7 @@ So with no further ado, here's the list:  &nbsp;
 
 **URL:** [http://deepfriedbytes.com/](http://deepfriedbytes.com/)
 
-**Tagline: <span style="color: #666666;">Deep Fried Bytes is an audio talk show with a Southern flavor hosted by technologists and developers Keith Elder and Chris Woodruff.</span>**
+**Tagline: <span style="color: #666666;">Deep Fried Bytes is an audio talk show with a Southern flavor hosted by technologists and developers Keith Elder and Chris Woodruff.**
 
 **Easy to Download?** Yup, fantastic - RSS feed available Why I watch it: Actually I don't yet - it's on my todo list. The list of speakers is fantastic though. From Scott Guthrie to Udi Dahan, this definitely looks worth listening to.  &nbsp;
 
@@ -105,9 +105,9 @@ So with no further ado, here's the list:  &nbsp;
 
 **URL:** [http://www.develop.com/webcasts/](http://www.develop.com/webcasts/)
 
-**Tagline:****<span style="color: #666666;"> Developing people who develop software</span>**
+**Tagline:****<span style="color: #666666;"> Developing people who develop software**
 
-**<span style="color: #666666;">&nbsp;</span>Why I watch it:** These guys are primarily trainers - and very high quality trainers. (At least they were during the COM days when I was with Microsoft, but I hear they are still very good.)
+**<span style="color: #666666;">&nbsp;Why I watch it:** These guys are primarily trainers - and very high quality trainers. (At least they were during the COM days when I was with Microsoft, but I hear they are still very good.)
 
 **Easy to Download?** Yes. They make them all downloadable in video/audio only and slides, sometimes with code zips. Very nice guys thanks!
 
@@ -121,9 +121,9 @@ So with no further ado, here's the list:  &nbsp;
 
 **URL:** [http://www.dimecasts.net/](http://www.dimecasts.net/)**Tag**
 
-**line:** **<span style="color: #666666;">The goal is that each episode review only a single overall concept and stays within a 10 minute timeframe.</span>**
+**line:** **<span style="color: #666666;">The goal is that each episode review only a single overall concept and stays within a 10 minute timeframe.**
 
-**<span style="color: #666666;">&nbsp;</span>Easy to Download? ** Why I watch it: I've only just found out about these guys, so I can't really say I watch it or comment on the quality. Some good names in their author list though.
+**<span style="color: #666666;">&nbsp;Easy to Download? ** Why I watch it: I've only just found out about these guys, so I can't really say I watch it or comment on the quality. Some good names in their author list though.
 
 **Highlights:**
 
@@ -134,9 +134,9 @@ So with no further ado, here's the list:  &nbsp;
 
 **URL:** [http://www.dotnetrocks.com/](http://www.dotnetrocks.com/)
 
-**Tagline:****<span style="color: #666666;"> The Internet Audio Talk Show for .Net Developers</span>**
+**Tagline:****<span style="color: #666666;"> The Internet Audio Talk Show for .Net Developers**
 
-**<span style="color: #666666;">&nbsp;</span>Easy to Download? **Yup, great. RSS Feed
+**<span style="color: #666666;">&nbsp;Easy to Download? **Yup, great. RSS Feed
 
 **Why I watch it: **Again, not had time to listen to many of these yet &ndash; run by Carl Franklin &ndash; the guy that does Hanselminutes with Scott Hanselman.  &nbsp;
 
