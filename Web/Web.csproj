@@ -165,6 +165,8 @@
     <Content Include="Posts\moved-to-subtext.md" />
     <Content Include="Posts\hard-drive-speeds.md" />
     <Content Include="Posts\first-post.md" />
+    <Content Include="scripts\prettify.js" />
+    <Content Include="scripts\runprettify.js" />
     <Content Include="Views\Shared\Disqus.cshtml" />
     <Content Include="App_Code\LinkHelpers.cshtml" />
     <Content Include="Posts\how-to-run-powershell-scripts-from-solution-explorer-in-visual-studio-2010.md" />
@@ -173,6 +175,8 @@
     <Content Include="Posts\problem-solving-and-priorities.md" />
     <Content Include="Posts\problem-saving-images-as-non-bmp-with-internet-explorer.md" />
     <Content Include="Posts\technical-debt-and-asp.net-web-forms.md" />
+    <Content Include="Posts\never-let-your-domain-expire.md" />
+    <Content Include="Posts\presentation-ideas.md" />
     <None Include="Posts\vsvim-plugin-for-visual-studio.md" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\ArchiveItem.cs" />
