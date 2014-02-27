@@ -156,9 +156,23 @@
     <Content Include="Content\sunburst-modified.css" />
     <Content Include="errors\404.html" />
     <Content Include="errors\500.html" />
+<<<<<<< Updated upstream
     <Content Include="Posts\test blog post 2.md" />
+=======
+    <Content Include="Posts\mouseless-browsing-with-vimium.md" />
+    <Content Include="Posts\am-i-a-farmer-or-a-miner.md" />
+    <Content Include="Posts\adventures-in-linq-and-groupby.md" />
+    <Content Include="Posts\beerware.md" />
+    <Content Include="Posts\my-lovely-abit-ip35-pro-dead.md" />
+    <Content Include="Posts\ci-and-automated-deployments-delete-dont-just-overwrite.md" />
+    <Content Include="Posts\moved-to-subtext.md" />
+    <Content Include="Posts\hard-drive-speeds.md" />
+    <Content Include="Posts\first-post.md" />
+    <Content Include="Posts\never-let-your-domain-expire.md" />
+    <None Include="Posts\presentation-ideas.md" />
     <Content Include="scripts\prettify.js" />
     <Content Include="scripts\runprettify.js" />
+>>>>>>> Stashed changes
     <Content Include="Views\Shared\Disqus.cshtml" />
     <Content Include="App_Code\LinkHelpers.cshtml" />
     <None Include="Posts\test blog post.md" />

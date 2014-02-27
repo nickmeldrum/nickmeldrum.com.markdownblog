@@ -14,8 +14,9 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public IEnumerable<ArchiveItemGrouping> MonthlyArchiveLinks {
             get {
-                return List.GroupBy(p => new ArchiveItem(p))
+                var x = List.GroupBy(p => new ArchiveItem(p))
                            .Select(ps => new ArchiveItemGrouping { ArchiveItem = ps.Key, Count = ps.Count() });
+                return x;
             }
         }
 
