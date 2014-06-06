@@ -131,11 +131,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BlogRouteConfig.cs" />
-    <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
-    <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogControllerBase.cs" />
-    <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HttpContextExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -143,11 +140,6 @@
     </Compile>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\body.css" />
-    <Content Include="Content\bootstrap-mvc-validation.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\feed-icon-14x14.png" />
     <Content Include="Content\images\feed-icon-28x28.png" />
     <Content Include="Content\prettify.css" />
@@ -222,8 +214,6 @@
     <Content Include="Posts\moved-to-subtext.md" />
     <Content Include="Posts\hard-drive-speeds.md" />
     <Content Include="Posts\first-post.md" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\prettify.js" />
     <Content Include="scripts\runprettify.js" />
     <Content Include="test.html" />
@@ -277,7 +267,6 @@
     <None Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive-custom-for-bootstrap.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Views\Blog\Index.cshtml" />
@@ -287,14 +276,7 @@
     <Content Include="Views\Blog\Post.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Shared\Index.cshtml" />
-    <Content Include="Views\Shared\Details.cshtml" />
-    <Content Include="Views\Shared\Create.cshtml" />
-    <Content Include="Views\Shared\_validationSummary.cshtml" />
     <Content Include="Views\Shared\_BootstrapLayout.narrow.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.empty.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.basic.cshtml" />
-    <Content Include="Views\Shared\_alerts.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\ArchiveLinks.cshtml" />
