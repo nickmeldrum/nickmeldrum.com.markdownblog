@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - @Model.SiteData.Name</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="@Styles.Url("~/content/css")" rel="stylesheet"/>
     <style type="text/css">
@@ -66,6 +66,9 @@
             </ul>
             <h3 class="muted">MvcApplication1</h3>
         </div>
+ <aside>
+             @RenderSection("Asides")
+        </aside>
 
         @Html.Partial("_alerts")
         @RenderBody()
@@ -77,6 +80,7 @@
     </div> <!-- container -->
     @Scripts.Render("~/js")
     @RenderSection("Scripts", required: false)
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </body>
 </html>
 
