@@ -1,7 +1,11 @@
 ﻿@model MarkdownBlog.Net.Web.Models.SiteViewModel
 @{ ViewBag.Title = "Home"; }
 
-Latest Post: @Html.Partial("PostLink", Model.Posts.Latest)
+<h3>Latest Blog Posts:</h3>
+
+@foreach (var post in Model.Posts.Latest(3)) {
+    @Html.Partial("PostLink", post);
+}
 
 @section asides
 {

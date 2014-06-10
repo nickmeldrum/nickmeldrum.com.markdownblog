@@ -10,7 +10,7 @@ namespace MarkdownBlog.Net.Web.Models {
         public static readonly string PostsRoot = "~/Posts/";
 
         public IList<PostMetadata> List { get; private set; }
-        public PostMetadata Latest { get { return List.OrderByDescending(p => p.PublishDate).Take(1).Single(); } }
+        public IList<PostMetadata> Latest(int number) { return List.OrderByDescending(p => p.PublishDate).Take(number).ToList(); }
 
         public IEnumerable<ArchiveItemGrouping> MonthlyArchiveLinks {
             get {
