@@ -1,15 +1,18 @@
   body {
-            padding-top: 60px;
+      padding-top: 0px;
             padding-bottom: 40px;
             
   font-family: Georgia,Cambria,"Times New Roman",Times,serif;
 letter-spacing: .01rem;
 font-weight: 400;
 font-style: normal;
-font-size: 22px;
+font-size: 18px;
 line-height: 1.5;
           }
 
+  .navbar {
+      margin-bottom: 0px;
+  }
   aside {
       float: right;
   }

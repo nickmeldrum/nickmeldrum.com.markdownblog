@@ -1,0 +1,76 @@
+@using System.Web.Optimization
+@using MarkdownBlog.Net.Web.NavigationRoutes
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - @Model.SiteData.Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="@Styles.Url("~/content/css")" rel="stylesheet" type="text/css" />
+    @RenderSection("head", required: false)
+    @Html.Partial("_html5shiv")
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">nickmeldrum.com</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @Html.Navigation()
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">@ViewBag.Title</div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-9" role="main">
+                @RenderBody()
+            </div>
+
+            <div class="col-md-3">
+                <aside>
+                    @RenderSection("Asides")
+                </aside>
+            </div>
+        </div>
+
+        <div class="row">
+            <hr>
+            <footer>
+                <p>&copy; @Model.SiteData.Owner 2010 - @DateTime.Now.ToString("yyyy")</p>
+            </footer>
+
+        </div>
+
+    </div>
+
+    </div>
+    <!-- container -->
+    @Scripts.Render("~/js")
+    @RenderSection("Scripts", required: false)
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+</body>
+</html>
+

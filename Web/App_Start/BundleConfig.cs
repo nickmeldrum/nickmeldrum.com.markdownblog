@@ -2,7 +2,7 @@
 
 namespace MarkdownBlog.Net.Web.App_Start
 {
-    public class BootstrapBundleConfig
+    public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -22,8 +22,7 @@ namespace MarkdownBlog.Net.Web.App_Start
                 "~/Content/body.css",
                 "~/Content/prettify.css",
                 "~/Content/sunburst-modified.css",
-                "~/Content/bootstrap-responsive.css",
-                "~/Content/bootstrap-mvc-validation.css"
+                "~/Content/bootstrap-theme.css"
                 ));
         }
     }

@@ -1,9 +1,5 @@
 ﻿@model MarkdownBlog.Net.Web.Models.Archive
-@{ ViewBag.Title = "Blog archive"; }
-
-<h2>Blog archive</h2>
-
-<h3>Posts for @Model.Month @Model.Year:</h3>
+@{ ViewBag.Title = string.Format("Blog archive: posts for {0} {1}", Model.Month, Model.Year); }
 
 @Html.Partial("Posts", Model.ArchivePosts)
 

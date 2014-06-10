@@ -52,7 +52,7 @@
           height: 3em;
       }
     </style>
-    <link href="@Styles.Url("~/Content/css-responsive")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/content/css")" rel="stylesheet" type="text/css" />
     @RenderSection("head", required: false)
     @Html.Partial("_html5shiv")
     @* favicons and touch icons go here *@
@@ -70,7 +70,6 @@
              @RenderSection("Asides")
         </aside>
 
-        @Html.Partial("_alerts")
         @RenderBody()
         <hr>
         <footer>

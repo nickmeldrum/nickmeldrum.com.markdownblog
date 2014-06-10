@@ -129,7 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BootstrapBundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BlogRouteConfig.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogControllerBase.cs" />
@@ -140,6 +140,10 @@
     </Compile>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\body.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\feed-icon-14x14.png" />
     <Content Include="Content\images\feed-icon-28x28.png" />
     <Content Include="Content\prettify.css" />
@@ -214,10 +218,10 @@
     <Content Include="Posts\moved-to-subtext.md" />
     <Content Include="Posts\hard-drive-speeds.md" />
     <Content Include="Posts\first-post.md" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\prettify.js" />
     <Content Include="scripts\runprettify.js" />
-    <Content Include="test.html" />
-    <Content Include="test2.htm" />
     <Content Include="Views\Shared\Disqus.cshtml" />
     <Content Include="App_Code\LinkHelpers.cshtml" />
     <Content Include="Posts\how-to-run-powershell-scripts-from-solution-explorer-in-visual-studio-2010.md" />
@@ -231,6 +235,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Posts\vsvim-plugin-for-visual-studio.md" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\ArchiveItem.cs" />
@@ -270,13 +276,12 @@
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Posts\metadata.json" />
     <Content Include="Views\Blog\Post.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Shared\_BootstrapLayout.narrow.cshtml" />
+    <Content Include="Views\Shared\_OldBootstrapLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\ArchiveLinks.cshtml" />
@@ -286,6 +291,7 @@
     <Content Include="Views\Shared\StackOverflowFlair.cshtml" />
     <Content Include="SiteSettings.config" />
     <Content Include="Views\Shared\TwitterTimeline.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

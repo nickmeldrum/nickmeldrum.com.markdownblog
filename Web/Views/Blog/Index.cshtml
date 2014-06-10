@@ -2,8 +2,6 @@
 
 @{ ViewBag.Title = "Posts"; }
 
-<h2>Blog</h2>
-
 @LinkHelpers.FeedLink()
 
 @Html.Partial("Posts", Model.Posts.List)
