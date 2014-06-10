@@ -1,0 +1,5 @@
+dark primary: 0, 101, 105 006569
+mid primary: 0, 158, 163 009EA3
+light primary: 0, 247, 255 00F7FF
+dark secondary: 178, 118, 79 B2764F
+light secondary: 255, 111, 20 FF6F14
