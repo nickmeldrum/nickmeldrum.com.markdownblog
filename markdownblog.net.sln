@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{71B9D8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A977BA1D-75C8-46DB-8266-0390BF37B27E}"
 	ProjectSection(SolutionItems) = preProject
+		brand colors.txt = brand colors.txt
 		README.md = README.md
 		docs\todo.md = docs\todo.md
 	EndProjectSection

@@ -239,8 +239,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Posts\vsvim-plugin-for-visual-studio.md" />
     <Compile Include="Models\Archive.cs" />
-    <Compile Include="Models\ArchiveItem.cs" />
-    <Compile Include="Models\ArchiveItemGrouping.cs" />
+    <Compile Include="Models\PostMetaDataWithMonthAndYearGrouping.cs" />
     <Compile Include="Models\StackOverflowFlair.cs" />
     <Compile Include="Models\Disqus.cs" />
     <Compile Include="Models\Feed.cs" />

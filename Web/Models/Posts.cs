@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -12,11 +13,12 @@ namespace MarkdownBlog.Net.Web.Models {
         public IList<PostMetadata> List { get; private set; }
         public IList<PostMetadata> Latest(int number) { return List.OrderByDescending(p => p.PublishDate).Take(number).ToList(); }
 
-        public IEnumerable<ArchiveItemGrouping> MonthlyArchiveLinks {
-            get {
-                var x = List.GroupBy(p => new ArchiveItem(p))
-                           .Select(ps => new ArchiveItemGrouping { ArchiveItem = ps.Key, Count = ps.Count() });
-                return x;
+        public IEnumerable<PostMetaDataWithMonthAndYearGrouping> MonthlyArchiveLinks {
+            get
+            {
+                return List.GroupBy(
+                    k => new DateTime(k.PublishDate.Year, k.PublishDate.Month, 1), (key, g) => new PostMetaDataWithMonthAndYearGrouping { MonthAndYearGrouping = key, PostMetaDataList = g }
+                    ).ToList();
             }
         }
 
