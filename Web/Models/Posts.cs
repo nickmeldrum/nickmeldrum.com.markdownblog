@@ -17,8 +17,8 @@ namespace MarkdownBlog.Net.Web.Models {
             get
             {
                 return List.GroupBy(
-                    k => new DateTime(k.PublishDate.Year, k.PublishDate.Month, 1), (key, g) => new PostMetaDataWithMonthAndYearGrouping { MonthAndYearGrouping = key, PostMetaDataList = g }
-                    ).ToList();
+                        k => new DateTime(k.PublishDate.Year, k.PublishDate.Month, 1),
+                        (key, g) => new PostMetaDataWithMonthAndYearGrouping { MonthAndYearGrouping = key, PostMetaDataList = g }).ToList();
             }
         }
 

@@ -1,7 +1,5 @@
 ﻿@model MarkdownBlog.Net.Web.Models.Post
-@{ ViewBag.Title = Model.Metadata.Title; }
-
-<i>Posted by @Model.Metadata.Author on @Model.Metadata.PublishDate</i>
+@{ ViewBag.Title = PostHelpers.PostTitle(Model.Metadata); }
 
 <article>
     @Html.Raw(Model.Body)

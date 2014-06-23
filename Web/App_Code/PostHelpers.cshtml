@@ -1,0 +1,8 @@
+@using MarkdownBlog.Net.Web.Models;
+
+@helper PostTitle(.PostMetaData postMetaData)
+{
+    <h1>@postMetaData.Title</h1>
+    <h3>@postMetaData.ShortDescription</h3>
+    <i>Posted by @postMetaData.Author on @postMetaData.PublishDate.ToString("dd MMMM yyyy")</i>
+}

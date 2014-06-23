@@ -1,6 +1,4 @@
-﻿###_"Or How I Learned to Stop Worrying and Love the Keyboard"_
-
-### TL/DR
+﻿### TL/DR
 
 Vim is awesome. I have installed Vim plug-ins on my 3 most important developer tools: Visual Studio, Sublime Text 2 and Chrome. This gives me a fantastically productive and consistent experience while coding. If you use these tools I recommend you try the plugins too.
 
