@@ -1,6 +1,6 @@
-@using MarkdownBlog.Net.Web.Models;
+@using MarkdownBlog.Net.Web.Models
 
-@helper PostTitle(.PostMetaData postMetaData)
+@helper PostTitle(PostMetadata postMetaData)
 {
     <h1>@postMetaData.Title</h1>
     <h3>@postMetaData.ShortDescription</h3>
