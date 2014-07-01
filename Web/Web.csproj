@@ -47,6 +47,15 @@
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.AspNet">
+      <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc4">
+      <HintPath>..\packages\Glimpse.Mvc4.1.5.3\lib\net40\Glimpse.Mvc4.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
@@ -135,6 +144,8 @@
     <Compile Include="Controllers\BlogControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HttpContextExtensions.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -238,8 +249,15 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="App_Code\PostHelpers.cshtml" />
     <Content Include="Posts\technical-debt-and-aspdotnet-web-forms.md" />
+    <Content Include="Pages\My-CV.md" />
+    <Content Include="Pages\metadata.json" />
     <None Include="Posts\vsvim-plugin-for-visual-studio.md" />
     <Compile Include="Models\Archive.cs" />
+    <Compile Include="Models\ContentItem.cs" />
+    <Compile Include="Models\ContentItemsMetaData.cs" />
+    <Compile Include="Models\ContentItemMetaData.cs" />
+    <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\Pages.cs" />
     <Compile Include="Models\PostMetaDataWithMonthAndYearGrouping.cs" />
     <Compile Include="Models\StackOverflowFlair.cs" />
     <Compile Include="Models\Disqus.cs" />

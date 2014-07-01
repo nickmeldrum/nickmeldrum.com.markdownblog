@@ -3,7 +3,8 @@ using System.Web;
 
 namespace MarkdownBlog.Net.Web.Models {
     public class SiteViewModel {
-        public Posts Posts { get { return _posts ?? (_posts = new Posts(HttpContext)); } }
+        public Posts Posts { get { return _posts ?? (_posts = new Posts(new ContentItemsMetaData<PostMetadata>(HttpContext))); } }
+        public Pages Pages { get { return _pages ?? (_pages = new Pages(new ContentItemsMetaData<ContentItemMetaData>(HttpContext))); } }
         public Site SiteData { get { return new Site(); } }
 
         public Dictionary<string, object> AsidesViewModels {
@@ -22,5 +23,6 @@ namespace MarkdownBlog.Net.Web.Models {
 
         protected readonly HttpContextWrapper HttpContext;
         private Posts _posts;
+        private Pages _pages;
     }
 }

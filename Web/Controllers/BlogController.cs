@@ -33,7 +33,7 @@ namespace MarkdownBlog.Net.Web.Controllers {
                 HttpContextWrapper.SendHttpStatusResponse(404);
             }
 
-            var posts = new Posts(HttpContextWrapper);
+            var posts = new Posts(new ContentItemsMetaData<PostMetadata>(HttpContextWrapper));
             var feed = new Feed(posts, HttpContextWrapper);
 
             return feed.GetFeedXml(feedType);
