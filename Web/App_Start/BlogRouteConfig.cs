@@ -14,13 +14,13 @@ namespace MarkdownBlog.Net.Web.App_Start
 
             routes.MapNavigationRoute("Blog-navigation", "Blog", "blog", new { controller = "Blog", action = "Index" });
 
-            var pagesDir = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/Pages/"));
-            foreach (var file in pagesDir.GetFiles("*.md"))
-            {
-                var fileName = Path.GetFileNameWithoutExtension(file.Name);
-                var displayName = fileName.Replace('-', ' ');
-                routes.MapNavigationRoute("Page" + fileName, displayName, fileName, new { controller = "Page", action = "GetPage" });
-            }
+                var pagesDir = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/Pages/"));
+                foreach (var file in pagesDir.GetFiles("*.md"))
+                {
+                    var fileName = Path.GetFileNameWithoutExtension(file.Name);
+                    var displayName = fileName.Replace('-', ' ');
+                    routes.MapNavigationRoute("Page-navigation-" + fileName, displayName, fileName, new { controller = "Page", action = "GetPage" });
+                }
         }
     }
 }

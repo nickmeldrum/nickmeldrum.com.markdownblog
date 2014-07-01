@@ -4,9 +4,9 @@ namespace MarkdownBlog.Net.Web.Controllers
 {
     public class PageController : Controller
     {
-        public ContentResult GetPage()
+        public ContentResult GetPage(string pageName)
         {
-            return new ContentResult() { Content = "oh hai"  };
+            return new ContentResult() { Content = "oh hai" + pageName  };
         }
     }
 }

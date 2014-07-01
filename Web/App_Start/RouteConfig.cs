@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
+using MarkdownBlog.Net.Web.NavigationRoutes;
 
 namespace MarkdownBlog.Net.Web.App_Start {
     public class RouteConfig {
@@ -23,6 +26,16 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 "blog/{postName}", // URL with parameters
                 new { controller = "Blog", action = "Post" } // Parameter defaults
             );
+
+            var pagesDir = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/Pages/"));
+            foreach (var file in pagesDir.GetFiles("*.md")) {
+                var fileName = Path.GetFileNameWithoutExtension(file.Name);
+                routes.MapRoute(
+                    "Page" + fileName, // Route name
+                    fileName, // URL with parameters
+                    new { controller = "Page", action = "GetPage", pageName = fileName } // Parameter defaults
+                );
+            }
 
             routes.MapRoute(
                 "Default", // Route name
