@@ -229,7 +229,6 @@
     <Content Include="Posts\table-default-constraints-usage.md" />
     <Content Include="Posts\problem-solving-and-priorities.md" />
     <Content Include="Posts\problem-saving-images-as-non-bmp-with-internet-explorer.md" />
-    <Content Include="Posts\technical-debt-and-asp.net-web-forms.md" />
     <Content Include="Posts\never-let-your-domain-expire.md" />
     <Content Include="Posts\presentation-ideas.md" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -238,6 +237,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="App_Code\PostHelpers.cshtml" />
+    <Content Include="Posts\technical-debt-and-aspdotnet-web-forms.md" />
     <None Include="Posts\vsvim-plugin-for-visual-studio.md" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\PostMetaDataWithMonthAndYearGrouping.cs" />
