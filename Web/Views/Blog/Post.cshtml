@@ -1,5 +1,8 @@
 ﻿@model MarkdownBlog.Net.Web.Models.Post
-@{ ViewBag.Title = PostHelpers.PostTitle(Model.Metadata); }
+@{
+    ViewBag.Title = Model.Metadata.Title;
+    ViewBag.Jumbotron = PostHelpers.PostJumbotron(Model.Metadata);
+}
 
 <article>
     @Html.Raw(Model.Body)
