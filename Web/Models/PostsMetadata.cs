@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace MarkdownBlog.Net.Web.Models {
-    public class Posts {
+    public class PostsMetadata {
         public static readonly string PostsRoot = "~/Posts/";
 
         public IList<PostMetadata> List { get; private set; }
@@ -22,7 +22,7 @@ namespace MarkdownBlog.Net.Web.Models {
             return List.Where(p => p.PublishDate.ToString("MMM") == month && p.PublishDate.Year == year);
         }
 
-        public Posts(ContentItemsMetaData<PostMetadata> contentItemsMetaData)
+        public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData)
         {
             List = contentItemsMetaData.List(PostsRoot);
         }

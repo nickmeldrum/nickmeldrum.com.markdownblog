@@ -9,7 +9,7 @@ namespace MarkdownBlog.Net.Web.Models {
         public ContentItemMetaData Metadata { get { return _contentItem.Metadata; } }
 
         public Page(string pageName, HttpContextWrapper httpContext) : base(httpContext) {
-            _contentItem = new ContentItem(pageName, Pages.PagesRoot, httpContext, Pages.List);
+            _contentItem = new ContentItem(pageName, PagesMetadata.PagesRoot, httpContext, PagesMetadata.List);
         }
     }
 }

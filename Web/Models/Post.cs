@@ -11,7 +11,7 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public Post(string postName, HttpContextWrapper httpContext) : base(httpContext)
         {
-            _contentItem = new ContentItem(postName, Posts.PostsRoot, httpContext, Posts.List);
+            _contentItem = new ContentItem(postName, PostsMetadata.PostsRoot, httpContext, PostsMetadata.List);
         }
 
         public Disqus Disqus

@@ -11,13 +11,13 @@ namespace MarkdownBlog.Net.Web.Models {
         private readonly HttpContextWrapper _contextWrapper;
         private SyndicationFeed _feed;
 
-        public Feed(Posts posts, HttpContextWrapper contextWrapper) {
+        public Feed(PostsMetadata postsMetadata, HttpContextWrapper contextWrapper) {
             _site = new Site();
             _contextWrapper = contextWrapper;
 
             SetupFeed();
 
-            AddPostsToFeed(posts);
+            AddPostsToFeed(postsMetadata);
         }
 
         public FeedResult GetFeedXml(FeedType feedType) {
@@ -43,10 +43,10 @@ namespace MarkdownBlog.Net.Web.Models {
             _feed.Links.Add(SyndicationLink.CreateSelfLink(new Uri(_contextWrapper.Request.Url.AbsoluteUri)));
         }
 
-        private void AddPostsToFeed(Posts posts) {
+        private void AddPostsToFeed(PostsMetadata postsMetadata) {
             var feedItems = new List<SyndicationItem>();
 
-            foreach (var post in posts.List) {
+            foreach (var post in postsMetadata.List) {
                 var item = new SyndicationItem {
                     Title = SyndicationContent.CreatePlaintextContent(post.Title),
                     Summary = SyndicationContent.CreatePlaintextContent(post.ShortDescription),

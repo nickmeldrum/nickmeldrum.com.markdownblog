@@ -3,7 +3,7 @@
 
 <h3>Latest Blog Posts:</h3>
 
-@foreach (var post in Model.Posts.Latest(3)) {
+@foreach (var post in Model.PostsMetadata.Latest(3)) {
     @Html.Partial("PostLink", post);
 }
 

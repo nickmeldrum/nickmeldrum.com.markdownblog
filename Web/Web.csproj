@@ -239,7 +239,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="App_Code\PostHelpers.cshtml" />
     <Content Include="Posts\technical-debt-and-aspdotnet-web-forms.md" />
-    <Content Include="Pages\My-CV.md" />
+    <Content Include="Pages\cv.md" />
     <Content Include="Pages\metadata.json" />
     <None Include="Posts\vsvim-plugin-for-visual-studio.md" />
     <Compile Include="Models\Archive.cs" />
@@ -300,6 +300,7 @@
     <Content Include="SiteSettings.config" />
     <Content Include="Views\Shared\TwitterTimeline.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Page\Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

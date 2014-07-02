@@ -1,0 +1,13 @@
+﻿@model MarkdownBlog.Net.Web.Models.Page
+@{
+    ViewBag.Title = Model.Metadata.Title;
+}
+
+<article>
+    @Html.Raw(Model.Body)
+</article>
+
+@section asides
+{
+    @Html.Partial("Asides", Model)
+}

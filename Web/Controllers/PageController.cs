@@ -1,12 +1,23 @@
-﻿using System.Web.Mvc;
+﻿using MarkdownBlog.Net.Web.Models;
+using System.IO;
+using System.Web.Mvc;
 
 namespace MarkdownBlog.Net.Web.Controllers
 {
-    public class PageController : Controller
+    public class PageController : BlogControllerBase
     {
-        public ContentResult GetPage(string pageName)
+        public ActionResult GetPage(string pageName)
         {
-            return new ContentResult() { Content = "oh hai" + pageName  };
+            try {
+                return string.IsNullOrWhiteSpace(pageName)
+                    ? (ActionResult)new RedirectResult("/")
+                    : View("Page", new Page(pageName, HttpContextWrapper));
+            }
+            catch (FileNotFoundException ex) {
+                HttpContextWrapper.SendHttpStatusResponse(404);
+            }
+
+            return new RedirectResult("/");
         }
     }
 }
