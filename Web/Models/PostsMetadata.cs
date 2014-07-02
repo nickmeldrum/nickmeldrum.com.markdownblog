@@ -17,7 +17,7 @@ namespace MarkdownBlog.Net.Web.Models {
                 lock (syncRoot) 
                 {
                     if (HttpContext.Current.Cache["PostsMetadata"] == null)
-                        HttpContext.Current.Cache.Add("PostsMetadata", new PostsMetadata(new ContentItemsMetaData<PostMetadata>(new HttpContextWrapper(HttpContext.Current))), null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                        HttpContext.Current.Cache.Add("PostsMetadata", new PostsMetadata(new ContentItemsMetaData<PostMetadata>()), null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
                 }
              }
 
@@ -25,7 +25,7 @@ namespace MarkdownBlog.Net.Web.Models {
           }
        }
 
-        public static readonly string PostsRoot = "~/Posts/";
+        public static readonly string PostsRoot = "Posts";
 
         public IList<PostMetadata> List { get; private set; }
         public IList<PostMetadata> Latest(int number) { return List.OrderByDescending(p => p.PublishDate).Take(number).ToList(); }
@@ -43,7 +43,7 @@ namespace MarkdownBlog.Net.Web.Models {
             return List.Where(p => p.PublishDate.ToString("MMM") == month && p.PublishDate.Year == year);
         }
 
-        private PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData)
+        public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData)
         {
             List = contentItemsMetaData.List(PostsRoot);
         }

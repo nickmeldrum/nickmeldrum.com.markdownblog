@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using MarkdownSharp;
 
 namespace MarkdownBlog.Net.Web.Models {
     public class ContentItem {
         private readonly string _contentItemExtension = ".md";
-
-        private readonly HttpContextWrapper _httpContext;
 
         private readonly string _contentItemName;
         private readonly string _contentRoot;
@@ -17,11 +14,10 @@ namespace MarkdownBlog.Net.Web.Models {
         private string _body;
         public ContentItemMetaData Metadata { get; set; }
 
-        public ContentItem(string contentItemName, string contentRoot, HttpContextWrapper httpContext, IEnumerable<ContentItemMetaData> list)
+        public ContentItem(string contentItemName, string contentRoot, IEnumerable<ContentItemMetaData> list)
         {
             _contentItemName = contentItemName;
             _contentRoot = contentRoot;
-            _httpContext = httpContext;
 
             if (!File.Exists(ContentBodyPath) || !list.Any(p => p.Slug == _contentItemName))
             {
@@ -31,7 +27,7 @@ namespace MarkdownBlog.Net.Web.Models {
             Metadata = list.Single(p => p.Slug == _contentItemName);
         }
 
-        private string ContentBodyPath { get { return _httpContext.Server.MapPath(_contentRoot + _contentItemName + _contentItemExtension); } }
+        private string ContentBodyPath { get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _contentRoot, _contentItemName + _contentItemExtension); } }
 
         public string Body {
             get {

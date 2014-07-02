@@ -12,7 +12,7 @@ namespace MarkdownBlog.Net.Web.Models {
                 if (HttpContext.Current.Cache["PagesMetadata"] == null) {
                     lock (syncRoot) {
                         if (HttpContext.Current.Cache["PagesMetadata"] == null)
-                            HttpContext.Current.Cache.Add("PagesMetadata", new PagesMetadata(new ContentItemsMetaData<ContentItemMetaData>(new HttpContextWrapper(HttpContext.Current))), null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                            HttpContext.Current.Cache.Add("PagesMetadata", new PagesMetadata(new ContentItemsMetaData<ContentItemMetaData>()), null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
                     }
                 }
 
@@ -20,11 +20,11 @@ namespace MarkdownBlog.Net.Web.Models {
             }
         }
 
-        public static readonly string PagesRoot = "~/Pages/";
+        public static readonly string PagesRoot = "Pages";
 
         public IList<ContentItemMetaData> List { get; private set; }
 
-        private PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData) {
+        public PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData) {
             List = contentItemsMetaData.List(PagesRoot);
         }
     }
