@@ -1,0 +1,22 @@
+﻿@model IList<MarkdownBlog.Net.Web.Models.SearchResult>
+@{ ViewBag.Title = "Search results"; }
+
+@if (Model.Count == 0) {
+    <div>No search results found</div>
+}
+else {
+    foreach (var searchResult in Model) {
+    <div>
+        <h3><a href="@searchResult.Url" title="@searchResult.Title">@searchResult.Title</a></h3>
+        @if (!string.IsNullOrWhiteSpace(searchResult.Description))
+        {
+            <h4>@searchResult.Description</h4>
+        }
+        @if (!(string.IsNullOrWhiteSpace(searchResult.PublishDate) && string.IsNullOrWhiteSpace(searchResult.Author)))
+        {
+            <i>Posted by @searchResult.Author on @searchResult.PublishDate</i>
+        }
+        <p>@searchResult.Body.Substring(0, 300)&#x2026;</p>
+    </div>
+    }
+}

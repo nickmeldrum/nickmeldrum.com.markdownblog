@@ -3,7 +3,7 @@ using MarkdownBlog.Net.Web.Models;
 
 namespace MarkdownBlog.Net.Web.Controllers
 {
-    public class HomeController : BlogControllerBase
+    public class HomeController : ControllerBase
     {
         public ActionResult Index()
         {

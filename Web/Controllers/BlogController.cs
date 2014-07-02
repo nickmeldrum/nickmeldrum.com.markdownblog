@@ -4,7 +4,7 @@ using System.IO;
 using System.Web.Mvc;
 
 namespace MarkdownBlog.Net.Web.Controllers {
-    public class BlogController : BlogControllerBase {
+    public class BlogController : ControllerBase {
         public ActionResult Index() {
             return View(PostsMetadata.Instance.List);
         }
@@ -13,7 +13,7 @@ namespace MarkdownBlog.Net.Web.Controllers {
             try {
                 return string.IsNullOrWhiteSpace(postName)
                     ? View("Index")
-                    : View("Post", new Post(postName, HttpContextWrapper));
+                    : View("Post", new Post(postName));
             }
             catch (FileNotFoundException ex) {
                 HttpContextWrapper.SendHttpStatusResponse(404);
