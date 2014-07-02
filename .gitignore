@@ -1,6 +1,7 @@
 # dotNet compilation
 syntax: glob
 Web/bin
+Web/App_Data/
 [Dd]ebug*/
 [Oo]bj/
 [Rr]elease*/
