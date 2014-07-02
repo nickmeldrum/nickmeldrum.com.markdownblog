@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using MarkdownBlog.Net.Web.Models;
 using MarkdownBlog.Net.Web.NavigationRoutes;
 
 namespace MarkdownBlog.Net.Web.App_Start {
@@ -27,13 +28,11 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 new { controller = "Blog", action = "Post" } // Parameter defaults
             );
 
-            var pagesDir = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/Pages/"));
-            foreach (var file in pagesDir.GetFiles("*.md")) {
-                var fileName = Path.GetFileNameWithoutExtension(file.Name);
+            foreach (var pageMetadata in PagesMetadata.Instance.List) {
                 routes.MapRoute(
-                    "Page" + fileName, // Route name
-                    fileName, // URL with parameters
-                    new { controller = "Page", action = "GetPage", pageName = fileName } // Parameter defaults
+                    "Page" + pageMetadata.Slug, // Route name
+                    pageMetadata.Slug, // URL with parameters
+                    new { controller = "Page", action = "GetPage", pageName = pageMetadata.Slug } // Parameter defaults
                 );
             }
 

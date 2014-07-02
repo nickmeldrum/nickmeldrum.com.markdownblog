@@ -1,6 +1,5 @@
-﻿using MarkdownBlog.Net.Web.NavigationRoutes;
-using System.IO;
-using System.Web;
+﻿using MarkdownBlog.Net.Web.Models;
+using MarkdownBlog.Net.Web.NavigationRoutes;
 using System.Web.Routing;
 
 namespace MarkdownBlog.Net.Web.App_Start
@@ -11,13 +10,10 @@ namespace MarkdownBlog.Net.Web.App_Start
         {
             routes.MapNavigationRoute("Blog-navigation", "Blog", "blog", new { controller = "Blog", action = "Index" });
 
-                var pagesDir = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/Pages/"));
-                foreach (var file in pagesDir.GetFiles("*.md"))
-                {
-                    var fileName = Path.GetFileNameWithoutExtension(file.Name);
-                    var displayName = fileName.Replace('-', ' ');
-                    routes.MapNavigationRoute("Page-navigation-" + fileName, displayName, fileName, new { controller = "Page", action = "GetPage" });
-                }
+            foreach (var pageMetadata in PagesMetadata.Instance.List)
+            {
+                routes.MapNavigationRoute("Page-navigation-" + pageMetadata.Slug, pageMetadata.Title, pageMetadata.Slug, new { controller = "Page", action = "GetPage" });
+            }
         }
     }
 }
