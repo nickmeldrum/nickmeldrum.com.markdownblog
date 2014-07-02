@@ -1,0 +1,6 @@
+﻿@model Dictionary<string, object>
+
+@foreach (var asideData in Model)
+{
+    @Html.Partial(asideData.Key, asideData.Value)
+}

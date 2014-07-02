@@ -1,9 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.Caching;
 
 namespace MarkdownBlog.Net.Web.Models {
     public class PostsMetadata {
+        private static object syncRoot = new Object();
+
+        public static PostsMetadata Instance
+       {
+          get 
+          {
+              if (HttpContext.Current.Cache["PostsMetadata"] == null) 
+             {
+                lock (syncRoot) 
+                {
+                    if (HttpContext.Current.Cache["PostsMetadata"] == null)
+                        HttpContext.Current.Cache.Add("PostsMetadata", new PostsMetadata(new ContentItemsMetaData<PostMetadata>(new HttpContextWrapper(HttpContext.Current))), null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                }
+             }
+
+              return (PostsMetadata)HttpContext.Current.Cache["PostsMetadata"];
+          }
+       }
+
         public static readonly string PostsRoot = "~/Posts/";
 
         public IList<PostMetadata> List { get; private set; }
@@ -22,7 +43,7 @@ namespace MarkdownBlog.Net.Web.Models {
             return List.Where(p => p.PublishDate.ToString("MMM") == month && p.PublishDate.Year == year);
         }
 
-        public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData)
+        private PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData)
         {
             List = contentItemsMetaData.List(PostsRoot);
         }

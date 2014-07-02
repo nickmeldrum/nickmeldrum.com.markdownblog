@@ -1,10 +1,12 @@
 @using System.Web.Optimization
+@using MarkdownBlog.Net.Web
+@using MarkdownBlog.Net.Web.Models
 @using MarkdownBlog.Net.Web.NavigationRoutes
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.Title - @Model.SiteData.Name</title>
+    <title>@ViewBag.Title - @(((Site)HttpContext.Current.Application["SiteSettings"]).Name)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="@Styles.Url("~/content/css")" rel="stylesheet" type="text/css" />
@@ -21,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">@Model.SiteData.Name</a>
+                <a class="navbar-brand" href="/">@(((Site)HttpContext.Current.Application["SiteSettings"]).Name)</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,7 +53,7 @@
 
             <div class="col-md-3">
                 <aside>
-                    @RenderSection("Asides")
+                    @Html.Action("Index", "Asides")
                 </aside>
             </div>
         </div>
@@ -59,7 +61,7 @@
         <div class="row">
             <hr>
             <footer>
-                <p>&copy; @Model.SiteData.Owner 2010 - @DateTime.Now.ToString("yyyy")</p>
+                <p>&copy; @(((Site)HttpContext.Current.Application["SiteSettings"]).Owner) 2010 - @DateTime.Now.ToString("yyyy")</p>
             </footer>
 
         </div>

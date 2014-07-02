@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace MarkdownBlog.Net.Web.Controllers {
     public class BlogController : BlogControllerBase {
         public ActionResult Index() {
-            return View(new SiteViewModel(HttpContextWrapper));
+            return View(PostsMetadata.Instance.List);
         }
 
         public ActionResult Post(string postName) {
@@ -23,7 +23,7 @@ namespace MarkdownBlog.Net.Web.Controllers {
         }
 
         public ActionResult Archive(string month, int year) {
-            return View(new Archive(HttpContextWrapper) { Month = month, Year = year });
+            return View(new Archive() { Month = month, Year = year });
         }
 
         public ActionResult Feed(string type) {
@@ -33,8 +33,7 @@ namespace MarkdownBlog.Net.Web.Controllers {
                 HttpContextWrapper.SendHttpStatusResponse(404);
             }
 
-            var posts = new PostsMetadata(new ContentItemsMetaData<PostMetadata>(HttpContextWrapper));
-            var feed = new Feed(posts, HttpContextWrapper);
+            var feed = new Feed(PostsMetadata.Instance, HttpContextWrapper);
 
             return feed.GetFeedXml(feedType);
         }

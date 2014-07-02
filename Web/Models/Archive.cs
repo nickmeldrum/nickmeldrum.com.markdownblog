@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Web;
 
 namespace MarkdownBlog.Net.Web.Models {
-    public class Archive : SiteViewModel {
+    public class Archive {
         public string Month { get; set; }
         public int Year { get; set; }
 
-        public IEnumerable<PostMetadata> ArchivePosts { get {return PostsMetadata.PostsByMonth(Month, Year); } }
-
-        public Archive(HttpContextWrapper httpContext) : base(httpContext) {
-        }
+        public IEnumerable<PostMetadata> ArchivePosts { get { return PostsMetadata.Instance.PostsByMonth(Month, Year); } }
     }
 }

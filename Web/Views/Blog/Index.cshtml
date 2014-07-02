@@ -1,12 +1,7 @@
-﻿@model MarkdownBlog.Net.Web.Models.SiteViewModel
+﻿@model IList<MarkdownBlog.Net.Web.Models.PostMetadata>
 
 @{ ViewBag.Title = "Posts"; }
 
 @LinkHelpers.FeedLink()
 
-@Html.Partial("Posts", Model.PostsMetadata.List)
-
-@section asides
-{
-    @Html.Partial("Asides", Model)
-}
+@Html.Partial("Posts", Model)

@@ -131,6 +131,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BlogRouteConfig.cs" />
+    <Compile Include="Controllers\AsidesController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -247,7 +248,7 @@
     <Compile Include="Models\ContentItemsMetaData.cs" />
     <Compile Include="Models\ContentItemMetaData.cs" />
     <Compile Include="Models\Page.cs" />
-    <Compile Include="Models\Pages.cs" />
+    <Compile Include="Models\PagesMetadata.cs" />
     <Compile Include="Models\PostMetaDataWithMonthAndYearGrouping.cs" />
     <Compile Include="Models\StackOverflowFlair.cs" />
     <Compile Include="Models\Disqus.cs" />
@@ -256,9 +257,8 @@
     <Compile Include="Models\FeedType.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostMetaData.cs" />
-    <Compile Include="Models\Posts.cs" />
+    <Compile Include="Models\PostsMetadata.cs" />
     <Compile Include="Models\Site.cs" />
-    <Compile Include="Models\SiteViewModel.cs" />
     <Compile Include="Models\StackOverflowFlairViewModel.cs" />
     <Compile Include="Models\TwitterTimeline.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -289,16 +289,15 @@
     <Content Include="Views\Blog\Post.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Shared\_OldBootstrapLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
-    <Content Include="Views\Shared\ArchiveLinks.cshtml" />
+    <Content Include="Views\Asides\ArchiveLinks.cshtml" />
     <Content Include="Views\Shared\Posts.cshtml" />
     <Content Include="Views\Shared\PostLink.cshtml" />
-    <Content Include="Views\Shared\Asides.cshtml" />
-    <Content Include="Views\Shared\StackOverflowFlair.cshtml" />
+    <Content Include="Views\Asides\Index.cshtml" />
+    <Content Include="Views\Asides\StackOverflowFlair.cshtml" />
     <Content Include="SiteSettings.config" />
-    <Content Include="Views\Shared\TwitterTimeline.cshtml" />
+    <Content Include="Views\Asides\TwitterTimeline.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
   </ItemGroup>

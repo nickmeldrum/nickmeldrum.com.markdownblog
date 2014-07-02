@@ -1,7 +1,7 @@
 ﻿using System.Web;
 
 namespace MarkdownBlog.Net.Web.Models {
-    public class Post : SiteViewModel
+    public class Post 
     {
         private readonly ContentItem _contentItem;
 
@@ -9,14 +9,14 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public PostMetadata Metadata { get { return (PostMetadata)_contentItem.Metadata; } }
 
-        public Post(string postName, HttpContextWrapper httpContext) : base(httpContext)
+        public Post(string postName, HttpContextWrapper httpContext)
         {
-            _contentItem = new ContentItem(postName, PostsMetadata.PostsRoot, httpContext, PostsMetadata.List);
+            _contentItem = new ContentItem(postName, PostsMetadata.PostsRoot, httpContext, PostsMetadata.Instance.List);
         }
 
         public Disqus Disqus
         {
-            get { return new Disqus {ForumShortName = SiteData.DisqusShortName, PageIdentifier = Metadata.Slug}; }
+            get { return new Disqus {ForumShortName = ((Site)HttpContext.Current.Application["SiteSettings"]).DisqusShortName, PageIdentifier = Metadata.Slug}; }
         }
     }
 }

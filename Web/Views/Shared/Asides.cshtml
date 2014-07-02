@@ -1,6 +1,0 @@
-﻿@model MarkdownBlog.Net.Web.Models.SiteViewModel
-
-@foreach (var asideData in Model.AsidesViewModels)
-{
-    @Html.Partial(asideData.Key, asideData.Value)
-}

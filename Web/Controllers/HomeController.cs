@@ -7,7 +7,7 @@ namespace MarkdownBlog.Net.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(new SiteViewModel(HttpContextWrapper));
+            return View(PostsMetadata.Instance.Latest(3));
         }
     }
 }

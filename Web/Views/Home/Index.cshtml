@@ -1,13 +1,8 @@
-﻿@model MarkdownBlog.Net.Web.Models.SiteViewModel
+﻿@model IList<MarkdownBlog.Net.Web.Models.PostMetadata>
 @{ ViewBag.Title = "Home"; }
 
 <h3>Latest Blog Posts:</h3>
 
-@foreach (var post in Model.PostsMetadata.Latest(3)) {
+@foreach (var post in Model) {
     @Html.Partial("PostLink", post);
-}
-
-@section asides
-{
-    @Html.Partial("Asides", Model)
 }

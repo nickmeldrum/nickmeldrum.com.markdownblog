@@ -2,8 +2,3 @@
 @{ ViewBag.Title = string.Format("Blog archive: posts for {0} {1}", Model.Month, Model.Year); }
 
 @Html.Partial("Posts", Model.ArchivePosts)
-
-@section asides
-{
-    @Html.Partial("Asides", Model)
-}
