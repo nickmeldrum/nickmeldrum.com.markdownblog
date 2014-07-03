@@ -1,33 +1,33 @@
-﻿using System.Web;
-using Lucene.Net.Analysis;
+﻿using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
-using System;
-using System.Threading.Tasks;
+using Lucene.Net.Store.Azure;
 using MarkdownBlog.Net.Web.App_Start;
 using MarkdownBlog.Net.Web.Models;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(LuceneSearchConfig), "InitializeSearch")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(LuceneSearchConfig), "FinalizeSearch")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(LuceneSearchConfig), "CreateIndex")]
 
 namespace MarkdownBlog.Net.Web.App_Start {
     public class LuceneSearchConfig {
-        public static Directory Directory;
-        public static Analyzer Analyzer;
-        public static IndexWriter Writer;
+        public static void CreateIndex() {
+            var cloudAccount = Azure.CreateNewStorageAccount();
 
-        public static void InitializeSearch() {
-            var directoryPath = AppDomain.CurrentDomain.BaseDirectory + @"\App_Data\LuceneIndexes";
-            Directory = FSDirectory.Open(directoryPath);
-            Analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30);
-            Writer = new IndexWriter(Directory, Analyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
-            Task.Factory.StartNew(CreateIndex);
+            using (var cacheDirectory = new RAMDirectory()) {
+                using (var azureDirectory = new AzureDirectory(cloudAccount, "luceneIndex", cacheDirectory)) {
+                    using (Analyzer analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30)) {
+                        using (var indexWriter = new IndexWriter(azureDirectory, analyzer, true, IndexWriter.MaxFieldLength.UNLIMITED)) {
+                            AddDocuments(indexWriter);
+
+                            indexWriter.Commit();
+                        }
+                    }
+                }
+            }
         }
 
-        private static void CreateIndex()
-        {
+        private static void AddDocuments(IndexWriter writer) {
             var pages = new PagesMetadata(new ContentItemsMetaData<ContentItemMetaData>());
             var posts = new PostsMetadata(new ContentItemsMetaData<PostMetadata>());
 
@@ -38,7 +38,7 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 doc.Add(new Field("Title", page.Title, Field.Store.YES, Field.Index.ANALYZED));
                 doc.Add(new Field("Body", new Page(page.Slug, pages).BodyWithoutHtml, Field.Store.YES, Field.Index.ANALYZED));
 
-                Writer.AddDocument(doc);
+                writer.AddDocument(doc);
             }
 
             foreach (var post in posts.List) {
@@ -52,16 +52,8 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 doc.Add(new Field("Author", post.Author, Field.Store.YES, Field.Index.ANALYZED));
                 doc.Add(new Field("Body", new Post(post.Slug, posts).BodyWithoutHtml, Field.Store.YES, Field.Index.ANALYZED));
 
-                Writer.AddDocument(doc);
+                writer.AddDocument(doc);
             }
-
-            Writer.Optimize();
-            Writer.Commit();
-            Writer.Dispose();
-        }
-
-        public static void FinalizeSearch() {
-            Directory.Dispose();
         }
     }
 }
