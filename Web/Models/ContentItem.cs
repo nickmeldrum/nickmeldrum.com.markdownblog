@@ -21,7 +21,8 @@ namespace MarkdownBlog.Net.Web.Models {
 
             if (!File.Exists(ContentBodyPath) || !list.Any(p => p.Slug == _contentItemName))
             {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(string.Format("Exists: {0}, in list: {1}",
+                    File.Exists(ContentBodyPath), list.Any(p => p.Slug == _contentItemName)), ContentBodyPath);
             }
 
             Metadata = list.Single(p => p.Slug == _contentItemName);
