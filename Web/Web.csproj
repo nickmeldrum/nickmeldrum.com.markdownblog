@@ -258,10 +258,10 @@
     <Content Include="Posts\hard-drive-speeds.md" />
     <Content Include="Posts\first-post.md" />
     <Content Include="Readme.html" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\bootstrap-3.1.1.js" />
     <Content Include="scripts\prettify.js" />
     <Content Include="scripts\runprettify.js" />
+    <Content Include="scripts\search.js" />
     <Content Include="Views\Shared\Disqus.cshtml" />
     <Content Include="App_Code\LinkHelpers.cshtml" />
     <Content Include="Posts\how-to-run-powershell-scripts-from-solution-explorer-in-visual-studio-2010.md" />
@@ -311,24 +311,13 @@
     <Content Include="Posts\wheres-my-customers-gherkin-editor.md" />
     <Content Include="Posts\watch-more-tv.md" />
     <Content Include="Posts\whats-going-on.md" />
-    <None Include="scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="scripts\jquery-1.9.1.js" />
-    <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="scripts\jquery-migrate-1.1.1.js" />
-    <Content Include="scripts\jquery-migrate-1.1.1.min.js" />
-    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
-    <None Include="scripts\jquery.validate-vsdoc.js" />
-    <Content Include="scripts\jquery.validate.js" />
-    <Content Include="scripts\jquery.validate.min.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\jquery-1.11.1.js" />
+    <Content Include="scripts\jquery.validate-1.13.0.js" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Posts\metadata.json" />
     <Content Include="Views\Blog\Post.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Asides\ArchiveLinks.cshtml" />
@@ -394,7 +383,7 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="BeforeBuild">
-        <Exec ContinueOnError="true" Command="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows Azure\Storage Emulator\WAStorageEmulator.exe&quot; start"/>
+    <Exec ContinueOnError="true" Command="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows Azure\Storage Emulator\WAStorageEmulator.exe&quot; start" />
   </Target>
   <Target Name="AfterBuild">
   </Target>

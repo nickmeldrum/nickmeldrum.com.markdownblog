@@ -32,7 +32,7 @@
                 <ul class="nav navbar-nav">
                     @Html.Navigation()
                 </ul>
-                <form class="navbar-form navbar-right" role="search" action="/search" method="POST">
+                <form id="searchForm" class="navbar-form navbar-right" role="search" action="/search" method="POST" novalidate="novalidate">
                     <div class="form-group">
                         <input name="searchText" type="text" class="form-control" placeholder="Search">
                     </div>
