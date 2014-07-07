@@ -1,14 +1,13 @@
-﻿using System.IO;
-using System.Web;
+﻿using MarkdownBlog.Net.Web.Models;
 using System.Web.Mvc;
 using System.Web.Routing;
-using MarkdownBlog.Net.Web.Models;
-using MarkdownBlog.Net.Web.NavigationRoutes;
 
 namespace MarkdownBlog.Net.Web.App_Start {
     public class RouteConfig {
         public static void RegisterRoutes(RouteCollection routes) {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            // Specific post and page routes:
 
             routes.MapRoute(
                 "BlogFeed", // Route name
@@ -35,6 +34,22 @@ namespace MarkdownBlog.Net.Web.App_Start {
                     new { controller = "Page", action = "GetPage", pageName = pageMetadata.Slug } // Parameter defaults
                 );
             }
+
+            // Routes to handle old functionality that don't exist no more:
+
+            routes.MapRoute(
+                "IgnoreTagsRoot",
+                "tags",
+                new { controller = "Blog", action = "Index" }
+                );
+
+            routes.MapRoute(
+                "IgnoreTagsSpecific",
+                "tags/{searchText}",
+                new { controller = "Search", action = "Index" }
+                );
+
+            // Default Route:
 
             routes.MapRoute(
                 "Default", // Route name
