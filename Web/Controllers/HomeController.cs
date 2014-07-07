@@ -20,10 +20,7 @@ namespace MarkdownBlog.Net.Web.Controllers
 
         public ActionResult DoNotTrack()
         {
-            var doNotTrackCookie = new HttpCookie("DoNotTrack") {Expires = DateTime.Now.AddYears(10)};
-            doNotTrackCookie.Values.Add("DoNotTrack", "DoNotTrack");
-
-            Response.Cookies.Add(doNotTrackCookie);
+            Response.Cookies.Add(new HttpCookie("DoNotTrack", "dnt") {Expires = DateTime.Now.AddYears(10)});
 
             return View();
         }
