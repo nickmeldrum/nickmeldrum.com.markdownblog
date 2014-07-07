@@ -7,7 +7,7 @@ a Vim-like plug-in so that my hard won lessons with Vim productivity can be re-u
 One area that I really wanted to get rid of the mouse is browsing the web. Most people look at me a bit
 funny when I say this, but trust me, just try it, it makes browsing so much quicker and easier. Enter Vimium.
 
-[![Vimium](/Media/vimium_logo.png)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en "Vimium Chrome Extension")
+[![Vimium](/media/vimium_logo.png)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en "Vimium Chrome Extension")
 
 ### You don't use Chrome?
 

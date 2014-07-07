@@ -2,7 +2,7 @@
 
 > "Where is a friendlier editor for my customer/BA/PM to write my Gherkin features? I can't expect them to use Visual Studio!"
 
-<img src="/Media/gherkin-building.jpg" style="float: right;padding-left: 20px;" alt="Okay this is a different Gherkin"></img>
+<img src="/media/gherkin-building.jpg" style="float: right;padding-left: 20px;" alt="Okay this is a different Gherkin"></img>
 
 I started hearing it so much I thought: "Ah hah! A gap in the very overcrowded open source &lsquo;development/ productivity tools&rsquo; market. I could become famous and write the first .Net Gherkin editor for business users. Now, to think of a cute name..."
 
@@ -22,7 +22,7 @@ A tool could encourage the feature and scenarios to be written by the customer o
 
 But [BDD is about the conversation](http://dannorth.net/whats-in-a-story/ "Dan North"). I don&rsquo;t want to have a tool separating the team. Instead I want to use Gherkin as a platform for agreeing the formal language the whole team uses to communicate their understanding of the project.
 
-<img src="/Media/2headssharing.jpg" style="float: left;padding-right: 20px;" alt="2 Heads sharing 1 thought?"></img>
+<img src="/media/2headssharing.jpg" style="float: left;padding-right: 20px;" alt="2 Heads sharing 1 thought?"></img>
 
 So instead, make Gherkin a part of your conversations with your customer. Get a technical team member and a customer together to discuss the scenarios. This discussion is where the real value is. It&rsquo;s where we get to attack the assumptions we are all making when we think about that feature.
 
@@ -38,7 +38,7 @@ One last point: Another added value of ensuring that a representative from the b
 
 Who&rsquo;s making the incorrect assumption here?
 
-<img src="/Media/geekandpoke-followingme.jpg" alt="Is there an implicit assumption being made here?"></img>
+<img src="/media/geekandpoke-followingme.jpg" alt="Is there an implicit assumption being made here?"></img>
 
 Implicit assumptions are dangerous if they aren't shared by everyone. Only good communication will uncover these assumptions.
 

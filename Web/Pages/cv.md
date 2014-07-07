@@ -1,7 +1,7 @@
 ﻿  * Email: [nick@nickmeldrum.com](mailto:nick@nickmeldrum.com "Email nick")
   * Location: Just outside London
  
-<img src="/Media/me 128 wide.jpg" style="float: right;padding-left: 20px;" alt="Okay this is a different Gherkin"></img>
+<img src="/media/me 128 wide.jpg" style="float: right;padding-left: 20px;" alt="Okay this is a different Gherkin"></img>
 Nick is passionate about software development and passionate about helping teams and businesses succeed. He is an ardent champion of automated testing, tdd, bdd and continuous delivery. He loves web technologies and loves simplicity in design.
 
 He has over 14 years of developer experience including a stint at Microsoft. He is currently the Principal Developer at [planner.royallondon.com](https://planner.royallondon.com/ "Royal London Financial Planner") and thinks it's the best place he's ever worked.

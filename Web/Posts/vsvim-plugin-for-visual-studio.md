@@ -6,7 +6,7 @@ Vim is awesome. I have installed Vim plug-ins on my 3 most important developer t
 
 I have a love/ hate relationship with Visual Studio. It's the most complete, powerful and extensible IDE there is. It's debugging abilities are second to none and, with [JetBrains Resharper](http://www.jetbrains.com/resharper/ "JetBrains Resharper") installed, it turns into a refactoring powerhouse. Unfortunately (especially with Resharper installed) it is a system hog and can become snail-like, making me want to mash my keyboard with all my shattered productivity dreams.
 
-![Visual Studio](/Media/visual-studio-2010-logo.png)![Resharper](/Media/resharperlogo.jpg)
+![Visual Studio](/media/visual-studio-2010-logo.png)![Resharper](/media/resharperlogo.jpg)
 
 Because of its upsides, it is still an important tool in my tool belt, but the downsides mean I now use it in tandem with other tools that aren't as slow. My current favourite text editor is [Sublime Text 2](http://www.sublimetext.com/2 "Sublime Text 2"). When I'm doing front-end JavaScript development where all my debugging is happening in Chrome and Resharper's refactoring tools aren't quite as powerful, I'll usually switch over to Sublime. I'm running my unit tests in Jasmine using Karma anyway.
 
@@ -18,7 +18,7 @@ I code at different speeds throughout the day, but when I'm really in the flow I
 
 ### Or in simpler terms: Less Friction = More Fun
 
-![Friction](/Media/friction.jpg)
+![Friction](/media/friction.jpg)
 
 ### Enter VsVim
 
@@ -26,7 +26,7 @@ I started hearing developers rediscovering and raving about Vim as their new fav
 
 So I thought I would dive into this Vim world by trying out a plugin to visual studio: [VsVim](http://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329 "VsVim").
 
-![VsVim Screenshot](/Media/vsvimscreenshot.png)
+![VsVim Screenshot](/media/vsvimscreenshot.png)
 
 It brings the power and precise editing of Vim into Visual Studio. I've found the combination of Resharper and VsVim to be a great way of coding. Jared Parsons has written this as a free extension to Visual Studio and it really is extremely high quality. I really respect him for the [work he's done](https://github.com/jaredpar/VsVim "VsVim on GitHub"). If you want to hear from him about what he did, Scott Hanselman did a great [Hanselminutes podcast](http://hanselminutes.com/364/vsvim-visual-studio-and-vim-with-jared-parsons "VsVim Hanselminutes podcast") with him.
 
@@ -62,7 +62,7 @@ I started with the basic movement commands and some simple delete/ change/ inser
 
 Here are a few tips that really helped me in the beginning:
 
-![Vim cheat sheet](/Media/vimcheatsheet-thumb.gif)
+![Vim cheat sheet](/media/vimcheatsheet-thumb.gif)
 
 1.  Start with "vimtutor". Download Vim from here: [http://vim.sourceforge.net/download.php](http://vim.sourceforge.net/download.php "Download Vim") and it will give you a shortcut to vimtutor - an excellent interactive tutorial to get you started.
 2.  Print out a cheat sheet and tape it under your monitor ([http://www.viemu.com/vi-vim-cheat-sheet.gif](http://www.viemu.com/vi-vim-cheat-sheet.gif "Vim cheat sheet")) - then refer to it!
@@ -82,7 +82,7 @@ Vim is too big for me to explain here and I'd probably do a worse job than all t
 
 &nbsp;
 
-![it](/Media/its-working.gif)
+![it](/media/its-working.gif)
 
 ### Conclusion
 
