@@ -259,6 +259,7 @@
     <Content Include="Posts\first-post.md" />
     <Content Include="Readme.html" />
     <Content Include="scripts\bootstrap-3.1.1.js" />
+    <Content Include="scripts\jquery-validate-bootstrap3-overrides.js" />
     <Content Include="scripts\prettify.js" />
     <Content Include="scripts\runprettify.js" />
     <Content Include="scripts\search.js" />

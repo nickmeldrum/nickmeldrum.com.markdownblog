@@ -10,6 +10,7 @@ namespace MarkdownBlog.Net.Web.App_Start
                 "~/scripts/jquery-{version}.js",
                 "~/scripts/bootstrap-{version}.js",
                 "~/scripts/jquery.validate-1.13.0.js",
+                "~/scripts/jquery-validate-bootstrap3-overrides.js",
                 "~/scripts/prettify.js",
                 "~/scripts/runprettify.js",
                 "~/scripts/search.js"
