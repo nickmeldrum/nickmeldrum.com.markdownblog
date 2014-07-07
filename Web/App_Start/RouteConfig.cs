@@ -35,20 +35,6 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 );
             }
 
-            // Routes to handle old functionality that don't exist no more:
-
-            routes.MapRoute(
-                "IgnoreTagsRoot",
-                "tags",
-                new { controller = "Blog", action = "Index" }
-                );
-
-            routes.MapRoute(
-                "IgnoreTagsSpecific",
-                "tags/{searchText}",
-                new { controller = "Search", action = "Index" }
-                );
-
             // Default Route:
 
             routes.MapRoute(
