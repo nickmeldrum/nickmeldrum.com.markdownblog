@@ -10,6 +10,11 @@ using System.Web.Mvc;
 namespace MarkdownBlog.Net.Web.Controllers {
     public class SearchController : Controller {
         public ActionResult Index(string searchText) {
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                return View((object)null);
+            }
+            
             var searchResults = new List<SearchResult>();
             var cloudAccount = Azure.CreateNewStorageAccount();
 
