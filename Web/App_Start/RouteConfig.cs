@@ -41,6 +41,12 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 new { controller = "Home", action = "Sitemap" } // Parameter defaults
             );
 
+            routes.MapRoute(
+                "DoNotTrack", // Route name
+                "donottrack", // URL with parameters
+                new { controller = "Home", action = "DoNotTrack" } // Parameter defaults
+            );
+
             // Default Route:
 
             routes.MapRoute(

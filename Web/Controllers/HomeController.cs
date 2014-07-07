@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web;
+using System.Web.Mvc;
 using MarkdownBlog.Net.Web.Models;
 
 namespace MarkdownBlog.Net.Web.Controllers
@@ -14,6 +16,16 @@ namespace MarkdownBlog.Net.Web.Controllers
         {
             Response.ContentType = "text/xml";
             return View(new Sitemap());
+        }
+
+        public ActionResult DoNotTrack()
+        {
+            var doNotTrackCookie = new HttpCookie("DoNotTrack") {Expires = DateTime.Now.AddYears(10)};
+            doNotTrackCookie.Values.Add("DoNotTrack", "DoNotTrack");
+
+            Response.Cookies.Add(doNotTrackCookie);
+
+            return View();
         }
     }
 }

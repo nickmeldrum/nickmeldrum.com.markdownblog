@@ -362,6 +362,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\_gtm.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\DoNotTrack.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
