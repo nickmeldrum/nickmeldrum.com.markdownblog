@@ -4,7 +4,7 @@
     <h3>Archive</h3>
     <ul>
         @foreach (var month in Model) {
-            <li><a href="/blog/archive/@month.MonthAndYearGrouping.ToString("MMM")/@month.MonthAndYearGrouping.Year">@month.MonthAndYearGrouping.ToString("MMMM") @month.MonthAndYearGrouping.Year (@month.PostMetaDataList.Count())</a></li>
+            <li><a href="/blog/archive/@month.MonthAndYearGrouping.ToString("MMM").ToLowerInvariant()/@month.MonthAndYearGrouping.Year">@month.MonthAndYearGrouping.ToString("MMMM") @month.MonthAndYearGrouping.Year (@month.PostMetaDataList.Count())</a></li>
         }
     </ul>
     <hr />
