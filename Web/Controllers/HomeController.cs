@@ -9,5 +9,11 @@ namespace MarkdownBlog.Net.Web.Controllers
         {
             return View(PostsMetadata.Instance.Latest(3));
         }
+
+        public ActionResult Sitemap()
+        {
+            Response.ContentType = "text/xml";
+            return View(new Sitemap());
+        }
     }
 }

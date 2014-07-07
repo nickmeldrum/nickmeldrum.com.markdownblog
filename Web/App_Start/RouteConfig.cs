@@ -35,6 +35,12 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 );
             }
 
+            routes.MapRoute(
+                "Sitemap", // Route name
+                "sitemap", // URL with parameters
+                new { controller = "Home", action = "Sitemap" } // Parameter defaults
+            );
+
             // Default Route:
 
             routes.MapRoute(

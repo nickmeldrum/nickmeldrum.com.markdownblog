@@ -176,6 +176,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Services\LinkService.cs" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\body.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -291,6 +292,7 @@
     <Compile Include="Models\PagesMetadata.cs" />
     <Compile Include="Models\PostMetaDataWithMonthAndYearGrouping.cs" />
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\Sitemap.cs" />
     <Compile Include="Models\StackOverflowFlair.cs" />
     <Compile Include="Models\Disqus.cs" />
     <Compile Include="Models\Feed.cs" />
@@ -353,6 +355,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Sitemap.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

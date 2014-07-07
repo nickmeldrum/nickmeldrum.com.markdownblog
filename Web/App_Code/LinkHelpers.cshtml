@@ -1,4 +1,4 @@
-@using MarkdownBlog.Net.Web.Models
+@using MarkdownBlog.Net.Web.Services
 
 @helper FeedLink() {
     <a href="/blog/feed">
@@ -7,9 +7,8 @@
 }
 
 @helper CanonicalUrl() {
-    var canonicalUrl = "http://" + ((Site)HttpContext.Current.Application["SiteSettings"]).Domain + HttpContext.Current.Request.Url.AbsolutePath;
-    canonicalUrl = canonicalUrl.ToLowerInvariant().Trim();
-    canonicalUrl = canonicalUrl.TrimEnd('/');
+    var linkService = new LinkService();
+    var canonicalUrl = linkService.CanonicalUrlFromRelative(HttpContext.Current.Request.Url.AbsolutePath);
     
     <link rel="canonical" href="@(canonicalUrl)" />
 }
