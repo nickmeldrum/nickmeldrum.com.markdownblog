@@ -7,6 +7,8 @@ using MarkdownBlog.Net.Web.Models;
 namespace MarkdownBlog.Net.Web {
     public class MvcApplication : System.Web.HttpApplication {
         protected void Application_Start() {
+            Application.Add("SiteSettings", new Site());
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -14,8 +16,6 @@ namespace MarkdownBlog.Net.Web {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
             BlogRouteConfig.RegisterRoutes(RouteTable.Routes);
-
-            Application.Add("SiteSettings", new Site());
         }
     }
 }

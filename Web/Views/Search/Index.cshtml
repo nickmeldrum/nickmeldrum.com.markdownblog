@@ -1,11 +1,11 @@
-﻿@model IList<MarkdownBlog.Net.Web.Models.SearchResult>
+﻿@model IEnumerable<MarkdownBlog.Net.Web.Models.SearchResult>
 @{ ViewBag.Title = "Search results"; }
 
 @if (Model == null)
 {
    <div>Search text was blank, please enter some text to search for!</div> 
 }
-else if (Model.Count == 0) {
+else if (!Model.Any()) {
     <div>No search results found</div>
 }
 else {
@@ -20,7 +20,12 @@ else {
         {
             <i>Posted by @searchResult.Author on @searchResult.PublishDate</i>
         }
-        <p>@searchResult.Body.Substring(0, 300)&#x2026;</p>
+        <p>@searchResult.Body.Substring(0, searchResult.Body.Length < 300 ? searchResult.Body.Length : 300)
+            @if (searchResult.Body.Length >= 300)
+            {
+                @Html.Raw("&#x2026");
+            }
+        </p>
     </div>
     }
 }

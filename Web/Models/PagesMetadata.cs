@@ -11,8 +11,14 @@ namespace MarkdownBlog.Net.Web.Models {
             get {
                 if (HttpContext.Current.Cache["PagesMetadata"] == null) {
                     lock (syncRoot) {
-                        if (HttpContext.Current.Cache["PagesMetadata"] == null)
-                            HttpContext.Current.Cache.Add("PagesMetadata", new PagesMetadata(new ContentItemsMetaData<ContentItemMetaData>()), null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                        if (HttpContext.Current.Cache["PagesMetadata"] == null) {
+                            var showDrafts = ((Site)HttpContext.Current.Application["SiteSettings"]).ShowDrafts;
+
+                            HttpContext.Current.Cache.Add(
+                                "PagesMetadata",
+                                new PagesMetadata(new ContentItemsMetaData<ContentItemMetaData>(), showDrafts),
+                                null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                        }
                     }
                 }
 
@@ -24,14 +30,15 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public IEnumerable<ContentItemMetaData> List { get; private set; }
 
-        public PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData) : this(contentItemsMetaData, false) {
+        public PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData)
+            : this(contentItemsMetaData, false) {
         }
 
         public PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData, bool includeDrafts) {
             if (includeDrafts)
-                List = contentItemsMetaData.List(PagesRoot);
-            else
                 List = contentItemsMetaData.ListIncludingDrafts(PagesRoot);
+            else
+                List = contentItemsMetaData.List(PagesRoot);
         }
     }
 }

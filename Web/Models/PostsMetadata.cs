@@ -17,7 +17,13 @@ namespace MarkdownBlog.Net.Web.Models {
                 lock (syncRoot) 
                 {
                     if (HttpContext.Current.Cache["PostsMetadata"] == null)
-                        HttpContext.Current.Cache.Add("PostsMetadata", new PostsMetadata(new ContentItemsMetaData<PostMetadata>()), null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                    {
+                        var showDrafts = ((Site) HttpContext.Current.Application["SiteSettings"]).ShowDrafts;
+                        HttpContext.Current.Cache.Add(
+                            "PostsMetadata",
+                            new PostsMetadata(new ContentItemsMetaData<PostMetadata>(), showDrafts),
+                            null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+                    }
                 }
              }
 
@@ -49,9 +55,9 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData, bool includeDrafts) {
             if (includeDrafts)
-                List = contentItemsMetaData.List(PostsRoot);
-            else
                 List = contentItemsMetaData.ListIncludingDrafts(PostsRoot);
+            else
+                List = contentItemsMetaData.List(PostsRoot);
         }
     }
 }

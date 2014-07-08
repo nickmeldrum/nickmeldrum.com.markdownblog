@@ -1,4 +1,5 @@
-﻿using Lucene.Net.Analysis;
+﻿using System.Web;
+using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
@@ -28,8 +29,8 @@ namespace MarkdownBlog.Net.Web.App_Start {
         }
 
         private static void AddDocuments(IndexWriter writer) {
-            var pages = new PagesMetadata(new ContentItemsMetaData<ContentItemMetaData>());
-            var posts = new PostsMetadata(new ContentItemsMetaData<PostMetadata>());
+            var pages = PagesMetadata.Instance;
+            var posts = PostsMetadata.Instance;
 
             foreach (var page in pages.List) {
                 var doc = new Document();
