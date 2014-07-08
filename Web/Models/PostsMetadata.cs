@@ -27,15 +27,15 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public static readonly string PostsRoot = "Posts";
 
-        public IList<PostMetadata> List { get; private set; }
-        public IList<PostMetadata> Latest(int number) { return List.OrderByDescending(p => p.PublishDate).Take(number).ToList(); }
+        public IEnumerable<PostMetadata> List { get; private set; }
+        public IEnumerable<PostMetadata> Latest(int number) { return List.OrderByDescending(p => p.PublishDate).Take(number); }
 
         public IEnumerable<PostMetaDataWithMonthAndYearGrouping> MonthlyArchiveLinks {
             get
             {
                 return List.GroupBy(
                         k => new DateTime(k.PublishDate.Year, k.PublishDate.Month, 1),
-                        (key, g) => new PostMetaDataWithMonthAndYearGrouping { MonthAndYearGrouping = key, PostMetaDataList = g }).ToList();
+                        (key, g) => new PostMetaDataWithMonthAndYearGrouping { MonthAndYearGrouping = key, PostMetaDataList = g });
             }
         }
 
@@ -44,8 +44,14 @@ namespace MarkdownBlog.Net.Web.Models {
         }
 
         public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData)
-        {
-            List = contentItemsMetaData.List(PostsRoot);
+            : this(contentItemsMetaData, false) {
+        }
+
+        public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData, bool includeDrafts) {
+            if (includeDrafts)
+                List = contentItemsMetaData.List(PostsRoot);
+            else
+                List = contentItemsMetaData.ListIncludingDrafts(PostsRoot);
         }
     }
 }

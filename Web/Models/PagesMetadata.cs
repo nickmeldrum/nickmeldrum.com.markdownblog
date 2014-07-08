@@ -22,10 +22,16 @@ namespace MarkdownBlog.Net.Web.Models {
 
         public static readonly string PagesRoot = "Pages";
 
-        public IList<ContentItemMetaData> List { get; private set; }
+        public IEnumerable<ContentItemMetaData> List { get; private set; }
 
-        public PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData) {
-            List = contentItemsMetaData.List(PagesRoot);
+        public PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData) : this(contentItemsMetaData, false) {
+        }
+
+        public PagesMetadata(ContentItemsMetaData<ContentItemMetaData> contentItemsMetaData, bool includeDrafts) {
+            if (includeDrafts)
+                List = contentItemsMetaData.List(PagesRoot);
+            else
+                List = contentItemsMetaData.ListIncludingDrafts(PagesRoot);
         }
     }
 }

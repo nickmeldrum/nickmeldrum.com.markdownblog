@@ -362,6 +362,12 @@
   <ItemGroup>
     <Content Include="Views\Shared\_gtm.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\draft-page.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Posts\draft-post.md" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

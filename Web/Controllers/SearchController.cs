@@ -16,7 +16,7 @@ namespace MarkdownBlog.Net.Web.Controllers {
             }
             
             var searchResults = new List<SearchResult>();
-            var cloudAccount = Azure.CreateNewStorageAccount();
+            var cloudAccount = Azure.GetStorageAccount();
 
             using (var cacheDirectory = new RAMDirectory()) {
                 using (var azureDirectory = new AzureDirectory(cloudAccount, "luceneIndex", cacheDirectory)) {

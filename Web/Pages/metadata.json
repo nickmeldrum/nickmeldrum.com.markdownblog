@@ -1,6 +1,12 @@
 ﻿[
 	{
 		"Title" : "My CV",
-        "Slug" : "cv"
+        "Slug" : "cv",
+        "Published" : true
+	},
+	{
+		"Title" : "Draft page",
+        "Slug" : "draft-page",
+        "Published" : false
 	}
 ]

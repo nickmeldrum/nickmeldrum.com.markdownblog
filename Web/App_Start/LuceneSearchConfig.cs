@@ -12,7 +12,7 @@ using MarkdownBlog.Net.Web.Models;
 namespace MarkdownBlog.Net.Web.App_Start {
     public class LuceneSearchConfig {
         public static void CreateIndex() {
-            var cloudAccount = Azure.CreateNewStorageAccount();
+            var cloudAccount = Azure.GetStorageAccount();
 
             using (var cacheDirectory = new RAMDirectory()) {
                 using (var azureDirectory = new AzureDirectory(cloudAccount, "luceneIndex", cacheDirectory)) {
