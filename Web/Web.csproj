@@ -329,7 +329,9 @@
     <Content Include="Views\Shared\PostLink.cshtml" />
     <Content Include="Views\Asides\Index.cshtml" />
     <Content Include="Views\Asides\StackOverflowFlair.cshtml" />
-    <Content Include="SiteSettings.config" />
+    <Content Include="SiteSettings.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
     <Content Include="Views\Asides\TwitterTimeline.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
@@ -364,11 +366,31 @@
     <Content Include="Views\Shared\_gtm.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\draft-page.md" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Views\Home\DoNotTrack.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
+    <None Include="SiteSettings.Debug.config">
+      <DependentUpon>SiteSettings.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="SiteSettings.Release.config">
+      <DependentUpon>SiteSettings.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Label="SlowCheetah">
+    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.10.6\tools\))</SlowCheetahToolsPath>
+    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SC_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
+    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
+    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -400,4 +422,5 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
 </Project>
