@@ -373,6 +373,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
+    <Content Include="Posts\draft-post.md" />
     <None Include="SiteSettings.Debug.config">
       <DependentUpon>SiteSettings.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>

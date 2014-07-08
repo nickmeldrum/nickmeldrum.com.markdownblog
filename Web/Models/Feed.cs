@@ -49,10 +49,17 @@ namespace MarkdownBlog.Net.Web.Models {
             foreach (var post in postsMetadata.List) {
                 var item = new SyndicationItem {
                     Title = SyndicationContent.CreatePlaintextContent(post.Title),
-                    Summary = SyndicationContent.CreatePlaintextContent(post.ShortDescription),
-                    PublishDate = post.PublishDate,
-                    LastUpdatedTime = post.PublishDate
+                    Summary = SyndicationContent.CreatePlaintextContent(post.ShortDescription)
                 };
+
+                if (post.PublishDate != DateTime.MinValue)
+                    item.PublishDate = post.PublishDate;
+
+                if (post.LastUpdatedDate != DateTime.MinValue)
+                    item.LastUpdatedTime = post.LastUpdatedDate;
+                else if (post.LastUpdatedDate == DateTime.MinValue && post.PublishDate != DateTime.MinValue)
+                    item.LastUpdatedTime = post.PublishDate;
+
                 item.Links.Add(SyndicationLink.CreateSelfLink(_contextWrapper.GetAbsoluteUrl("~/blog/" + post.Slug)));
                 item.Authors.Add(new SyndicationPerson { Name = post.Author });
 

@@ -16,10 +16,7 @@ else {
         {
             <h4>@searchResult.Description</h4>
         }
-        @if (!(string.IsNullOrWhiteSpace(searchResult.PublishDate) && string.IsNullOrWhiteSpace(searchResult.Author)))
-        {
-            <i>Posted by @searchResult.Author on @searchResult.PublishDate</i>
-        }
+        @PostHelpers.PublishedInfo(searchResult)
         <p>@searchResult.Body.Substring(0, searchResult.Body.Length < 300 ? searchResult.Body.Length : 300)
             @if (searchResult.Body.Length >= 300)
             {

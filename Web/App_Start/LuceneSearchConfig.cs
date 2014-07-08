@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
@@ -48,8 +49,10 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 doc.Add(new Field("Url", "/blog/" + post.Slug, Field.Store.YES, Field.Index.NOT_ANALYZED));
                 doc.Add(new Field("Title", post.Title, Field.Store.YES, Field.Index.ANALYZED));
                 doc.Add(new Field("Description", post.ShortDescription, Field.Store.YES, Field.Index.ANALYZED));
-                doc.Add(new Field("PublishDate", post.PublishDate.ToString("dd MMMM yyyy"), Field.Store.YES, Field.Index.NOT_ANALYZED));
-                doc.Add(new Field("LastUpdatedDate", post.LastUpdatedDate.ToString("dd MMMM yyyy"), Field.Store.YES, Field.Index.NOT_ANALYZED));
+                if (post.PublishDate != DateTime.MinValue)
+                    doc.Add(new Field("PublishDate", post.PublishDate.ToString("dd MMMM yyyy"), Field.Store.YES, Field.Index.NOT_ANALYZED));
+                if (post.LastUpdatedDate != DateTime.MinValue)
+                    doc.Add(new Field("LastUpdatedDate", post.LastUpdatedDate.ToString("dd MMMM yyyy"), Field.Store.YES, Field.Index.NOT_ANALYZED));
                 doc.Add(new Field("Author", post.Author, Field.Store.YES, Field.Index.ANALYZED));
                 doc.Add(new Field("Body", new Post(post.Slug, posts).BodyWithoutHtml, Field.Store.YES, Field.Index.ANALYZED));
 

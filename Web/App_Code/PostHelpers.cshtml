@@ -1,8 +1,32 @@
 @using MarkdownBlog.Net.Web.Models
 
-@helper PostJumbotron(PostMetadata postMetaData)
+@helper PostJumbotron(PostMetadata postMetadata)
 {
-    <h1>@postMetaData.Title</h1>
-    <h3>@postMetaData.ShortDescription</h3>
-    <i>Posted by @postMetaData.Author on @postMetaData.PublishDate.ToString("dd MMMM yyyy")</i>
+    <h1>@postMetadata.Title</h1>
+    <h3>@postMetadata.ShortDescription</h3>
+
+    PublishedInfo(postMetadata);
+}
+
+@helper PublishedInfo(PostMetadata postMetadata)
+{     
+    @PublishedInfo(postMetadata.Author, postMetadata.PublishDate.ToString("dd MMMM yyyy"), postMetadata.LastUpdatedDate.ToString("dd MMMM yyyy"));
+}
+
+@helper PublishedInfo(SearchResult searchResult)
+{
+    @PublishedInfo(searchResult.Author, searchResult.PublishDate, searchResult.LastUpdatedDate);
+}
+
+@helper PublishedInfo(string author, string publishDate, string lastUpdateDate)
+{
+    if (!string.IsNullOrWhiteSpace(publishDate))
+    {
+        <i>Posted by @author on @publishDate</i>
+    }
+
+    if (!string.IsNullOrWhiteSpace(lastUpdateDate))
+    {
+        <br /><i>Last updated on @lastUpdateDate</i>
+    }
 }
