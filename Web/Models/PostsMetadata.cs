@@ -46,7 +46,7 @@ namespace MarkdownBlog.Net.Web.Models {
         }
 
         public IEnumerable<PostMetadata> PostsByMonth(string month, int year) {
-            return List.Where(p => p.PublishDate.ToString("MMM") == month && p.PublishDate.Year == year);
+            return List.Where(p => p.PublishDate.ToString("MMM").ToLowerInvariant() == month.ToLowerInvariant() && p.PublishDate.Year == year);
         }
 
         public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData)

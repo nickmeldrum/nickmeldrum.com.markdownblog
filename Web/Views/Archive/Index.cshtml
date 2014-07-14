@@ -1,0 +1,5 @@
+﻿@model IEnumerable<MarkdownBlog.Net.Web.Models.PostMetaDataWithMonthAndYearGrouping>
+
+@{ ViewBag.Title = "Blog archive listing"; }
+
+@Html.Partial("~/Views/Asides/ArchiveLinks.cshtml", Model)

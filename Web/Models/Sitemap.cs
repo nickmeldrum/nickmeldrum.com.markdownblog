@@ -13,7 +13,7 @@ namespace MarkdownBlog.Net.Web.Models
         {
             get
             {
-                var links = new List<string> { "/", "/blog", "/blog/feed", "/search", "/sitemap" };
+                var links = new List<string> { "/", "/blog", "/blog/feed", "/search", "/sitemap", "/blog/archive" };
 
                 links.AddRange(PagesMetadata.Instance.List.Select(page => "/" + page.Slug));
 

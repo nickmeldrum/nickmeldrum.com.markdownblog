@@ -1,11 +1,20 @@
 ﻿[
 	{
-		"Title" : "My new draft post",
-        "Slug" : "draft-post",
+		"Title" : "Dealing with 'A potentially dangerous Request.Form value was detected from the client'",
+        "Slug" : "a-potentially-dangerous-request.form-value-was-detected-from-the-client",
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Shouldn't see this one yet",
+		"ShortDescription" : "Doing ASP.Net right",
+        "Published" : false
+	},
+	{
+		"Title" : "Dealing properly with errors on websites with ASP.Net",
+        "Slug" : "dealing-with-errors-on-asp.net-websites",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Aka: Don't trust the default behavior of ASP.Net!",
         "Published" : false
 	},
 	{

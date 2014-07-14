@@ -16,9 +16,15 @@ namespace MarkdownBlog.Net.Web.App_Start {
             );
 
             routes.MapRoute(
-                "BlogArchive", // Route name
+                "BlogArchiveItem", // Route name
                 "blog/archive/{month}/{year}", // URL with parameters
-                new { controller = "Blog", action = "Archive" } // Parameter defaults
+                new { controller = "Archive", action = "Item" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "BlogArchiveIndex", // Route name
+                "blog/archive", // URL with parameters
+                new { controller = "Archive", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(

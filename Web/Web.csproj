@@ -166,6 +166,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BlogRouteConfig.cs" />
     <Compile Include="App_Start\LuceneSearchConfig.cs" />
+    <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Controllers\AsidesController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
@@ -323,7 +324,7 @@
     <Content Include="Views\Blog\Post.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Blog\Archive.cshtml" />
+    <Content Include="Views\Archive\Item.cshtml" />
     <Content Include="Views\Asides\ArchiveLinks.cshtml" />
     <Content Include="Views\Shared\Posts.cshtml" />
     <Content Include="Views\Shared\PostLink.cshtml" />
@@ -366,14 +367,12 @@
     <Content Include="Views\Shared\_gtm.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\draft-page.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\DoNotTrack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
-    <Content Include="Posts\draft-post.md" />
+    <None Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
+    <None Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md" />
     <None Include="SiteSettings.Debug.config">
       <DependentUpon>SiteSettings.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
@@ -382,6 +381,7 @@
       <DependentUpon>SiteSettings.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </None>
+    <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

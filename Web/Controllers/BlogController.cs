@@ -22,10 +22,6 @@ namespace MarkdownBlog.Net.Web.Controllers {
             return View("Index");
         }
 
-        public ActionResult Archive(string month, int year) {
-            return View(new Archive() { Month = month, Year = year });
-        }
-
         public ActionResult Feed(string type) {
             var feedType = FeedType.unknown;
 
