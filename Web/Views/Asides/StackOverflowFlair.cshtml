@@ -1,8 +1,9 @@
 ﻿@model MarkdownBlog.Net.Web.Models.StackOverflowFlairViewModel
 @if (Model != null)
 {
+    <div class="asideItem">
     <a href="@Model.Link">
         <img src="@Model.ImageLink" width="208" height="58" alt="@Model.Text" title="@Model.Text">
     </a>    
-    <hr />
-}
+        </div>
+    }

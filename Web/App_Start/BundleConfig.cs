@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+using MarkdownBlog.Net.Web.Infrastructure;
 
 namespace MarkdownBlog.Net.Web.App_Start
 {
@@ -12,17 +13,26 @@ namespace MarkdownBlog.Net.Web.App_Start
                 "~/scripts/jquery.validate-1.13.0.js",
                 "~/scripts/jquery-validate-bootstrap3-overrides.js",
                 "~/scripts/prettify.js",
+                "~/scripts/skrollr.js",
                 "~/scripts/runprettify.js",
-                "~/scripts/search.js"
+                "~/scripts/search.js",
+                "~/scripts/visuals.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/content/css").Include(
-                "~/content/bootstrap.css",
-                "~/content/body.css",
-                "~/content/prettify.css",
-                "~/content/sunburst-modified.css",
-                "~/content/bootstrap-theme.css"
-                ));
+            var lessBundle = new Bundle("~/content/css")
+                .Include(
+                    "~/content/bootstrap.css",
+                    "~/content/body.less",
+                    "~/content/prettify.css",
+                    "~/content/sunburst-modified.css",
+                    "~/content/bootstrap-theme.css"
+                )
+                .IncludeDirectory("~/Content", "*.less");
+
+            lessBundle.Transforms.Add(new LessTransform());
+            lessBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessBundle);
+
         }
     }
 }

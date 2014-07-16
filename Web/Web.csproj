@@ -44,6 +44,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="dotless.Core">
+      <HintPath>..\packages\dotless.1.4.0.0\lib\dotless.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
@@ -177,13 +180,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\LessTransform.cs" />
     <Compile Include="Services\LinkService.cs" />
     <Content Include="App_Readme\Elmah.txt" />
-    <Content Include="Content\body.css" />
+    <None Include="Content\body.less" />
     <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\feed-icon-14x14.png" />
     <Content Include="Content\images\feed-icon-28x28.png" />
     <Content Include="Content\prettify.css" />
@@ -191,6 +193,7 @@
     <Content Include="errors\404.html" />
     <Content Include="errors\500.html" />
     <Content Include="Eula.htm" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Media\1963 Pabst Blue Ribbon Time.JPG" />
     <Content Include="Media\2headssharing.jpg" />
@@ -207,6 +210,8 @@
     <Content Include="Media\freedom.jpg" />
     <Content Include="Media\friction.jpg" />
     <Content Include="Media\geekandpoke-followingme.jpg" />
+    <Content Include="Media\geek_jumbotron.jpg" />
+    <Content Include="Media\geek_jumbotron_trans.jpg" />
     <Content Include="Media\gfx_thumb.jpg" />
     <Content Include="Media\gherkin-building.jpg" />
     <Content Include="Media\girl-on-train_thumb.jpg" />
@@ -262,6 +267,8 @@
     <Content Include="Readme.html" />
     <Content Include="robots.txt" />
     <Content Include="scripts\bootstrap-3.1.1.js" />
+    <Content Include="scripts\skrollr.js" />
+    <Content Include="scripts\visuals.js" />
     <Content Include="scripts\jquery-validate-bootstrap3-overrides.js" />
     <Content Include="scripts\prettify.js" />
     <Content Include="scripts\runprettify.js" />
