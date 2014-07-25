@@ -382,7 +382,9 @@
   <ItemGroup>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
     <None Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
-    <None Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md" />
+    <Content Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="SiteSettings.Debug.config">
       <DependentUpon>SiteSettings.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
