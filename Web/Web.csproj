@@ -381,7 +381,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
-    <None Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
+    <Content Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
     <Content Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
