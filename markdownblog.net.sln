@@ -17,6 +17,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A977BA1D-7
 		docs\todo.md = docs\todo.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", "{65F3CACA-3904-42F8-9E9D-5F1851DE9491}"
+	ProjectSection(SolutionItems) = preProject
+		.deployment = .deployment
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		startweb.cmd = startweb.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
