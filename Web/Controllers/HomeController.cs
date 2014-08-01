@@ -3,6 +3,7 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using MarkdownBlog.Net.Web.Models;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace MarkdownBlog.Net.Web.Controllers
 {
@@ -29,9 +30,16 @@ namespace MarkdownBlog.Net.Web.Controllers
         [HttpPost]
         public ActionResult UploadFile(HttpPostedFileBase file) {
             if (file != null && file.ContentLength > 0) {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data"), fileName);
-                file.SaveAs(path);
+                var cloudAccount = Azure.GetStorageAccount();
+                var blobStorage = cloudAccount.CreateCloudBlobClient();
+                var container = blobStorage.GetContainerReference("uploads");
+                container.CreateIfNotExists();
+
+                var uniqueBlobName = string.Format("uploads/{0}", file.FileName);
+                var blob = container.GetBlobReferenceFromServer(uniqueBlobName);
+                blob.Properties.ContentType = file.ContentType;
+
+                blob.UploadFromStream(file.InputStream);
             }
             return RedirectToAction("Index");
         }
