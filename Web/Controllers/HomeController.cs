@@ -46,7 +46,7 @@ namespace MarkdownBlog.Net.Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return Content(ex.Message);
+                    return Content("<pre>" + ex.Message + "\r\n" + ex.Source + "\r\n" + ex.StackTrace + "</pre>");
                 }
             }
             return RedirectToAction("Index");
