@@ -37,11 +37,9 @@ namespace MarkdownBlog.Net.Web.Controllers
                     var container = blobStorage.GetContainerReference("uploads");
                     container.CreateIfNotExists();
 
-                    var uniqueBlobName = string.Format("uploads/{0}", file.FileName);
-                    var blob = container.GetBlobReferenceFromServer(uniqueBlobName);
-                    blob.Properties.ContentType = file.ContentType;
-
-                    blob.UploadFromStream(file.InputStream);
+                    var blockBlob = container.GetBlockBlobReference(file.FileName);
+                    blockBlob.Properties.ContentType = file.ContentType;
+                    blockBlob.UploadFromStream(file.InputStream);
 
                 }
                 catch (Exception ex)
