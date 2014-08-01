@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using MarkdownBlog.Net.Web.Models;
@@ -24,5 +25,16 @@ namespace MarkdownBlog.Net.Web.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult UploadFile(HttpPostedFileBase file) {
+            if (file != null && file.ContentLength > 0) {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data"), fileName);
+                file.SaveAs(path);
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

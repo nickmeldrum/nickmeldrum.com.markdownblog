@@ -17,3 +17,4 @@ TODO:
   * add more info into jumbotrons on each page
   * add an image into each blog post listing from the article
   * prettify/simplify "posted by" html
+  * thought I deleted this?!

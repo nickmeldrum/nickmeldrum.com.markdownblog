@@ -6,3 +6,10 @@
 @foreach (var post in Model) {
     @Html.Partial("PostLink", post);
 }
+
+
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+    <input type="submit" value="upload" />
+}
