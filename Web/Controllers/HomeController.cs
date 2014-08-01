@@ -30,16 +30,24 @@ namespace MarkdownBlog.Net.Web.Controllers
         [HttpPost]
         public ActionResult UploadFile(HttpPostedFileBase file) {
             if (file != null && file.ContentLength > 0) {
-                var cloudAccount = Azure.GetStorageAccount();
-                var blobStorage = cloudAccount.CreateCloudBlobClient();
-                var container = blobStorage.GetContainerReference("uploads");
-                container.CreateIfNotExists();
+                try
+                {
+                    var cloudAccount = Azure.GetStorageAccount();
+                    var blobStorage = cloudAccount.CreateCloudBlobClient();
+                    var container = blobStorage.GetContainerReference("uploads");
+                    container.CreateIfNotExists();
 
-                var uniqueBlobName = string.Format("uploads/{0}", file.FileName);
-                var blob = container.GetBlobReferenceFromServer(uniqueBlobName);
-                blob.Properties.ContentType = file.ContentType;
+                    var uniqueBlobName = string.Format("uploads/{0}", file.FileName);
+                    var blob = container.GetBlobReferenceFromServer(uniqueBlobName);
+                    blob.Properties.ContentType = file.ContentType;
 
-                blob.UploadFromStream(file.InputStream);
+                    blob.UploadFromStream(file.InputStream);
+
+                }
+                catch (Exception ex)
+                {
+                    return Content(ex.Message);
+                }
             }
             return RedirectToAction("Index");
         }
