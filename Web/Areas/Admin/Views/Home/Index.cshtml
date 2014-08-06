@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Admin area";
+}
+
+<h3>Account:</h3>
+<span>Logged in as @HttpContext.Current.User.Identity.Name |</span>
+@Html.ActionLink("Logout", "Logout", "Account")
+
+
+<h3>Upload a file:</h3>
+
+@using (Html.BeginForm("uploadfile", "upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+    <input type="submit" value="Upload" />
+}

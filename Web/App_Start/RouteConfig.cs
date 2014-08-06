@@ -53,18 +53,13 @@ namespace MarkdownBlog.Net.Web.App_Start {
                 new { controller = "Home", action = "DoNotTrack" } // Parameter defaults
             );
 
-            routes.MapRoute(
-                "uploadfile", // Route name
-                "uploadfile", // URL with parameters
-                new { controller = "Home", action = "UploadFile" } // Parameter defaults
-            );
-
             // Default Route:
 
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{*id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
+                new[] { "MarkdownBlog.Net.Web.Controllers" }
             );
         }
     }

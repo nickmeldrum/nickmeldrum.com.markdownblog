@@ -44,6 +44,12 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.4.0.0\lib\dotless.Core.dll</HintPath>
     </Reference>
@@ -169,6 +175,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BlogRouteConfig.cs" />
     <Compile Include="App_Start\LuceneSearchConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
     <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Controllers\AsidesController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -180,9 +190,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\IocContainer.cs" />
     <Compile Include="Infrastructure\LessTransform.cs" />
+    <Compile Include="Models\UserConfigPersistence\UserCollection.cs" />
+    <Compile Include="Models\UserViewModel\ChangePasswordInput.cs" />
+    <Compile Include="Models\UserViewModel\Identity.cs" />
+    <Compile Include="Models\UserViewModel\User.cs" />
+    <Compile Include="Models\UserViewModel\UserCreateStatus.cs" />
+    <Compile Include="Services\FormsAuthenticationService.cs" />
+    <Compile Include="Services\FormsIdentityService.cs" />
+    <Compile Include="Services\IFormsAuthenticationService.cs" />
+    <Compile Include="Services\IFormsIdentityService.cs" />
+    <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\LinkService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <None Include="Content\body.less" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
@@ -367,6 +395,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
