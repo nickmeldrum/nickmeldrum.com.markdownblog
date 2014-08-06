@@ -1,3 +1,6 @@
+# github azure deployment MUST not change this file or wrong branch might get deployed!
+^\.deployment$
+
 # dotNet compilation
 syntax: glob
 Web/bin
