@@ -1,8 +1,7 @@
 # github azure deployment MUST not change this file or wrong branch might get deployed!
-^\.deployment$
+.deployment
 
 # dotNet compilation
-syntax: glob
 Web/bin
 Web/App_Data/
 [Dd]ebug*/
@@ -14,14 +13,12 @@ oldblogfiles/*/**
 oldblogfiles
 
 # squishit compilation: (all source css and js should be in subdirectories)
-syntax: glob
 src/Web/*.css
 src/Web/*.js
 bundles/*.css
 bundles/*.js
 
 # vs user space files
-syntax: glob
 _ReSharper*/
 *.resharper
 *.user
@@ -29,13 +26,11 @@ _ReSharper*/
 *.dotCover
 
 # directory files
-syntax: glob
 *.log
 *.DS_Store
 *.[Cc]ache
 [Tt]humbs.db
 
 # backup files
-syntax: glob
 *.bak
 backups*/
