@@ -1,0 +1,30 @@
+﻿@model MarkdownBlog.Net.Web.Models.UserViewModel.User
+@{ViewBag.Title = "Login";}
+
+
+@if (Request.IsAuthenticated) {
+    if (HttpContext.Current.User.IsInRole("Admin")) {
+        @Html.ActionLink("Admin", "Index", "Home"); @: |
+    }
+    
+   <span>Logged in as @HttpContext.Current.User.Identity.Name |</span>
+@Html.ActionLink("Logout", "Logout", "Account")
+ 
+
+@*    @Html.ActionLink("Change Password", "ChangePassword", "Account")@: | *@
+    
+}
+else {
+    using (Html.BeginForm("Login", "Account", null, FormMethod.Post)) {
+        <div>
+        @Html.LabelFor(model => model.Username)
+        @Html.TextBoxFor(model => model.Username)
+        </div>
+        <div>
+        @Html.LabelFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password)
+        </div>
+        <input type="submit" value="Login"/>
+        <div>@Html.ValidationSummary()</div>
+    }
+}
