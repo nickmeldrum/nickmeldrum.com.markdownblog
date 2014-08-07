@@ -211,7 +211,7 @@
     <Content Include="Areas\Admin\Views\Account\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
-    <None Include="Content\body.less" />
+    <Content Include="Content\body.less" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\feed-icon-14x14.png" />
@@ -367,6 +367,7 @@
     <Content Include="Views\Asides\StackOverflowFlair.cshtml" />
     <Content Include="SiteSettings.config">
       <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Asides\TwitterTimeline.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
