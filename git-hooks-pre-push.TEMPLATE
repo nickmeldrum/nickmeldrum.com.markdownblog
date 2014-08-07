@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# script to check the .deployment file has the right branch in it!
+# assumes the SCM_BUILD_ARGS variable is on line 2 - should fix this but this script is
+# meant to work in tandem with a post-merge hook which writes this file out with it always on line 2 :)
+
+remote="$1"
+url="$2"
+
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+branch_in_deploymentfile=$(sed -n '2p' .deployment | cut -d'=' -f3)
+
+function deploymentFileIsCorrect() {
+	echo ".deployment file looks right (current branch: $current_branch and .deployment branch is $branch_in_deploymentfile) - pushing!"
+	exit 0
+}
+
+function deploymentFileWrong() {
+	echo ".deployment file has wrong branch name in (current branch: $current_branch and .deployment branch is $branch_in_deploymentfile) - don't PUSH!"
+	exit 1
+}
+
+shopt -s nocasematch
+case "$branch_in_deploymentfile" in
+ $current_branch ) deploymentFileIsCorrect;;
+ *) deploymentFileWrong;;
+esac
+
+#shouldn't get here
+exit 1
