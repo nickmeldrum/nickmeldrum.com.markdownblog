@@ -1,6 +1,3 @@
-# github azure deployment MUST not change this file or wrong branch might get deployed!
-.deployment
-
 # dotNet compilation
 Web/bin
 Web/App_Data/
