@@ -17,16 +17,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A977BA1D-7
 		docs\todo.md = docs\todo.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", "{65F3CACA-3904-42F8-9E9D-5F1851DE9491}"
+	ProjectSection(SolutionItems) = preProject
+		.deployment = .deployment
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		startweb.cmd = startweb.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D64AC9CD-4F04-44DD-9D18-E21C73E59F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D64AC9CD-4F04-44DD-9D18-E21C73E59F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D64AC9CD-4F04-44DD-9D18-E21C73E59F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D64AC9CD-4F04-44DD-9D18-E21C73E59F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64AC9CD-4F04-44DD-9D18-E21C73E59F7A}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{D64AC9CD-4F04-44DD-9D18-E21C73E59F7A}.Staging|Any CPU.Build.0 = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

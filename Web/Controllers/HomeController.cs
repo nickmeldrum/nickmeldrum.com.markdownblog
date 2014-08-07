@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MarkdownBlog.Net.Web.Models;
+using System;
 using System.Web;
 using System.Web.Mvc;
-using MarkdownBlog.Net.Web.Models;
 
 namespace MarkdownBlog.Net.Web.Controllers
 {
@@ -24,5 +24,7 @@ namespace MarkdownBlog.Net.Web.Controllers
 
             return View();
         }
+
+
     }
 }

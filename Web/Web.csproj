@@ -44,6 +44,12 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.4.0.0\lib\dotless.Core.dll</HintPath>
     </Reference>
@@ -169,6 +175,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BlogRouteConfig.cs" />
     <Compile Include="App_Start\LuceneSearchConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
     <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Controllers\AsidesController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -180,10 +190,28 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\IocContainer.cs" />
     <Compile Include="Infrastructure\LessTransform.cs" />
+    <Compile Include="Models\UserConfigPersistence\UserCollection.cs" />
+    <Compile Include="Models\UserViewModel\ChangePasswordInput.cs" />
+    <Compile Include="Models\UserViewModel\Identity.cs" />
+    <Compile Include="Models\UserViewModel\User.cs" />
+    <Compile Include="Models\UserViewModel\UserCreateStatus.cs" />
+    <Compile Include="Services\FormsAuthenticationService.cs" />
+    <Compile Include="Services\FormsIdentityService.cs" />
+    <Compile Include="Services\IFormsAuthenticationService.cs" />
+    <Compile Include="Services\IFormsIdentityService.cs" />
+    <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\LinkService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Content Include="App_Readme\Elmah.txt" />
-    <None Include="Content\body.less" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Content\body.less" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\feed-icon-14x14.png" />
@@ -339,11 +367,15 @@
     <Content Include="Views\Asides\StackOverflowFlair.cshtml" />
     <Content Include="SiteSettings.config">
       <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Asides\TwitterTimeline.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <None Include="Web.Staging.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -358,11 +390,15 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -378,8 +414,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
-    <None Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
-    <None Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md" />
+    <Content Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
+    <Content Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="SiteSettings.Debug.config">
       <DependentUpon>SiteSettings.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
@@ -387,6 +425,7 @@
     <None Include="SiteSettings.Release.config">
       <DependentUpon>SiteSettings.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
@@ -399,6 +438,15 @@
     <SlowCheetah_EnableImportFromNuGet Condition=" '$(SC_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
     <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
     <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
