@@ -50,7 +50,8 @@ namespace MarkdownBlog.Net.Web.App_Start {
             routes.MapRoute(
                 "DoNotTrack", // Route name
                 "donottrack", // URL with parameters
-                new { controller = "Home", action = "DoNotTrack" } // Parameter defaults
+                new { controller = "Home", action = "DoNotTrack" }, // Parameter defaults
+                new[] { "MarkdownBlog.Net.Web.Controllers" }
             );
 
             // Default Route:
