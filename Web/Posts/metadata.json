@@ -1,5 +1,14 @@
 ﻿[
 	{
+		"Title" : "Using the Chrome devtools call stack like a boss",
+        "Slug" : "using-chrome-devtools-callstack-likeaboss",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Learning to love the call stack in chrome",
+        "Published" : false
+	},
+	{
 		"Title" : "Dealing with 'A potentially dangerous Request.Form value was detected from the client'",
         "Slug" : "a-potentially-dangerous-request.form-value-was-detected-from-the-client",
 		"PublishDate" : null,
