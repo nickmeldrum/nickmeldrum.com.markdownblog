@@ -1,2 +1,2 @@
 [config]
-SCM_BUILD_ARGS=-p:Configuration=Release
+SCM_BUILD_ARGS=-p:Configuration=Debug
