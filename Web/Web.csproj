@@ -373,9 +373,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <None Include="Web.Staging.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -384,9 +381,6 @@
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -418,15 +412,6 @@
     <Content Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="SiteSettings.Debug.config">
-      <DependentUpon>SiteSettings.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-    </None>
-    <None Include="SiteSettings.Release.config">
-      <DependentUpon>SiteSettings.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
