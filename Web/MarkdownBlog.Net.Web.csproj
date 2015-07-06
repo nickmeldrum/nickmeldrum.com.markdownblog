@@ -410,6 +410,9 @@
     </Content>
     <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Posts\using-chrome-devtools-callstack-likeaboss.md" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
