@@ -1,5 +1,14 @@
 ﻿[
 	{
+		"Title" : "Setting up Azure services - a big gotcha",
+        "Slug" : "setting-up-azure-services",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Don't get caught out by me and how to use the command line",
+        "Published" : false
+	},
+	{
 		"Title" : "Using the Chrome devtools call stack like a boss",
         "Slug" : "using-chrome-devtools-callstack-likeaboss",
 		"PublishDate" : null,
