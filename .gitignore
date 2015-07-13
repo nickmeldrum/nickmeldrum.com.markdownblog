@@ -31,3 +31,7 @@ _ReSharper*/
 # backup files
 *.bak
 backups*/
+
+# azure stuff
+*.publishsettings
+
