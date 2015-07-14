@@ -405,9 +405,7 @@
   <ItemGroup>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
     <Content Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
-    <Content Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md" />
     <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
