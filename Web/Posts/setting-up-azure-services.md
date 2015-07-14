@@ -40,8 +40,22 @@ connect to github and deploy
 
  domain name: 
   azure site domain add nickmeldrum.com nickmeldrum ???
+ then upgrade to shared plan as free plan doesn't support custom domain names:
+  azure site scale mode -v --mode shared nickmeldrum
+ then we want to delete the local repo that gets set up so we can connect this to github:
+  azure site repository delete -v -q nickmeldrum
+  but that doesn't work currently - see this issue:
+    https://github.com/Azure/azure-xplat-cli/issues/1794
+  so for now we have to do this from powershell client or from the front-end...
+  install azure for powershell using platform installer then in powershell: https://azure.microsoft.com/en-gb/documentation/articles/powershell-install-configure/
+    import-module "C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1"
+
+   do the azure login using the publishsettings files again:
+  Import-AzurePublishSettingsFile filename.publishsettings
+couldn't find how to delete from azure powershell either - so i guess it's the gui for me here :(
+
+
 
  github connection:
   azure site deployment github nickmeldrum --githubrepository nickmeldrum/nickmeldrum.com.markdownblog --githubusername nickmeldrum
    (Going to ask for password - or you can append --githubpassword mypasswordhere - but DON'T COMMIT THAT TO A PUBLIC REPO!!!)
-
