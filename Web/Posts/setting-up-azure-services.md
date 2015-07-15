@@ -45,3 +45,13 @@ connect to github and deploy
   azure site deployment github nickmeldrum --githubrepository nickmeldrum/nickmeldrum.com.markdownblog --githubusername nickmeldrum
    (Going to ask for password - or you can append --githubpassword mypasswordhere - but DON'T COMMIT THAT TO A PUBLIC REPO!!!)
 
+
+(gave up and used the gui for the last part - i.e. getting the github hook to work, creating the storage account and setting the config options on the site (TODO: some more config options set - redirect for isntance?)
+(TODO: is it in release mode with debug false?)
+
+## setting up staging site:
+
+This one must be 100% scripted!
+
+  * azure site create --location "North Europe" nickmeldrum-staging -vv
+
