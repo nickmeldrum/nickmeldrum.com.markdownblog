@@ -55,7 +55,6 @@ connect to github and deploy
 couldn't find how to delete from azure powershell either - so i guess it's the gui for me here :(
 
 
-
  github connection:
   azure site deployment github nickmeldrum --githubrepository nickmeldrum/nickmeldrum.com.markdownblog --githubusername nickmeldrum
    (Going to ask for password - or you can append --githubpassword mypasswordhere - but DON'T COMMIT THAT TO A PUBLIC REPO!!!)
@@ -69,4 +68,41 @@ This one must be 100% scripted!
 
   * azure site create --location "North Europe" nickmeldrum-staging -vv
   * azure site deployment github --verbose --githubusername nickmeldrum --githubrepository nickmeldrum/nickmeldrum.com.markdownblog nickmeldrum-staging
+
+  okay - that seems to give you a deployment trigger url - go get it so we can give it to github!
+ mine looks like this: https://$nickmeldrum-staging:[AUTHKEY]@nickmeldrum-staging.scm.azurewebsites.net/deploy
+create it using powershell:
+$websiteInfo = Get-AzureWebsite nickmeldrum-staging
+$triggerUrl = ("https://" + $websiteInfo.publishingusername + ":" + $x.publishingpassword + "@" + "nickmeldrum-staging" + ".scm.azurewebsites.net/deploy")
+
+then we need to use the github api to create the webhook:
+following this documentation: https://developer.github.com/v3/repos/hooks/
+
+so we need to create a POST to:/repos/:owner/:repo/hooks
+or in my case: /repos/nickmeldrum/nickmeldrum.com.markdownblog/hooks
+
+$body = @{
+  "name" = "web";
+  "active" = "true";
+  "events" = @(
+    "push"
+  );
+  "config" = @{
+    "url" = "$triggerUrl";
+    "content_type" = "form"
+  }
+}
+
+$headers = @{
+    "Accept" = "application/vnd.github.v3+json";
+    "Content-Type" = "application/json";
+    "Authorization" = ("token " + $githubToken);
+}
+
+Invoke-RestMethod -Uri https://api.github.com/repos/nickmeldrum/nickmeldrum.com.markdownblog/hooks -Method Post -ContentType "application/json" -Headers $headers -Body (ConvertTo-Json $body)
+
+Given up with xpat cli - using powershell as Troy Hunt has excellent posts on it:
+http://www.troyhunt.com/2015/01/automating-web-hosting-creation-in.html
+Set-AzureWebsite -Name nickmeldrum-staging -PhpVersion Off
+
 

@@ -44,6 +44,9 @@ what are my favourite development tools
 ## Interviewing:
 What do I need to know as an interviewee going for a dev job? - big question, depends on job - lots of cheat sheets?
 How to interview developers!
+  * when submitting code tests: try and work out what kind of project/ setup/ thing the interviewer is after - if they are asking for an algorithm + tests, don't give them a full stack application - because you've just asked them to read code they don't want to read. If you really want to show off somehting, maybe submit 2 projects: "test-solution" and "test-solution-extra-credit-fullstack-example" so it's up to them if they want to look at the extra credit. Also, please please don't submit code that you don't understand yourself! definitely don't do extra credit work if it isn't top quality. KISS. (reference raganwald article on coding tests )
+
+
 
 ## team leading:
 conways law - an analysis with some case studies
