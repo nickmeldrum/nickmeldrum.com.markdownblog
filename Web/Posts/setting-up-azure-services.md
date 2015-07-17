@@ -61,7 +61,14 @@ couldn't find how to delete from azure powershell either - so i guess it's the g
 (gave up and used the gui for the last part - i.e. getting the github hook to work, creating the storage account and setting the config options on the site (TODO: some more config options set - redirect for isntance?)
 (TODO: is it in release mode with debug false?)
 
+Get active deployment powershell:
+
+$currentDeployId = (Get-AzureWebsiteDeployment -name nickmeldrum | where {$_.Current -eq $true}).Id
+azure site deployment redeploy -q $currentDeployId nickmeldrum
+
 Setup Config:
+
+azure site appsetting add ShowDrafts=false nickmeldrum
 
 azure site appsetting add deployment_branch=staging nawstest1
 azure site appsetting add azureStorageAccountName=nickmeldrum nawstest1
