@@ -61,6 +61,14 @@ couldn't find how to delete from azure powershell either - so i guess it's the g
 (gave up and used the gui for the last part - i.e. getting the github hook to work, creating the storage account and setting the config options on the site (TODO: some more config options set - redirect for isntance?)
 (TODO: is it in release mode with debug false?)
 
+Setup Config:
+
+azure site appsetting add deployment_branch=staging nawstest1
+azure site appsetting add azureStorageAccountName=nickmeldrum nawstest1
+azure site appsetting add azureStorageBlobEndPoint=https://nickmeldrum.blob.core.windows.net/ nawstest1
+azure site appsetting add azureStorageKey=kVjV1bHjuK3jcShagvfwNV6lndMjb4h12pLNJgkcbQ2ZYQ/TFpXTWIdfORZLxOS0QdymmNfYVtWPZCDHyQZgSw== nawstest1
+azure site appsetting add SCM_BUILD_ARGS=-p:Configuration=Debug nawstest1
+
 ## setting up staging site:
 
 This one must be 100% scripted!
@@ -115,4 +123,12 @@ if ($webhookid -ne $null) {
 }
 
 DELETE /repos/:owner/:repo/hooks/:id
+
+How to setup auto deployment from another branch?
+
+info on whats going on with the webhook here: https://github.com/projectkudu/kudu/wiki/Continuous-deployment - it;s Kudu baby!
+It's actually Kudu doing this behind the scenes. You can see the settings here:
+https://nickmeldrum-staging.scm.azurewebsites.net/api/settings
+
+and you can actually set the "deployment_branch" setting via an appsetting!
 
