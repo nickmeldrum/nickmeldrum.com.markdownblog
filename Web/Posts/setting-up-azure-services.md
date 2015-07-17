@@ -54,7 +54,6 @@ connect to github and deploy
   Import-AzurePublishSettingsFile filename.publishsettings
 couldn't find how to delete from azure powershell either - so i guess it's the gui for me here :(
 
-
  github connection:
   azure site deployment github nickmeldrum --githubrepository nickmeldrum/nickmeldrum.com.markdownblog --githubusername nickmeldrum
    (Going to ask for password - or you can append --githubpassword mypasswordhere - but DON'T COMMIT THAT TO A PUBLIC REPO!!!)
@@ -66,7 +65,6 @@ couldn't find how to delete from azure powershell either - so i guess it's the g
 
 This one must be 100% scripted!
 
-  * azure site create --location "North Europe" nickmeldrum-staging -vv
   * azure site deployment github --verbose --githubusername nickmeldrum --githubrepository nickmeldrum/nickmeldrum.com.markdownblog nickmeldrum-staging
 
   okay - that seems to give you a deployment trigger url - go get it so we can give it to github!
@@ -105,4 +103,15 @@ Given up with xpat cli - using powershell as Troy Hunt has excellent posts on it
 http://www.troyhunt.com/2015/01/automating-web-hosting-creation-in.html
 Set-AzureWebsite -Name nickmeldrum-staging -PhpVersion Off
 
+## Delete the site:
 
+$webhookid = ((Invoke-RestMethod -Uri https://api.github.com/repos/nickmeldrum/nickmeldrum.com.markdownblog/hooks -Method Get -Headers $headers) | where { $_.config.url.indexof("nickmeldrum-staging.scm.azurewebsites.net") -gt -1}).id
+
+._
+
+if ($webhookid -ne $null) {
+    Invoke-RestMethod -Uri https://api.github.com/repos/nickmeldrum/nickmeldrum.com.markdownblog/hooks/$webhookid -Method Delete -Headers $headers
+
+}
+
+DELETE /repos/:owner/:repo/hooks/:id
