@@ -143,3 +143,14 @@ and you can actually set the "deployment_branch" setting via an appsetting!
 
 issue that led me to the answer:
 https://github.com/Azure/azure-powershell/issues/413
+
+
+
+Story so far:
+
+using the new-azurewebsite method but not passing in creds, seting the appsetting then doing a push seems to work with a deployment...
+next step: test if doing node method works azure site create, set appsetting, set deployment, then doing a push works...
+
+then test if a redploy works with node method - and then if you can get it working in powershell method with upgrade-azuredeployment thing...
+
+
