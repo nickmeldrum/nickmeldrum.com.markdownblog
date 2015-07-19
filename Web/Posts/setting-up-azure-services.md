@@ -63,8 +63,10 @@ couldn't find how to delete from azure powershell either - so i guess it's the g
 
 Get active deployment powershell:
 
-$currentDeployId = (Get-AzureWebsiteDeployment -name nickmeldrum | where {$_.Current -eq $true}).Id
-azure site deployment redeploy -q $currentDeployId nickmeldrum
+  $currentDeployId = (Get-AzureWebsiteDeployment -name nickmeldrum | where {$_.Current -eq $true}).Id
+  $currentDeployId = (azure site deployment list nickmeldrum | grep -i active | awk '{print $3}')
+
+  azure site deployment redeploy -q $currentDeployId nickmeldrum
 
 Setup Config:
 
@@ -139,3 +141,5 @@ https://nickmeldrum-staging.scm.azurewebsites.net/api/settings
 
 and you can actually set the "deployment_branch" setting via an appsetting!
 
+issue that led me to the answer:
+https://github.com/Azure/azure-powershell/issues/413

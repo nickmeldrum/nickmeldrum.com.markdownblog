@@ -1,6 +1,7 @@
 $githubUsername = "nickmeldrum"
 $githubRepo = "nickmeldrum.com.markdownblog"
 $azureLocation = "North Europe"
+$branchName = "staging"
 
 # Dependencies:
 # ==============
@@ -20,6 +21,8 @@ $headers = @{
     "Content-Type" = "application/json";
     "Authorization" = ("token " + $githubToken);
 }
+
+$ErrorActionPreference = "Stop"
 
 Function Check-AzureGlobalDependencies {
     if ((get-childitem .\*.publishsettings).length -eq 0) {
@@ -58,22 +61,50 @@ Function Login-AzureApi {
     }
 }
 
-Function Create-AzureSiteAndGithubWebhook {
+Function Create-AzureSitePS {
+    param ([string]$sitename)
+
+    Login-AzureApi
+
+    echo "creating site..."
+
+    echo "TODO: The following doesn't seem to work - auth failure against github i think..."
+    return
+    $secpasswd = ConvertTo-SecureString $githubPassword -AsPlainText -Force
+    $githubCreds = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $githubUsername, $secpasswd
+    new-azurewebsite -name $sitename -github -githubcredentials $githubCreds -githubrepository "$githubusername/$githubrepo"
+}
+
+Function Create-AzureSite {
     param ([string]$sitename)
 
     Login-AzureApi
 
     echo "creating site..."
     azure site create --location $azureLocation $sitename
-
+    
     echo "setting up site config..."
-    Set-AzureWebsite -Name $sitename -PhpVersion Off
+    azure site set --php-version off $sitename
+
+    azure site appsetting add deployment_branch=$branchName $sitename
+    azure site appsetting add azureStorageAccountName=nickmeldrum $sitename
+    azure site appsetting add azureStorageBlobEndPoint=https://nickmeldrum.blob.core.windows.net/ $sitename
+    azure site appsetting add azureStorageKey=kVjV1bHjuK3jcShagvfwNV6lndMjb4h12pLNJgkcbQ2ZYQ/TFpXTWIdfORZLxOS0QdymmNfYVtWPZCDHyQZgSw== $sitename
+    azure site appsetting add SCM_BUILD_ARGS=-p:Configuration=Debug $sitename
 
     echo "setting up deployment..."
-    azure site deployment github --githubusername $githubUsername --githubpassword $githubPassword --githubrepository $githubRepo $sitename 
-    Create-GithubWebhook $sitename
+    azure site deployment github --githubusername $githubUsername --githubpassword $githubPassword --githubrepository "$githubUsername/$githubRepo" $sitename 
 
     echo "if you got here without errors then bingo bango - you have a new azure website with the name $sitename and a push deployment webhook from github repo $githubRepo setup"
+}
+
+Function Delete-AzureSite {
+    param ([string]$sitename)
+
+    Login-AzureApi
+
+    echo "deleting site..."
+    azure site delete -q $sitename
 }
 
 Function Create-GithubWebhook {
@@ -107,13 +138,8 @@ Function Create-GithubWebhook {
     Invoke-RestMethod -Uri "https://api.github.com/repos/$githubUsername/$githubRepo/hooks" -Method Post -ContentType "application/json" -Headers $headers -Body (ConvertTo-Json $body)
 }
 
-Function Delete-AzureSiteAndGithubWebhook {
+Function Delete-GithubWebhook {
     param ([string]$sitename)
-
-    Login-AzureApi
-
-    echo "deleting site..."
-    azure site delete -q $sitename
 
     echo "deleting webhook if it exists..."
     $webhookid = ((Invoke-RestMethod -Uri "https://api.github.com/repos/$githubUsername/$githubRepo/hooks" -Method Get -Headers $headers) | where { $_.config.url.indexof("$sitename.scm.azurewebsites.net") -gt -1}).id
