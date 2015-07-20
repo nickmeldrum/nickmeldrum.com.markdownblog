@@ -154,4 +154,4 @@ then test if a redploy works with node method - and then if you can get it worki
 TODO:
 stackoverflow/ msdn about creds not working for new-azurewebsite cmdlet function
 
-
+fda;w
