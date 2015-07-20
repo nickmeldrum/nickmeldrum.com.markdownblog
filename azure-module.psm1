@@ -177,6 +177,34 @@ Function Delete-AzureSite {
     Delete-GithubWebhook $sitenmae
 }
 
+Function Get-CurrentAzureSiteDeploymentPS {
+    param ([string]$sitename)
+    Function-Preflight $sitename
+
+    return Get-AzureWebsiteDeployment -name $sitename | where {$_.Current -eq $true}
+}
+
+Function Get-CurrentAzureSiteDeployment {
+    param ([string]$sitename)
+    Function-Preflight $sitename
+
+    return azure site deployment list $sitename | grep -i active
+}
+
+Function Redeploy-AzureSite {
+    param ([string]$sitename)
+    Function-Preflight $sitename
+
+    $currentDeployId = (azure site deployment list $sitename | grep -i active | awk '{print $3}')
+
+    if ($currentDeployId -eq $null) {
+        throw "didn't find an active deployment. Has this site been deployed yet?"
+    }
+    else {
+        azure site deployment redeploy -q $currentDeployId $sitename
+    }
+}
+
 Function Create-GithubWebhook {
     param ([string]$sitename, [string]$githubRepo)
     Check-VarNotNullOrWhiteSpace $githubRepo "Please pass in a valid githubRepo as a string"
