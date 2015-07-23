@@ -160,3 +160,27 @@ create git repo,
 create remote github and push hello world
 create azure site
 
+This explains the poor support for websites - i should be using "apps" now!!!
+
+http://tfl09.blogspot.co.uk/2015/04/new-version-of-azure-powershell-module.html
+
+"Interestingly – the updated module still supports for Azure web sites (e.g. New-AzureWebsite) despite the GUI (the Azure portal and the Azure preview portal) having dropped these in favour of the newly announced Web Apps functionality that in effect subsumes the older Web Sites feature). The Azure portals no longer show Web sites, whereas the cmdlets still support the feature"
+
+POST IDEA:
+understanding accounts, resource groups and authenticating in azure!
+
+started using a "microsoft" account and authenticating using a .publishsettings file - all well and good until I want to use the new webapp azure powershell functions: (the ones that are superceding the websites.) These use resource groups and refuse to be authenticated using a .publishsettings file.
+
+So if you are using a microsoft account you have to authenticate with these new functions using "add-azureaccount" - if using an organizational id - all well and good as you can pass in a credentials object. however if you are using a microsoft account this CANNOT be automated (as far as I can work out.) The only way to get an auth token is by using the UI to login (via add-azureaccount without passing in creds.) This obviously means this can't be scripted in an unattended manner, which is a must-have for me.
+
+so onto creating an organisation instead of using a "personal" account.
+
+
+research:
+https://social.technet.microsoft.com/Forums/azure/en-US/e60a3fcb-ea2f-4bc8-a05e-488c98006315/azure-powershell-resource-manager-mode-getting-authentication-failures?forum=windowsazuremanagement
+http://blog.codingoutloud.com/2014/01/24/stupid-azure-trick-2-how-do-i-create-a-new-organizational-account-on-windows-azure-active-directory-without-any-existing-accounts-or-ea/
+http://blog.codebeastie.com/setting-up-an-azure-environment-for-a-small-company/
+https://msdn.microsoft.com/en-gb/library/azure/hh531793.aspx
+http://blog.aditi.com/cloud/organizational-identity-microsoft-accounts-azure-active-directory-part-1/
+
+
