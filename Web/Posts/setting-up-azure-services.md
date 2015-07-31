@@ -182,5 +182,6 @@ http://blog.codingoutloud.com/2014/01/24/stupid-azure-trick-2-how-do-i-create-a-
 http://blog.codebeastie.com/setting-up-an-azure-environment-for-a-small-company/
 https://msdn.microsoft.com/en-gb/library/azure/hh531793.aspx
 http://blog.aditi.com/cloud/organizational-identity-microsoft-accounts-azure-active-directory-part-1/
+delete github repo requires a change to the personal access token: add the scope delete_repo to the token via github.com settings
 
 
