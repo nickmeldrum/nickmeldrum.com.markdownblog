@@ -8,6 +8,7 @@ namespace MarkdownBlog.Net.Web.Models {
         public static string StorageAccountName { get { return ConfigurationManager.AppSettings["azureStorageAccountName"]; } }
         public static string StorageKey { get { return ConfigurationManager.AppSettings["azureStorageKey"]; } }
         public static string StorageBlobEndPoint { get { return ConfigurationManager.AppSettings["azureStorageBlobEndPoint"]; } }
+        public static string StorageContainerName { get { return ConfigurationManager.AppSettings["azureStorageContainerName"]; } }
 
         public static CloudStorageAccount GetStorageAccount() {
             return new CloudStorageAccount(new StorageCredentials(StorageAccountName, StorageKey), new Uri(StorageBlobEndPoint), null, null);

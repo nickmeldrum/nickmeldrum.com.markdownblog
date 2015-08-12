@@ -17,7 +17,7 @@ namespace MarkdownBlog.Net.Web.App_Start {
             var cloudAccount = Azure.GetStorageAccount();
 
             using (var cacheDirectory = new RAMDirectory()) {
-                using (var azureDirectory = new AzureDirectory(cloudAccount, "luceneindex", cacheDirectory)) {
+                using (var azureDirectory = new AzureDirectory(cloudAccount, Azure.StorageContainerName, cacheDirectory)) {
                     using (Analyzer analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30)) {
                         using (var indexWriter = new IndexWriter(azureDirectory, analyzer, true, IndexWriter.MaxFieldLength.UNLIMITED)) {
                             AddDocuments(indexWriter);
