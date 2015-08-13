@@ -19,7 +19,7 @@ namespace MarkdownBlog.Net.Web.Controllers {
             var cloudAccount = Azure.GetStorageAccount();
 
             using (var cacheDirectory = new RAMDirectory()) {
-                using (var azureDirectory = new AzureDirectory(cloudAccount, "luceneIndex", cacheDirectory)) {
+                using (var azureDirectory = new AzureDirectory(cloudAccount, Azure.StorageContainerName, cacheDirectory)) {
                     using (var analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30)) {
                         using (var searcher = new IndexSearcher(azureDirectory)) {
 
