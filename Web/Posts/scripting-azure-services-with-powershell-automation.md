@@ -56,6 +56,8 @@ Requirement Breakdown: So how is this website setup?
 
 ## setting up the libraries
 
+TODO: Setting up libraries + logging in in separate blog post?
+
 both command line (node xpat cli) and powershell. started trying out both and liked the node command line api surface but a) when in powershell found working on objects was much easier and less brittle than working with strings (using grep/awk etc.)
 
 however I am going to look at creating a 100% command line version of these scripts using the node command line in bash and unix command line tools in order to do a comparison of the two.
@@ -67,26 +69,45 @@ Once you have node just install the node xpat cli using the command:
 
 To install "Azure for Powershell" the easiest way to install it is using the "Microsoft Web Platform Installer" from here: http://www.microsoft.com/web/downloads/platform.aspx
 Once you have the Web PI installed just install Azure for Powershell by running the Web PI, searching for "Microsoft Azure Powershell" and clicking add and install.
+Note: once it's installed in order to use the powershell module in any powershell session you have to import it. here is the line I use to do that, but of course beware your path may be different:
 
-## logging in
+    Import-Module "C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1"
 
+(In my powershell module: https://github.com/nickmeldrum/ps-cloud/blob/master/azure-base-commands.psm1 I supply a function: Setup-AzureApi which will install azure-cli and import the azure module.)
 
-## Setting up a shared web app
+## logging in (using a "Microsoft Account" rather than an "Organizational Account")
 
- * npm install azure-cli -g
+TODO: detail the difference in accessing azure using either account types
+
+Now you have the libraries installed you need to give those libraries the authorisation to operate on your azure account. There are 2 ways of authenticating to Azure, 1 using what they call an "Organizational Account" which will need an Azure AD (Active Directory) setup. I am using what they call a "Microsoft Account" and this uses a management certificate that is held in a .publishsettings file.
+
+ * To get your .publishsettings file, type "azure account download" and it will load up a browser window to download it for you (allowing you to sign in to your Microsoft account
+ TODO: powershell equivalent of account download
+ * NOTE: Treat your .publishsettings file like a password - it is sensitive data. Add .publishsettings into your .gitignore and ensure you don't commit it to version control!
+
+Use the following line to "login" the powershell module:
+
+    Import-AzurePublishSettingsFile filename.publishsettings
+
+And the following line to "login" the node xpat cli:
+
+    azure account import filename.publishsettings
+
+Note: If you are using an "Organizational Account" (e.g. Azure Ad) you can apparently just type:
+
+    azure login username password
+
+However I cannot confirm as I haven't used this account type yet.
+
+(In my powershell module: https://github.com/nickmeldrum/ps-cloud/blob/master/azure-base-commands.psm1 I supply a function: Login-AzureApi which will find a .publishsettings file in the current directory and use it to "login" both the Powershell module and the node xpat cli.)
+
+## Links
+
+For more details or reference articles, see the following:
+
  * check out readme at https://www.npmjs.com/package/azure-cli or shansleman's post on it here: http://www.hanselman.com/blog/ManagingTheCloudFromTheCommandLine.aspx
  * actually this one probably has the most details: https://azure.microsoft.com/en-gb/documentation/articles/xplat-cli/
  * wealth of information on managing azure websites: http://microsoftazurewebsitescheatsheet.info/
-
-### Logging in using a Microsoft Account
-
-i.e. not using an AD account
-(i.e. I think what used to be called a live account - TODO: more descriptions needed here)
-
- * type "azure account download" to download a publishsettingsfile that has a management certificate with it that will allow you to login
- * NOTE: add .publishsettings into your .gitignore - don't share that certificate!
- * import the .publishsettings file by typing "azure account import filename.publishsettings"
- * you are now effectively logged in as if you had typed "azure login username password" with an AD ("Organizational") account
 
 ### Creating the website
 
