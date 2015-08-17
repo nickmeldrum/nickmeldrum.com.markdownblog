@@ -54,6 +54,23 @@ Requirement Breakdown: So how is this website setup?
 
 ### The implementation:
 
+## setting up the libraries
+
+both command line (node xpat cli) and powershell. started trying out both and liked the node command line api surface but a) when in powershell found working on objects was much easier and less brittle than working with strings (using grep/awk etc.)
+
+however I am going to look at creating a 100% command line version of these scripts using the node command line in bash and unix command line tools in order to do a comparison of the two.
+
+To install the command line (node xpat cli) you must already have nodejs installed from here: https://nodejs.org/download/ (npm comes preinstalled with node.)
+Once you have node just install the node xpat cli using the command:
+
+    npm install azure-cli -g
+
+To install "Azure for Powershell" the easiest way to install it is using the "Microsoft Web Platform Installer" from here: http://www.microsoft.com/web/downloads/platform.aspx
+Once you have the Web PI installed just install Azure for Powershell by running the Web PI, searching for "Microsoft Azure Powershell" and clicking add and install.
+
+## logging in
+
+
 ## Setting up a shared web app
 
  * npm install azure-cli -g
