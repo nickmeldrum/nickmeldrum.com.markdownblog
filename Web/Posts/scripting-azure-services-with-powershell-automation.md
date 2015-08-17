@@ -54,8 +54,6 @@ Requirement Breakdown: So how is this website setup?
 
 ### The implementation:
 
-c1245
-
 ## Setting up a shared web app
 
  * npm install azure-cli -g
