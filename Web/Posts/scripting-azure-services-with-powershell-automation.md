@@ -22,28 +22,39 @@ Off I went on a voyage of discovery into the land of automating Azure services. 
 
 My requirement was to have my own website completely set up from scratch with 1 script. Indeed even if it were partially set up I want the script to succeed in setting up the site. I guess that is similar to saying I want the script to be idempotent.
 
-So how is this website setup?
+Requirement Breakdown: So how is this website setup?
+
+#### General:
+ 
+ * This needs to be done in the most cost-efficient manner possible (To improve the "WAF" - Wife Acceptance Factor)
+
 #### Deployment and staging/ production
+
  * The code is in github with a master and release branch. I code and test on master branch then merge into the release branch when I want it to go to the production website
  * I have an Azure website hosting the staging site which is deployed to every time I push my master branch up to github
  * I have an Azure website hosting the production site which is deployed to every time I push my release branch up to github
 
 #### DNS
- * I have my DNS records in DNSimple.
+
+ * I have my DNS records in DNSimple
  * The staging site doesn't need any DNS records and is accessible from the default azurewebsites.net address
  * The production site has quite a few DNS records requiring both A and CNAME recordsd to point to the production site
  * The IIS setup has a canonical hostname redirect so whichever address you use you will be redirected to the canonical
 
 #### Lucene search and Azure storage
- * The 
- 
-setup from scratch with 1 command:
 
-    production + staging website both continuously deployed from github branches,
-    production website has a domain name associated with it.
-    both using their own azure storage.
-    pay the absolute minimum in cloud service subs.
+ * The website has a search facility implemented by Lucene which requires indexes to be built and stored in files
+ * These files are stored in Azure storage blob containers and both staging and production have their own container
 
+#### The site itself
+
+ * The staging site shows draft posts whereas the production site doesn't
+ * Both sites have an admin password for website admin access
+ * These settings are managed through appsettings in the web.config
+
+### The implementation:
+
+c1245
 
 ## Setting up a shared web app
 
