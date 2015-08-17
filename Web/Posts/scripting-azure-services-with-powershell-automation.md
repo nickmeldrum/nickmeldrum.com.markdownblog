@@ -1,16 +1,49 @@
-# Setting up azure for the 2nd time
-
 ## Standard disclaimer for all azure posts:
 
-It changes so fast (the services, the naming, the pricing models, the "perma links" going dead etc etc.) that very soon this article and all azure articles will be out of date. If you notice any out of date ness or other issues with this post - please let me know by commenting below!
+Azure changes so fast (the services, the naming, the pricing models, the "perma links" going dead for example) that very soon this article will be out of date. If you notice any out-of-dateness or other issues with this post, then please let me know by commenting below.
 
-## The problem:
+## The background:
 
-(Warning: be aware of the risk of setting up azure services on an MSDN subscription paid for by your company without automating the creation of them. Your employer could cancel the subscription at any time and if they do you won't be able to move those services to another subscription without "re-enabling the msdn subscription" - which of course is impossible. Therefore you have completely lost all your azure services settings.)
+I set up my Azure website on an MSDN subscription paid for by my previous employer which they then cancelled. Azure then immediately shut down all my services (and therefore my website went down) and didn't even give me access to open up the sites in the portal for me to see how I had set them up in order to recreate them on a new subscription.
 
-(Resolved never to use the GUI (Portal) ever again - do everything through the command line in source controlled scripts for repeatability. It's a lesson oft forgotten, harsh lessons learnt and lesson repeated - perhaps for this kind of thing, the GUI should never be there in the 1st place!
+Note: after talking to Azure support it turns out *you cannot migrate your services from a cancelled account*.
 
-Instead set it all up in a repeatable fashion from code which you control. Here's how:
+So I learnt for this reason and many others: the best way to set up your azure account is from a Powershell script so if there's ever a problem you can just re-run the script.
+
+## A side note - here be dragons
+
+Luckily I didn't store any data in these Azure services (or rather I only stored temporary data such as Lucene indexes.) If I had stored data in there that I needed to retrieve at some point in the future then when the account was suspended I would have irrevocably lost access to that data. Of course if you are storing important data in Azure you should have off-site backups but just beware of this potential issue!
+
+## Okay okay, show me the money
+
+Off I went on a voyage of discovery into the land of automating Azure services. I will try to document what I learnt and my scripts here in the hope some of the pain I went through can help someone else in the future.
+
+### The requirement:
+
+My requirement was to have my own website completely set up from scratch with 1 script. Indeed even if it were partially set up I want the script to succeed in setting up the site. I guess that is similar to saying I want the script to be idempotent.
+
+So how is this website setup?
+#### Deployment and staging/ production
+ * The code is in github with a master and release branch. I code and test on master branch then merge into the release branch when I want it to go to the production website
+ * I have an Azure website hosting the staging site which is deployed to every time I push my master branch up to github
+ * I have an Azure website hosting the production site which is deployed to every time I push my release branch up to github
+
+#### DNS
+ * I have my DNS records in DNSimple.
+ * The staging site doesn't need any DNS records and is accessible from the default azurewebsites.net address
+ * The production site has quite a few DNS records requiring both A and CNAME recordsd to point to the production site
+ * The IIS setup has a canonical hostname redirect so whichever address you use you will be redirected to the canonical
+
+#### Lucene search and Azure storage
+ * The 
+ 
+setup from scratch with 1 command:
+
+    production + staging website both continuously deployed from github branches,
+    production website has a domain name associated with it.
+    both using their own azure storage.
+    pay the absolute minimum in cloud service subs.
+
 
 ## Setting up a shared web app
 

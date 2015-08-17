@@ -1,11 +1,11 @@
 ﻿[
 	{
-		"Title" : "Setting up Azure services - a big gotcha",
-        "Slug" : "setting-up-azure-services",
+		"Title" : "Scripting Azure Services With Powershell Automation",
+        "Slug" : "scripting-azure-services-with-powershell-automation",
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Don't get caught out by me and how to use the command line",
+		"ShortDescription" : "Aka How not to get caught out like I did using the Azure Portal",
         "Published" : false
 	},
 	{
