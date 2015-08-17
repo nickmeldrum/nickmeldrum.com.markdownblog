@@ -418,12 +418,14 @@
     <Content Include="Posts\post ideas.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Posts\setting-up-azure-services.md">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Posts\raspberry-pi-playing.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Posts\raspberry-pi-playing.md">
+    <Content Include="Posts\scripting-azure-services-with-powershell-automation.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
