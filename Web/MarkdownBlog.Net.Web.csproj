@@ -479,4 +479,9 @@
   <Target Name="AfterBuild">
   </Target>
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
+  <PropertyGroup>
+    <PreBuildEvent>if "$(ConfigurationName)" == "Debug" (
+     copy $(SolutionDir)robots.disallowall $(SolutionDir)robots.txt /Y
+)</PreBuildEvent>
+  </PropertyGroup>
 </Project>
