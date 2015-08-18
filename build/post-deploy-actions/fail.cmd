@@ -1,2 +1,2 @@
-Exit 1
+Exit 0
 
