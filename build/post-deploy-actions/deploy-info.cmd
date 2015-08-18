@@ -1,9 +1,9 @@
 del %DEPLOYMENT_TARGET%\deployInfo.json /F /Q
 
-FOR /F "tokens=* USEBACKQ" %F IN (`git rev-parse HEAD`) do set commit_hash=%F
-FOR /F "tokens=* USEBACKQ" %F IN (`git log -1 --pretty^=format:"%ae"`) do set commit_email=%F
-FOR /F "tokens=* USEBACKQ" %F IN (`git log -1 --pretty^=format:"%ad"`) do set commit_date=%F
-FOR /F "tokens=* USEBACKQ" %F IN (`git log -1 --pretty^=format:"%s"`) do set commit_msg=%F
+FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse HEAD`) do set commit_hash=%%F
+FOR /F "tokens=* USEBACKQ" %%F IN (`git log -1 --pretty^=format:"%ae"`) do set commit_email=%%F
+FOR /F "tokens=* USEBACKQ" %%F IN (`git log -1 --pretty^=format:"%ad"`) do set commit_date=%%F
+FOR /F "tokens=* USEBACKQ" %%F IN (`git log -1 --pretty^=format:"%s"`) do set commit_msg=%%F
 
 echo { >> %DEPLOYMENT_TARGET%\deployInfo.json
 echo "branch" : "%deployment_branch%", >> %DEPLOYMENT_TARGET%\deployInfo.json
