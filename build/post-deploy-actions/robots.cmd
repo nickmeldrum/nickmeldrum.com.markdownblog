@@ -1,3 +1,5 @@
-copy %DEPLOYMENT_SOURCE%\Web\robots.disallowall %DEPLOYMENT_TARGET%\robots.txt /Y
-echo %deployment_branch% > %DEPLOYMENT_TARGET%\test.txt
+IF %deployment_branch% == "master" (
+    copy %DEPLOYMENT_SOURCE%\Web\robots.disallowall %DEPLOYMENT_TARGET%\robots.txt /Y
+)
+
 
