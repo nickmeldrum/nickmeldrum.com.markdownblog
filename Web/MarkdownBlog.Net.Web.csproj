@@ -293,7 +293,6 @@
     <Content Include="Posts\hard-drive-speeds.md" />
     <Content Include="Posts\first-post.md" />
     <Content Include="Readme.html" />
-    <Content Include="robots.txt" />
     <Content Include="scripts\bootstrap-3.1.1.js" />
     <Content Include="scripts\skrollr.js" />
     <Content Include="scripts\visuals.js" />
