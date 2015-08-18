@@ -78,8 +78,11 @@ Note: once it's installed in order to use the powershell module in any powershel
 ## logging in (using a "Microsoft Account" rather than an "Organizational Account")
 
 TODO: detail the difference in accessing azure using either account types
+### What is the difference between a Microsoft account and an organizational account?
 
 Now you have the libraries installed you need to give those libraries the authorisation to operate on your azure account. There are 2 ways of authenticating to Azure, 1 using what they call an "Organizational Account" which will need an Azure AD (Active Directory) setup. I am using what they call a "Microsoft Account" and this uses a management certificate that is held in a .publishsettings file.
+
+For now this (and my future Azure posts) are going to assume you are using a Microsoft Account because that's what I'm using at the moment. However if you are interested [see the bottom of this post for more info on the 2 account types](#account-types)
 
  * To get your .publishsettings file, type "azure account download" and it will load up a browser window to download it for you (allowing you to sign in to your Microsoft account
  TODO: powershell equivalent of account download
@@ -101,6 +104,27 @@ However I cannot confirm as I haven't used this account type yet.
 
 (In my powershell module: https://github.com/nickmeldrum/ps-cloud/blob/master/azure-base-commands.psm1 I supply a function: Login-AzureApi which will find a .publishsettings file in the current directory and use it to "login" both the Powershell module and the node xpat cli.)
 
+<a name="account-types"></a>
+### Whats the beef with Microsoft Accounts and Organizational Accounts then?
+
+Take 2 account types into the shower? Not me, I just login and go!
+
+A Microsoft account is the new name for a "Live ID" and Microsoft would like this to be your personal login for all of their services from Azure to XBox. Importantly it is not tied to your organization but to you personally so you should be able to keep the same login in perpetuity.
+
+An organizational account is an account in an Azure Active Directory (or in an AD that is federated with or synchronized to Azure AD.) This is used by organizations to manage services administered by individuals and mitigating the risk of having those services tied to just a persons individual Microsoft Account.
+
+Using Azure services (via Powershell or the xpat cli) with a Microsoft Account requires you to "login" using a management certificate held in a .publishsettings file.
+Using Azure services (via Powershell or the xpat cli) with an Organizational Account you can "login" using a username/password (via a credentials object in PowerShell.)
+
+If you want to use Office 365, you can only use an Orgainzational account for that.
+
+(Side note: when trying to automate Azure Powershell in an unattended way using the new Azure Powershell commands and a Microsoft Account seems impossible because the Azure-AddAccount function fires up a "sign-in" modal box unfortunately.)
+
+If you have an MSDN Subscription purchased for you by work it *must* be tied to your Microsoft account. An MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, see here for more details: http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/
+
+Here is an excellent article on setting up an Azure AD from scratch: http://blog.codingoutloud.com/2014/01/24/stupid-azure-trick-2-how-do-i-create-a-new-organizational-account-on-windows-azure-active-directory-without-any-existing-accounts-or-ea/
+
+
 ## Links
 
 For more details or reference articles, see the following:
@@ -108,6 +132,11 @@ For more details or reference articles, see the following:
  * check out readme at https://www.npmjs.com/package/azure-cli or shansleman's post on it here: http://www.hanselman.com/blog/ManagingTheCloudFromTheCommandLine.aspx
  * actually this one probably has the most details: https://azure.microsoft.com/en-gb/documentation/articles/xplat-cli/
  * wealth of information on managing azure websites: http://microsoftazurewebsitescheatsheet.info/
+
+### Command auto-completion for the xpat cli
+
+ * On Windows Powershell: http://blogs.msdn.com/b/stuartleeks/archive/2015/08/17/posh-azurecli-command-completion-for-azure-cross-platform-command-line-in-powershell.aspx
+ * On mac/linux: http://github.com/Azure/azure-xplat-cli/blob/28a6fb69c989f157a9c55d84fb3db893e879ebaf/README.md#configure-auto-complete 
 
 ### Creating the website
 
