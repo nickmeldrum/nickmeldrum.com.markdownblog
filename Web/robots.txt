@@ -1,4 +1,0 @@
-﻿# robots.txt
-User-agent: *
-Disallow: 
-Sitemap: http://nickmeldrum.com/sitemap
