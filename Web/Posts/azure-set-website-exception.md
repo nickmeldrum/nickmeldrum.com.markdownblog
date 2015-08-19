@@ -12,7 +12,6 @@ gets exception:
         + CategoryInfo          : InvalidData: (Microsoft.Windo....SiteWithConfig:PSObject) [Set-AzureWebsite], ParameterBindingValidationException
         + FullyQualifiedErrorId : ParameterArgumentValidationError,Microsoft.WindowsAzure.Commands.Websites.SetAzureWebsiteCommand
 
-
 seems like it's getting upset with turning php off!
 get-azurewebsite returns empty string when php is off but i expect set-azurewebsite is expecting "Off" and upset by the empty string!
 
@@ -20,7 +19,7 @@ get-azurewebsite returns empty string when php is off but i expect set-azurewebs
 
 answer is to do the following instead and this just sets the appsettings instead of resetting everything from the object returned from get-azurewebsite!
 
-  $appSettings = (get-azurewebsite -name nickmeldrum-staging).appsettings
-  $appSettings.add("arse2", "test2")
-  set-azurewebsite -name nickmeldrum-staging -appsettings $appSettings
+  $appSettings = (get-azurewebsite -name nickmeldrum).appsettings
+  $appSettings.add("SCM_POST_DEPLOYMENT_ACTIONS_PATH", "build\post-deploy-actions")
+  set-azurewebsite -name nickmeldrum -appsettings $appSettings
 
