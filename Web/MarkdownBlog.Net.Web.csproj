@@ -303,7 +303,7 @@
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\Azure.cs" />
     <Compile Include="Models\ContentItem.cs" />
-    <Compile Include="Models\ContentItemsMetaData.cs" /
+    <Compile Include="Models\ContentItemsMetaData.cs" />
     <Compile Include="Models\ContentItemMetaData.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PagesMetadata.cs" />
