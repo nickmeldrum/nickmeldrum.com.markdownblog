@@ -1,2 +1,4 @@
 mkdir %DEPLOYMENT_TARGET%\Posts
+mkdir %DEPLOYMENT_TARGET%\Pages
 copy %DEPLOYMENT_SOURCE%\Web\Posts\*.* %DEPLOYMENT_TARGET%\Posts /Y
+copy %DEPLOYMENT_SOURCE%\Web\Pages\*.* %DEPLOYMENT_TARGET%\Pages /Y

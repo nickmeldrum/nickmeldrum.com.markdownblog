@@ -299,7 +299,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="App_Code\PostHelpers.cshtml" />
-    <Content Include="Pages\metadata.json" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\Azure.cs" />
     <Compile Include="Models\ContentItem.cs" />
