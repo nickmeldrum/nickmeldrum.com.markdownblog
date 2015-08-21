@@ -1,7 +1,7 @@
 ﻿[
 	{
 		"Title" : "Updating appsettings using Set-AzureWebsite fails and how to fix it",
-        "Slug" : "azure-set-website-exception.md",
+        "Slug" : "azure-set-website-exception",
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
