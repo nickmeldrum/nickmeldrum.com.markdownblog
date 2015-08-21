@@ -1,5 +1,14 @@
 ﻿[
 	{
+		"Title" : "Updating appsettings using Set-AzureWebsite fails and how to fix it",
+        "Slug" : "azure-set-website-exception.md",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Fixing the exception: \"Set-AzureWebsite : Cannot validate argument on parameter 'PhpVersion'\"",
+        "Published" : false
+	},
+	{
 		"Title" : "Scripting Azure Services With Powershell Automation",
         "Slug" : "scripting-azure-services-with-powershell-automation",
 		"PublishDate" : null,
