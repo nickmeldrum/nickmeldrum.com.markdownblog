@@ -1,0 +1,2 @@
+mkdir %DEPLOYMENT_TARGET%\Posts
+copy %DEPLOYMENT_SOURCE%\Web\Posts\*.* %DEPLOYMENT_TARGET%\Posts /Y
