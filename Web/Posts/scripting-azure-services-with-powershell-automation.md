@@ -1,3 +1,5 @@
+<img src="/media/azure_logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
+
 ## Standard disclaimer for all azure posts:
 
 Azure changes so fast (the services, the naming, the pricing models, the "perma links" going dead for example) that very soon this article will be out of date. If you notice any out-of-dateness or other issues with this post, then please let me know by commenting below.
@@ -6,7 +8,11 @@ Azure changes so fast (the services, the naming, the pricing models, the "perma 
 
 I set up my Azure website on an MSDN subscription paid for by my previous employer which they then cancelled. Azure then immediately shut down all my services (and therefore my website went down) and didn't even give me access to open up the sites in the portal for me to see how I had set them up in order to recreate them on a new subscription.
 
-Note: after talking to Azure support it turns out *you cannot migrate your services from a cancelled account*.
+So after talking to Azure support it turns out
+
+> *you cannot migrate your services from a disabled account*
+
+<img src="/media/no-entry.jpg" alt="No Entry!" title="No Entry!" width="200px" class="centered"/>
 
 So I learnt for this reason and many others: the best way to set up your azure account is from a Powershell script so if there's ever a problem you can just re-run the script.
 
@@ -18,11 +24,15 @@ Luckily I didn't store any data in these Azure services (or rather I only stored
 
 Off I went on a voyage of discovery into the land of automating Azure services. I will try to document what I learnt and my scripts here in the hope some of the pain I went through can help someone else in the future.
 
-### The requirement:
+<img src="/media/script.jpg" alt="Scripting" title="It's a script..." width="400px" class="centered"/>
 
-My requirement was to have my own website completely set up from scratch with 1 script. Indeed even if it were partially set up I want the script to succeed in setting up the site. I guess that is similar to saying I want the script to be idempotent.
+## The requirement:
 
-Requirement Breakdown: So how is this website setup?
+My requirement was to have my own website completely set up from scratch with 1 script. Indeed even if the website were partially set up I want the script to succeed in setting up the rest. I guess that is similar to saying I want the script to be idempotent.
+
+> Ensure the deployment details are stored in version control and are executable
+
+## Details details:
 
 #### General:
  
