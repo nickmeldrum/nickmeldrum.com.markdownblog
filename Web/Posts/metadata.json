@@ -9,12 +9,21 @@
         "Published" : false
 	},
 	{
-		"Title" : "Scripting Azure Services With Powershell Automation",
-        "Slug" : "scripting-azure-services-with-powershell-automation",
+		"Title" : "Scripting Azure Services With Powershell",
+        "Slug" : "scripting-azure-services-with-powershell-installingandloggingin-part2",
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Aka How not to get caught out like I did using the Azure Portal",
+		"ShortDescription" : "Part 2: Installing Azure Powershell and the Azure CLI and logging in",
+        "Published" : false
+	},
+	{
+		"Title" : "Scripting Azure Services With Powershell",
+        "Slug" : "scripting-azure-services-with-powershell-thebackground-part1",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Part 1: What am I trying to do?",
         "Published" : false
 	},
 	{
