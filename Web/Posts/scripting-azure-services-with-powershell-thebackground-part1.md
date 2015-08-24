@@ -2,8 +2,8 @@
 
 ## It's a series of posts
 
-* The background post (Part 1)
-* [Installing Azure Powershell and the Azure CLI and logging in](/blog/scripting-azure-services-with-powershell-installingandloggingin-part2 "Installing Azure Powershell and the Azure CLI and logging in")
+* Part 1: The background post (this one)
+* Part 2: Installing Azure Powershell and the Azure CLI and logging in - Post to come soon...
 
 ## Standard disclaimer for all azure posts:
 
@@ -73,5 +73,5 @@ In this first post I've talked about what I wanted to do and why. The next posts
 
 ## Next post
 
-* [Installing Powershell and the Azure CLI and logging in](/blog/scripting-azure-services-with-powershell-installingandloggingin-part2/ "Installing Powershell and the Azure CLI and logging in")
+* Part 2: Installing Azure Powershell and the Azure CLI and logging in - Post to come soon...
 
