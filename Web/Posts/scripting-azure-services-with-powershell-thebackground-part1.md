@@ -55,17 +55,17 @@ My requirement was to have my own website completely set up from scratch with 1 
 
 <img src="/media/dnsimple.png" alt="dnsimple" title="dnsimple" width="200px" class="centered"/>
 
- * I use [dnsimple](https://dnsimple.com/ "awesome dns") to manage my DNS records
- * The staging site doesn't need any DNS records and is accessible from the default azurewebsites.net address
+ * I use [dnsimple](https://dnsimple.com/ "awesome dns") to manage my DNS records.
+ * The staging site doesn't need any DNS records and is accessible from the default [azurewebsites.net](http://nickmeldrum-staging.azurewebsites.net/ "the blog's staging site") address
  * The production site has quite a few DNS records requiring both A and CNAME recordsd to point to the production site
- * The IIS setup has a canonical hostname redirect so whichever address you use you will be redirected to the canonical
+ * The IIS setup has a canonical hostname redirect so whichever address you use you will be redirected to the [canonical hostname](http://nickmeldrum.com/ "the blog's production site")
 
 ### Lucene search and Azure storage
 
 <img src="/media/lucene.png" alt="lucene" title="lucene" width="200px" class="centered"/>
 
- * The website has a search facility implemented by Lucene which requires indexes to be built and stored in files
- * These files are stored in Azure storage blob containers and both staging and production have their own container
+ * The website has a search facility implemented by Lucene which requires indexes to be built and stored locally in files
+ * These files are stored in Azure storage blob containers (because storing files locally on an Azure website is a recipe for pain) and both staging and production have their own container
 
 ### The site itself
 
