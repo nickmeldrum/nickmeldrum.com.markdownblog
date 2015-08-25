@@ -20,11 +20,11 @@
 	{
 		"Title" : "Scripting Azure Services With Powershell",
         "Slug" : "scripting-azure-services-with-powershell-thebackground-part1",
-		"PublishDate" : null,
+		"PublishDate" : "2015-08-25T20:41:00Z",
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
 		"ShortDescription" : "Part 1: What am I trying to do?",
-        "Published" : false
+        "Published" : true
 	},
 	{
 		"Title" : "Using the Chrome devtools call stack like a boss",
