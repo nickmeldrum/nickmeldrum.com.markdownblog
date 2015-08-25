@@ -45,18 +45,24 @@ My requirement was to have my own website completely set up from scratch with 1 
 
 ### Deployment and staging/ production
 
- * The code is in github with a master and release branch. I code and test on master branch then merge into the release branch when I want it to go to the production website
- * I have an Azure website hosting the staging site which is deployed to every time I push my master branch up to github
- * I have an Azure website hosting the production site which is deployed to every time I push my release branch up to github
+<img src="/media/github-logo.png" alt="Github" title="Github" width="200px" class="centered"/>
+
+ * The code is in [github](https://github.com/nickmeldrum/nickmeldrum.com.markdownblog "markdown blog at github") with 2 branches: master and release. I code on the master branch and consider the release branch the current production version.
+ * When the master branch is pushed, it gets automatically built and deployed to a [staging site](http://nickmeldrum-staging.azurewebsites.net/ "the blog's staging site"). This is important to test for issues that may not be exposed using the Azure emulators locally.
+ * When I want to release to [production](http://nickmeldrum.com/ "the blog's production site"), I merge master to release and push the release branch. This will trigger a build and deployment to the production azure instance.
 
 ### DNS
 
- * I have my DNS records in DNSimple
+<img src="/media/dnsimple.png" alt="dnsimple" title="dnsimple" width="200px" class="centered"/>
+
+ * I use [dnsimple](https://dnsimple.com/ "awesome dns") to manage my DNS records
  * The staging site doesn't need any DNS records and is accessible from the default azurewebsites.net address
  * The production site has quite a few DNS records requiring both A and CNAME recordsd to point to the production site
  * The IIS setup has a canonical hostname redirect so whichever address you use you will be redirected to the canonical
 
 ### Lucene search and Azure storage
+
+<img src="/media/lucene.png" alt="lucene" title="lucene" width="200px" class="centered"/>
 
  * The website has a search facility implemented by Lucene which requires indexes to be built and stored in files
  * These files are stored in Azure storage blob containers and both staging and production have their own container
