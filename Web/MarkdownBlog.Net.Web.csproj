@@ -223,66 +223,6 @@
     <Content Include="Eula.htm" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Media\1963 Pabst Blue Ribbon Time.JPG" />
-    <Content Include="Media\2headssharing.jpg" />
-    <Content Include="Media\caddies_thumb.jpg" />
-    <Content Include="Media\case_thumb.jpg" />
-    <Content Include="Media\channel9_logo_thumb.png" />
-    <Content Include="Media\deepfriedbytes_logo_thumb.png" />
-    <Content Include="Media\developmentor_logo_thumb.gif" />
-    <Content Include="Media\dimecasts_logo_thumb.png" />
-    <Content Include="Media\dotnetrocks_logo_thumb.jpg" />
-    <Content Include="Media\farmersmarket.jpg" />
-    <Content Include="Media\favicon.ico" />
-    <Content Include="Media\feedburner_thumb.jpg" />
-    <Content Include="Media\freedom.jpg" />
-    <Content Include="Media\friction.jpg" />
-    <Content Include="Media\geekandpoke-followingme.jpg" />
-    <Content Include="Media\geek_jumbotron.jpg" />
-    <Content Include="Media\geek_jumbotron_trans.jpg" />
-    <Content Include="Media\gfx_thumb.jpg" />
-    <Content Include="Media\gherkin-building.jpg" />
-    <Content Include="Media\girl-on-train_thumb.jpg" />
-    <Content Include="Media\goldbar.jpg" />
-    <Content Include="Media\google_logo_thumb.png" />
-    <Content Include="Media\hanselminutes_logo_thumb.jpg" />
-    <Content Include="Media\happy girl.jpg" />
-    <Content Include="Media\hds_thumb.jpg" />
-    <Content Include="Media\hs_thumb.jpg" />
-    <Content Include="Media\infoQ_logo_thumb.gif" />
-    <Content Include="Media\its-working.gif" />
-    <Content Include="Media\itsnotrocketscience.jpg" />
-    <Content Include="Media\looking at shoes.jpg" />
-    <Content Include="Media\maxell.jpg" />
-    <Content Include="Media\mboard_thumb.jpg" />
-    <Content Include="Media\me 128 wide.jpg" />
-    <Content Include="Media\me.jpeg" />
-    <Content Include="Media\nickmeldrum.jpg" />
-    <Content Include="Media\openhosting_thumb.png" />
-    <Content Include="Media\password hint bug.png" />
-    <Content Include="Media\pdc-logo_thumb.jpg" />
-    <Content Include="Media\podcasts_thumb.jpg" />
-    <Content Include="Media\powershell customize context menu.png" />
-    <Content Include="Media\powershell script external tools dialog.png" />
-    <Content Include="Media\ram_thumb.jpg" />
-    <Content Include="Media\resharperlogo.jpg" />
-    <Content Include="Media\run powershell context menu.png" />
-    <Content Include="Media\sfx_thumb.jpg" />
-    <Content Include="Media\shortcut mapping external tools.png" />
-    <Content Include="Media\skills-matter_logo_thumb.gif" />
-    <Content Include="Media\smlogoblackmanga_thumb.gif" />
-    <Content Include="Media\sunflower happy.jpg" />
-    <Content Include="Media\teched-logo_thumb.jpg" />
-    <Content Include="Media\tekpub-logo_thumb.jpg" />
-    <Content Include="Media\the opinionated knitter.jpg" />
-    <Content Include="Media\unhappy dog.jpg" />
-    <Content Include="Media\vimcheatsheet-thumb.gif" />
-    <Content Include="Media\vimium_logo.png" />
-    <Content Include="Media\visual-studio-2010-logo.png" />
-    <Content Include="Media\vsvimscreenshot.png" />
-    <Content Include="Media\weddingring_thumb.jpg" />
-    <Content Include="Media\wool.jpg" />
-    <Content Include="Media\wordpress_thumb.png" />
     <Content Include="Readme.html" />
     <Content Include="scripts\bootstrap-3.1.1.js" />
     <Content Include="scripts\skrollr.js" />
@@ -379,30 +319,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
-    <Content Include="Posts\dealing-with-errors-on-asp.net-websites.md" />
-    <Content Include="Posts\a-potentially-dangerous-request.form-value-was-detected-from-the-client.md" />
     <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Posts\using-chrome-devtools-callstack-likeaboss.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Sitesettings.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Posts\post ideas.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Posts\raspberry-pi-playing.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Posts\scripting-azure-services-with-powershell-automation.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
