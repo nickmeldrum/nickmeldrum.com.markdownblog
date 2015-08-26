@@ -1,6 +1,7 @@
 # dotNet compilation
 Web/bin
 Web/App_Data/
+!Web/App_Data/51Degrees.dat
 [Dd]ebug*/
 [Oo]bj/
 [Rr]elease*/
