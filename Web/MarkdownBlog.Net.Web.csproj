@@ -56,6 +56,9 @@
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="FiftyOne.Foundation">
+      <HintPath>..\packages\51Degrees.mobi.3.2.3.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -192,6 +195,10 @@
     </Compile>
     <Compile Include="Infrastructure\IocContainer.cs" />
     <Compile Include="Infrastructure\LessTransform.cs" />
+    <Compile Include="Mobile\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Models\UserConfigPersistence\UserCollection.cs" />
     <Compile Include="Models\UserViewModel\ChangePasswordInput.cs" />
     <Compile Include="Models\UserViewModel\Identity.cs" />
@@ -223,6 +230,7 @@
     <Content Include="Eula.htm" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Mobile\Default.aspx" />
     <Content Include="Readme.html" />
     <Content Include="scripts\bootstrap-3.1.1.js" />
     <Content Include="scripts\skrollr.js" />
@@ -300,7 +308,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Admin\Views\Upload\" />
@@ -323,6 +330,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sitesettings.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\51Degrees.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="51Degrees.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
