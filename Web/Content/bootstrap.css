@@ -398,10 +398,14 @@ h6 .small,
 h1,
 .h1,
 h2,
-.h2,
+.h2 {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 h3,
 .h3 {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 h1 small,
@@ -424,8 +428,8 @@ h5,
 .h5,
 h6,
 .h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 10Px;
 }
 h4 small,
 .h4 small,
