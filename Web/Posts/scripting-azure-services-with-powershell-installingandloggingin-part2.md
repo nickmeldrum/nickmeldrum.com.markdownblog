@@ -2,17 +2,56 @@
 
 ## It's a series of posts
 
-* ["The background" post (Part 1)](/blog/scripting-azure-services-with-powershell-thebackground-part1 "The background post (Part 1)")
-* Installing Azure Powershell and the Azure CLI and logging in
+* [Part 1: The background](/blog/scripting-azure-services-with-powershell-thebackground-part1 "The background post (Part 1)")
+* Part 2: Azure Accounts, Subscriptions and Installs: Setting up your account and environment (this one)
 
 ## Next post
 
-* ["Some implementation detail" post (Part 3)](/blog/scripting-azure-services-with-powershell "Some implementation detail...")
+* [Part 3: Some implementation detail](/blog/scripting-azure-services-with-powershell-part3 "Some implementation detail...")
+
+## The hello world of Azure posts
+
+How to setup Azure powershell and connect to your account/subscription/website is not a novel post. However, I found I had to go to numerous sources to learn a few key things about connecting to Azure. Hopefully I can explain them all simply here.
+
+I wanted to use / try out both the Azure Powershell interface as well as the "Azure xpat cli" which is the nodejs based cross-platform way of connecting to Azure. This article will deal with both.
+
+First off let's understand what the difference between an Account and a Subscription is. Then we will look at the different types of Accounts that you can use with Azure. Then we'll get to some commands you can run to actually install, setup and login to Azure Powershell and the Azure xpat cli.
+
+## What is an account and what is a subscription?
+
+### The account
+
+Not too complicated, but important to understand from the outset how they interrelate. The account is how you are authenticated with Microsoft Azure. There are 2 types of account: a Microsoft Account (tied to an Email address) and an Organizational account (an Active Directory account.) I will go into the differences between those below. Just remember an account is something that has a password and allows Azure to know that your requests to them are coming from you!
+
+### The subscription
+
+This is how Microsoft Azure knows how to bill you for your Azure resource usage. There are a number of ways Microsoft can bill you, but for your personal usage you will typically be interested in 2 different options: 1: An MSDN account. Most Microsoft developers will have been given an MSDN license in order to use Visual Studio at work. These licenses come with a monthly quota of credit you can use to pay for your Azure resource usage. If you don't have a currently valid MSDN license, you will have to set up a "Pay as you go" subscription and give them your bank details.
+
+Here is [Microsoft's description](https://msdn.microsoft.com/en-gb/library/azure/hh531793.aspx#BKMK_AccountSub "The difference between an Azure account and a subscription") of all this (including admin roles which I haven't mentioned.)
+
+## Whats the beef with Microsoft Accounts and Organizational Accounts then?
+
+> Take 2 account types into the shower? Not me, I just login and go!
+
+So there 
+
+A Microsoft account is the new name for a "Live ID" and Microsoft would like this to be your personal login for all of their services from Azure to XBox. Importantly it is not tied to your organization but to you personally so you should be able to keep the same login in perpetuity.
+
+An organizational account is an account in an Azure Active Directory (or in an AD that is federated with or synchronized to Azure AD.) This is used by organizations to manage services administered by individuals and mitigating the risk of having those services tied to just a persons individual Microsoft Account.
+
+Using Azure services (via Powershell or the xpat cli) with a Microsoft Account requires you to "login" using a management certificate held in a .publishsettings file.
+Using Azure services (via Powershell or the xpat cli) with an Organizational Account you can "login" using a username/password (via a credentials object in PowerShell.)
+
+If you want to use Office 365, you can only use an Orgainzational account for that.
+
+(Side note: when trying to automate Azure Powershell in an unattended way using the new Azure Powershell commands and a Microsoft Account seems impossible because the Azure-AddAccount function fires up a "sign-in" modal box unfortunately.)
+
+If you have an MSDN Subscription purchased for you by work it *must* be tied to your Microsoft account. An MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, see here for more details: http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/
+
+Here is an excellent article on setting up an Azure AD from scratch: http://blog.codingoutloud.com/2014/01/24/stupid-azure-trick-2-how-do-i-create-a-new-organizational-account-on-windows-azure-active-directory-without-any-existing-accounts-or-ea/
 
 
 ## setting up the libraries
-
-TODO: Setting up libraries + logging in in separate blog post?
 
 both command line (node xpat cli) and powershell. started trying out both and liked the node command line api surface but a) when in powershell found working on objects was much easier and less brittle than working with strings (using grep/awk etc.)
 
@@ -59,27 +98,6 @@ Note: If you are using an "Organizational Account" (e.g. Azure Ad) you can appar
 However I cannot confirm as I haven't used this account type yet.
 
 (In my powershell module: https://github.com/nickmeldrum/ps-cloud/blob/master/azure-base-commands.psm1 I supply a function: Login-AzureApi which will find a .publishsettings file in the current directory and use it to "login" both the Powershell module and the node xpat cli.)
-
-<a name="account-types"></a>
-### Whats the beef with Microsoft Accounts and Organizational Accounts then?
-
-Take 2 account types into the shower? Not me, I just login and go!
-
-A Microsoft account is the new name for a "Live ID" and Microsoft would like this to be your personal login for all of their services from Azure to XBox. Importantly it is not tied to your organization but to you personally so you should be able to keep the same login in perpetuity.
-
-An organizational account is an account in an Azure Active Directory (or in an AD that is federated with or synchronized to Azure AD.) This is used by organizations to manage services administered by individuals and mitigating the risk of having those services tied to just a persons individual Microsoft Account.
-
-Using Azure services (via Powershell or the xpat cli) with a Microsoft Account requires you to "login" using a management certificate held in a .publishsettings file.
-Using Azure services (via Powershell or the xpat cli) with an Organizational Account you can "login" using a username/password (via a credentials object in PowerShell.)
-
-If you want to use Office 365, you can only use an Orgainzational account for that.
-
-(Side note: when trying to automate Azure Powershell in an unattended way using the new Azure Powershell commands and a Microsoft Account seems impossible because the Azure-AddAccount function fires up a "sign-in" modal box unfortunately.)
-
-If you have an MSDN Subscription purchased for you by work it *must* be tied to your Microsoft account. An MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, see here for more details: http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/
-
-Here is an excellent article on setting up an Azure AD from scratch: http://blog.codingoutloud.com/2014/01/24/stupid-azure-trick-2-how-do-i-create-a-new-organizational-account-on-windows-azure-active-directory-without-any-existing-accounts-or-ea/
-
 
 ## Links
 
