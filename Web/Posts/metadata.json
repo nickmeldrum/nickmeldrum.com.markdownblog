@@ -1,5 +1,14 @@
 ﻿[
 	{
+		"Title" : "Contributing to open source sucks",
+        "Slug" : "contributing-to-open-source-sucks",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "um...",
+        "Published" : false
+	},
+	{
 		"Title" : "Updating appsettings using Set-AzureWebsite fails and how to fix it",
         "Slug" : "azure-set-website-exception",
 		"PublishDate" : null,
