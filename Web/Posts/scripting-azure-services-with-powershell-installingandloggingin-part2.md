@@ -125,5 +125,4 @@ For more details or reference articles, see the following:
 
 ## Next post
 
-* [Part 3: Some implementation detail](/blog/scripting-azure-services-with-PowerShell-part3 "Some implementation detail...")
-
+* Part 3: Some implementation detail - Post to come soon...
