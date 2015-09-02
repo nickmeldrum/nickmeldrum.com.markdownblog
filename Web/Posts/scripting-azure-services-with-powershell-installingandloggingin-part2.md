@@ -7,44 +7,59 @@
 
 ## The hello world of Azure posts
 
-How to set up Azure PowerShell and connect to your account/subscription/website is not a novel post. However, I found I had to go to numerous sources to learn a few key things about connecting to Azure. Hopefully I can explain them all simply here.
+<img src="/media/helloworld.png" alt="Hello World" title="Hello World" class="centered"/>
+
+This post is about how I set up my Azure workspace. It's about connecting to my account and using my subscription. It's about Installing the Azure command line packages and hooking it all up so I can just work with zero friction.
 
 I wanted to use / try out both the Azure PowerShell interface as well as the "Azure xpat cli" which is the nodejs based cross-platform way of connecting to Azure. This article will deal with both.
 
-First off let's understand what the difference between an Account and a Subscription is. Then we will look at the different types of Accounts that you can use with Azure. Then we'll get to some commands you can run to actually install, set up and login to Azure PowerShell and the Azure xpat cli.
+First, let's understand what the difference between an Account and a Subscription is. Then we will look at the different types of Accounts that you can use with Azure. Then we'll get to some commands you can run to actually install, set up and login to Azure PowerShell and the Azure xpat cli.
 
-## What is an account and what is a subscription?
+## Accounts and subscriptions
+
+<img src="/media/subscription.png" alt="Accounts and Subscriptions" title="Accounts and Subscriptions" class="centered"/>
+
+(From page: [Understanding resource access in Azure](https://msdn.microsoft.com/en-us/library/azure/dn584083.aspx "Accounts and Subscriptions (msdn.microsoft.com)"))
 
 ### The account
 
-The account is how Microsoft Azure authenticates you. There are 2 types: a "Microsoft Account" (tied to an email address) and an "Organizational Account" (an Active Directory account.) I will go into the differences between those below. Just remember an account is something that has a password and allows Azure to know that your requests are coming from you!
+The account is how Microsoft Azure authenticates you. There are 2 types: a "Microsoft Account" (tied to an email address) and an "Organizational Account" (an Active Directory account.) I will go into the differences between those below. Just remember an account is something that has a password and allows Azure to know that your requests are coming from you.
 
-#### What's the beef with Microsoft Accounts and Organizational Accounts then?
+### What's the beef with Microsoft Accounts and Organizational Accounts then?
 
 > Take 2 account types into the shower? Not me, I just login and go!
 
-So there 
+<img src="/media/wash-and-go.jpg" alt="Just wash and go!" title="Just wash and go!" class="centered"/>
 
-A Microsoft account is the new name for a "Live ID" and Microsoft would like this to be your personal login for all of their services from Azure to XBox. Importantly it is not tied to your organization but to you personally so you should be able to keep the same login in perpetuity.
+**A Microsoft account** is the new name for a "Live ID" and Microsoft would like this to be your personal login for all of their services from Azure to Xbox. Importantly it is not tied to your organization but to you personally so you should be able to keep the same login in perpetuity.
 
-An organizational account is an account in an Azure Active Directory (or in an AD that is federated with or synchronized to Azure AD.) This is used by organizations to manage services administered by individuals and mitigating the risk of having those services tied to just a persons individual Microsoft Account.
+Using **A Microsoft account** requires you to authenticate using a management certificate held in a .publishsettings file to access Azure PowerShell or the xpat cli.
 
-Using Azure services (via PowerShell or the xpat cli) with a Microsoft Account requires you to "login" using a management certificate held in a .publishsettings file.
-Using Azure services (via PowerShell or the xpat cli) with an Organizational Account you can "login" using a username/password (via a credentials object in PowerShell.)
+You can [go here to create a Microsoft account](https://signup.live.com/ "Sign up to a Microsoft Account (live.com)") (against any email address, not just outlook or hotmail as some people think.)
 
-If you want to use Office 365, you can only use an Orgainzational account for that.
+[What is a Microsoft account in their own words](http://windows.microsoft.com/en-GB/windows-live/sign-in-what-is-microsoft-account "What is a Microsoft account (windows.microsoft.com)")
 
-(Side note: when trying to automate Azure PowerShell in an unattended way using the new Azure PowerShell commands and a Microsoft Account seems impossible because the Azure-AddAccount function fires up a "sign-in" modal box unfortunately.)
+**An organizational account** is an account in an Azure Active Directory (or in an AD that is federated with or synchronized to Azure AD.) This is used by organizations to manage services administered by individuals and mitigating the risk of having those services tied to just a persons individual Microsoft Account instead of the organization.
 
-#### The subscription
+Using **An organizational account** you can authenticate using a username/password (via a secure credentials object in PowerShell.)
+
+If you want to create **An organizational account**, [here is an excellent article on setting up an Azure AD from scratch](http://blog.codingoutloud.com/2014/01/24/stupid-azure-trick-2-how-do-i-create-a-new-organizational-account-on-windows-azure-active-directory-without-any-existing-accounts-or-ea/ "Creating an organizational account (blog.codingoutloud.com)") and you can have an [Azure AD for free](http://azure.microsoft.com/en-gb/pricing/details/active-directory/ "Active Directory pricing models (azure.microsoft.com)")!
+
+### The little differences between the account types:
+
+<img src="/media/the_little_differences.jpg" alt="The little differences..." title="The little differences..." class="centered"/>
+
+* If you want to use Office 365, you will need **An organizational account**.
+* To use the new Azure API, requires you to create resource groups and run the Azure-AddAccount function which pops up a GUI modal dialog box when using **A Microsoft account**. So you will need to us **An organizational account** to create pure unattended scripts for now.
+
+### The subscription
+
+<img src="/media/showmethemoney.jpg" alt="Show me the money!" title="Show me the money!" class="centered"/>
 
 This is how Microsoft Azure knows how to bill you for your Azure resource usage. There are a number of ways Microsoft can bill you, but for your personal usage you will typically be interested in 2 different options: 1: An MSDN account. Most Microsoft developers will have been given an MSDN license in order to use Visual Studio at work. These licenses come with a monthly quota of credit you can use to pay for your Azure resource usage. If you don't have a currently valid MSDN license, you will have to set up a "Pay as you go" subscription and give them your bank details.
 
-Here is [Microsoft's description](https://msdn.microsoft.com/en-gb/library/azure/hh531793.aspx#BKMK_AccountSub "The difference between an Azure account and a subscription") of all this (including admin roles which I haven't mentioned.)
-
 If you have an MSDN Subscription purchased for you by work it *must* be tied to your Microsoft account. An MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, see here for more details: http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/
 
-Here is an excellent article on setting up an Azure AD from scratch: http://blog.codingoutloud.com/2014/01/24/stupid-azure-trick-2-how-do-i-create-a-new-organizational-account-on-windows-azure-active-directory-without-any-existing-accounts-or-ea/
 
 started using a "microsoft" account and authenticating using a .publishsettings file - all well and good until I want to use the new webapp azure PowerShell functions: (the ones that are superceding the websites.) These use resource groups and refuse to be authenticated using a .publishsettings file.
 
