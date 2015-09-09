@@ -58,13 +58,10 @@ If you want to create **An organizational account**, [here is an excellent artic
 
 This is how Microsoft Azure knows how to bill you for your Azure resource usage. There are a number of ways Microsoft can bill you, but for your personal usage you will typically be interested in 2 different options:
 
-1. An MSDN account: Most professional Microsoft developers will have been given an MSDN license by their company in order to use Visual Studio at work. These licenses come with a monthly quota of credit you can use to pay for your Azure resource usage. This means you can set up a whole lot of Azure goodies and never pay a dime. If you don't have a currently valid MSDN license, you will have to go for option 2:
+1. An MSDN account: Most professional Microsoft developers will have been given an MSDN license by their company in order to use Visual Studio at work. These licenses come with a monthly quota of credit you can use to pay for your Azure resource usage. Note than an MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, [see here for more details](http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/). This means that this license is given to you personally and the Azure credits can be used by you for anything outside of the company that purchased the license for you, even your own commercial pursuits. You can set up a whole lot of Azure goodies and never pay a dime. If you don't have a currently valid MSDN license, you will have to go for option 2:
 2. Set up a "Pay as you go" subscription and give them your bank details.
 
 <img src="/media/msdn.png" alt="MSDN" title="MSDN" class="centered"/>
-
-If you have an MSDN Subscription purchased for you by work it *must* be tied to your own account. An MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, see here for more details: http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/
-
 
 started using a "microsoft" account and authenticating using a .publishsettings file - all well and good until I want to use the new webapp azure PowerShell functions: (the ones that are superceding the websites.) These use resource groups and refuse to be authenticated using a .publishsettings file.
 
