@@ -9,7 +9,7 @@ namespace MarkdownBlog.Net.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(PostsMetadata.Instance.Latest(3));
+            return View(PostsMetadata.Instance.Latest(5));
         }
 
         public ActionResult Sitemap()
