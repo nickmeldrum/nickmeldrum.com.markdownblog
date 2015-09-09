@@ -6,6 +6,8 @@ using System.Web.Caching;
 
 namespace MarkdownBlog.Net.Web.Models {
     public class PostsMetadata {
+        private readonly bool includeDrafts;
+
         private static object syncRoot = new Object();
 
         public static PostsMetadata Instance
@@ -34,7 +36,16 @@ namespace MarkdownBlog.Net.Web.Models {
         public static readonly string PostsRoot = "Posts";
 
         public IEnumerable<PostMetadata> List { get; private set; }
-        public IEnumerable<PostMetadata> Latest(int number) { return List.OrderByDescending(p => p.PublishDate).Take(number); }
+
+        public IEnumerable<PostMetadata> Latest(int number)
+        {
+            var latest = this.List.OrderByDescending(p => p.PublishDate).Take(number);
+            
+            if (this.includeDrafts)
+                latest = this.List.Where(p => p.Published == false).Union(latest);
+
+            return latest;
+        }
 
         public IEnumerable<PostMetaDataWithMonthAndYearGrouping> MonthlyArchiveLinks {
             get
@@ -53,7 +64,9 @@ namespace MarkdownBlog.Net.Web.Models {
             : this(contentItemsMetaData, false) {
         }
 
-        public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData, bool includeDrafts) {
+        public PostsMetadata(ContentItemsMetaData<PostMetadata> contentItemsMetaData, bool includeDrafts)
+        {
+            this.includeDrafts = includeDrafts;
             if (includeDrafts)
                 List = contentItemsMetaData.ListIncludingDrafts(PostsRoot);
             else
