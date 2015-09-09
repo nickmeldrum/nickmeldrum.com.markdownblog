@@ -58,12 +58,22 @@ If you want to create **An organizational account**, [here is an excellent artic
 
 This is how Microsoft Azure knows how to bill you for your Azure resource usage. There are a number of ways Microsoft can bill you, but for your personal usage you will typically be interested in 2 different options:
 
-1. An MSDN account: Most professional Microsoft developers will have been given an MSDN license by their company in order to use Visual Studio at work. These licenses come with a monthly quota of credit you can use to pay for your Azure resource usage. Note than an MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, [see here for more details](http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/). This means that this license is given to you personally and the Azure credits can be used by you for anything outside of the company that purchased the license for you, even your own commercial pursuits. You can set up a whole lot of Azure goodies and never pay a dime. If you don't have a currently valid MSDN license, you will have to go for option 2:
-2. Set up a "Pay as you go" subscription and give them your bank details.
-
+1. An MSDN account: Most professional Microsoft developers will have been given an MSDN license by their company in order to use Visual Studio at work. These licenses come with a monthly quota of credit you can use to pay for your Azure resource usage. Note than an MSDN Subscription is always purchased for an individual and infers a whole load of rights to you, [see here for more details](http://nakedalm.com/do-you-want-visual-studio-ultimate-for-free-do-you-have-msdn/).
 <img src="/media/msdn.png" alt="MSDN" title="MSDN" class="centered"/>
+This means that this license is given to you personally and the Azure credits can be used by you for anything outside of the company that purchased the license for you, even your own commercial pursuits. You can set up a whole lot of Azure goodies and never pay a dime. If you don't have a currently valid MSDN license, you will have to go for option 2:
+
+2. Set up a "Pay as you go" subscription and give them your bank details. Simple option - you are going to pay yourself for everything you use. Remember to set up billing alerts and possibly even a spending limit on it. [Set up and manage both on the subscriptions page.](https://account.windowsazure.com/Subscriptions)
 
 started using a "microsoft" account and authenticating using a .publishsettings file - all well and good until I want to use the new webapp azure PowerShell functions: (the ones that are superceding the websites.) These use resource groups and refuse to be authenticated using a .publishsettings file.
+
+
+2 ways to authenticate ourselves with Azure through PowerShell.
+
+Add-AzureAccount and Import-AzurePublishSettingsFile . the Publishsettings method allows us to use a management certificate which is downloaded and held in a .publishsettings file. The Add-AzureAccount method allows us to use credentials. Far better of course because we don't need to store a certificate in a file. Instead we can use a credentials object and even the PasswordVault to authenticate this way. The problem is that we can only use an Organizational Account to do this in an unattended way. If you are using a Microsoft Account the only way of using Add-AzureAccount is with a pop-up sign-in box. Eurgh.
+
+<img src="/media/eurgh.jpg" alt="vomit" title="you just made me sick up in my mouth" class="centered"/>
+
+https://azure.microsoft.com/en-gb/documentation/articles/powershell-install-configure/
 
 So if you are using a microsoft account you have to authenticate with these new functions using "add-azureaccount" - if using an organizational id - all well and good as you can pass in a credentials object. however if you are using a microsoft account this CANNOT be automated (as far as I can work out.) The only way to get an auth token is by using the UI to login (via add-azureaccount without passing in creds.) This obviously means this can't be scripted in an unattended manner, which is a must-have for me.
 
