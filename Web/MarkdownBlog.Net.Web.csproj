@@ -329,13 +329,18 @@
     <Content Include="Views\Archive\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Sitesettings.config" />
+    <Content Include="Sitesettings.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\51Degrees.dat" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="51Degrees.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\SearchUnavailable.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MarkdownBlog.Net.Web.Models.SearchResult>
+﻿@using System.Linq
+@model System.Collections.Generic.IEnumerable<MarkdownBlog.Net.Web.Models.SearchResult>
 @{ ViewBag.Title = "Search results"; }
 
 @if (Model == null)

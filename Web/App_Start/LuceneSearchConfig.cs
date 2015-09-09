@@ -1,31 +1,45 @@
-﻿using System;
-using System.Web;
-using Lucene.Net.Analysis;
-using Lucene.Net.Analysis.Standard;
-using Lucene.Net.Documents;
-using Lucene.Net.Index;
-using Lucene.Net.Store;
-using Lucene.Net.Store.Azure;
-using MarkdownBlog.Net.Web.App_Start;
-using MarkdownBlog.Net.Web.Models;
+﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(MarkdownBlog.Net.Web.App_Start.LuceneSearchConfig), "CreateIndex")]
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(LuceneSearchConfig), "CreateIndex")]
+namespace MarkdownBlog.Net.Web.App_Start
+{
+    using Lucene.Net.Analysis;
+    using Lucene.Net.Analysis.Standard;
+    using Lucene.Net.Documents;
+    using Lucene.Net.Index;
+    using Lucene.Net.Store;
+    using Lucene.Net.Store.Azure;
+    using MarkdownBlog.Net.Web.Models;
+    using System;
+    using System.Diagnostics;
 
-namespace MarkdownBlog.Net.Web.App_Start {
-    public class LuceneSearchConfig {
+    using Microsoft.WindowsAzure.Storage;
+
+    public class LuceneSearchConfig
+    {
         public static void CreateIndex() {
-            var cloudAccount = Azure.GetStorageAccount();
+            try
+            {
+                var cloudAccount = Azure.GetStorageAccount();
 
-            using (var cacheDirectory = new RAMDirectory()) {
-                using (var azureDirectory = new AzureDirectory(cloudAccount, Azure.StorageContainerName, cacheDirectory)) {
-                    using (Analyzer analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30)) {
-                        using (var indexWriter = new IndexWriter(azureDirectory, analyzer, true, IndexWriter.MaxFieldLength.UNLIMITED)) {
-                            AddDocuments(indexWriter);
+                using (var cacheDirectory = new RAMDirectory())
+                {
+                    using (var azureDirectory = new AzureDirectory(cloudAccount, Azure.StorageContainerName, cacheDirectory))
+                    {
+                        using (Analyzer analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30))
+                        {
+                            using (var indexWriter = new IndexWriter(azureDirectory, analyzer, true, IndexWriter.MaxFieldLength.UNLIMITED))
+                            {
+                                AddDocuments(indexWriter);
 
-                            indexWriter.Commit();
+                                indexWriter.Commit();
+                            }
                         }
                     }
                 }
+            }
+            catch (StorageException ex)
+            {
+                Trace.TraceError(ex.Message);
             }
         }
 
