@@ -71,7 +71,7 @@ started using a "microsoft" account and authenticating using a .publishsettings 
 
 Add-AzureAccount and Import-AzurePublishSettingsFile . the Publishsettings method allows us to use a management certificate which is downloaded and held in a .publishsettings file. The Add-AzureAccount method allows us to use credentials. Far better of course because we don't need to store a certificate in a file. Instead we can use a credentials object and even the PasswordVault to authenticate this way. The problem is that we can only use an Organizational Account to do this in an unattended way. If you are using a Microsoft Account the only way of using Add-AzureAccount is with a pop-up sign-in box. Eurgh.
 
-<img src="/media/eurgh.jpg" alt="vomit" title="you just made me sick up in my mouth" class="centered"/>
+<img src="/media/vomit.jpg" alt="vomit" title="you just made me sick up in my mouth" class="centered"/>
 
 https://azure.microsoft.com/en-gb/documentation/articles/powershell-install-configure/
 
@@ -114,8 +114,6 @@ TODO: detail the difference in accessing azure using either account types
 ### What is the difference between a Microsoft account and an organizational account?
 
 Now you have the libraries installed you need to give those libraries the authorisation to operate on your azure account. There are 2 ways of authenticating to Azure, 1 using what they call an "Organizational Account" which will need an Azure AD (Active Directory) set up. I am using what they call a "Microsoft Account" and this uses a management certificate that is held in a .publishsettings file.
-
-For now this (and my future Azure posts) are going to assume you are using a Microsoft Account because that's what I'm using at the moment. However if you are interested [see the bottom of this post for more info on the 2 account types](#account-types)
 
  * To get your .publishsettings file, type "azure account download" and it will load up a browser window to download it for you (allowing you to sign in to your Microsoft account
  TODO: PowerShell equivalent of account download
