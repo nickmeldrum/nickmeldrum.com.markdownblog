@@ -250,3 +250,11 @@ http://blog.aditi.com/cloud/organizational-identity-microsoft-accounts-azure-act
 delete github repo requires a change to the personal access token: add the scope delete_repo to the token via github.com settings
 
 
+
+steps I took on new PC
+(already had node installed)
+install the azure powershell sdk from wpi
+add path to global npm dir: C:\Users\Nick.Meldrum\AppData\Roaming\npm
+ran setup-azureapi and login-azure from my pscloud azure commands
+new powershell console
+
