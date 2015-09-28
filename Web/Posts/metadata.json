@@ -1,5 +1,23 @@
 ﻿[
 	{
+		"Title" : "A tricky subject",
+        "Slug" : "a-tricky-subject",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Aka creating a discrimination and harrassment free workplace",
+        "Published" : false
+	},
+	{
+		"Title" : "In favor of going slowly",
+        "Slug" : "in-favor-of-going-slowly",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "Aka stop developers from writing code",
+        "Published" : false
+	},
+	{
 		"Title" : "Contributing to open source sucks",
         "Slug" : "contributing-to-open-source-sucks",
 		"PublishDate" : null,
