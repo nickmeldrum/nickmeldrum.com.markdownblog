@@ -10,6 +10,10 @@ Web/App_Data/
 oldblogfiles/*/**
 oldblogfiles
 
+.vs/*
+Backup/*
+UpgradeLog.htm
+
 # squishit compilation: (all source css and js should be in subdirectories)
 src/Web/*.css
 src/Web/*.js
