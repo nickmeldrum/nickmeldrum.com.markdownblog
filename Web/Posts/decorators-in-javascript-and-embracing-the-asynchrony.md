@@ -1,5 +1,32 @@
 ## A classic decorator pattern example
 
+
+
+
+## Is Middleware just another name for the decorator pattern?
+
+TL/DR Yup seems to be!
+
+middleware - define it as a decorator - connect middleware has filters and providers - 
+
+from http://redux.js.org/docs/advanced/Middleware.html:
+
+"...middleware is some code you can put between the framework receiving a request, and the framework generating a response. For example, Express or Koa middleware may add CORS headers, logging, compression, and more. The best feature of middleware is that it’s composable in a chain. You can use multiple independent third-party middleware in a single project."
+
+from wikipedia entry on decorator pattern:
+
+"...allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.[1] The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern."
+
+and 
+
+"...This pattern is designed so that multiple decorators can be stacked on top of each other, each time adding a new functionality to the overridden method(s)."
+
+That sounds an awful lot like "decorator" to me - so we have a new cool word for decorator, that's okay with me I guess...
+
+
+so what is middleware?
+middleware is a decorator pattern on an object that knows it is to be decorated - this means it can manage the decorators which gives us some more power:
+
 First the original module:
 
     function aModule() {
