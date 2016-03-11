@@ -8,35 +8,30 @@ function myComponentFactory() {
             suffix = suf
         },
         printValue: value => {
+            decorators.re
             console.log(`value is ${value + suffix}`)
         },
-        addDecorators = decs => decorators = decs
+        addDecorators: decs => decorators = decs
     }
 }
 
-function spacerPrintValueDecorator(next) {
-    return value => {
-        next(value.split('').join(' '))
-    }
+function spacer() {
+    value.split('').join(' ')
 }
 
-function upperCaserPrintValueDecorator(next) {
-    return value => {
-        next(value.toUpperCase())
-    }
+function upperCaser() {
+    value.toUpperCase()
 }
 
-function validatorPrintValueDecorator(next) {
-    return value => {
-        const isValid = ~value.indexOf('my')
+function validator() {
+    const isValid = ~value.indexOf('my')
 
-        setTimeout(() => {
-            if (isValid)
-                next(value)
-            else
-                console.log('not valid man...')
-        }, 1000)
-    }
+    setTimeout(() => {
+        if (isValid)
+            next(value)
+        else
+            console.log('not valid man...')
+    }, 1000)
 }
 
 const component = myComponentFactory()
