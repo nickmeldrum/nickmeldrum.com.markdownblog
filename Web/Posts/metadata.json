@@ -2,7 +2,7 @@
 	{
 		"Title" : "The decorator pattern in JavaScript",
         "Slug" : "decorators-in-javascript-and-embracing-the-asynchrony",
-		"PublishDate" : "2016-03-10T14:02:00Z",
+		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
 		"ShortDescription" : "Embracing the asynchrony in your JavaScript code",
@@ -14,7 +14,7 @@
 		"PublishDate" : "2015-12-16T14:02:00Z",
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Some people don't like it, I would like to try to persuade them...",
+		"ShortDescription" : "TSome people don't like it, I would like to try to persuade them...",
         "Published" : true
 	},
 	{
