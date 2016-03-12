@@ -34,4 +34,5 @@ function upperCaserDecorator(component) {
 const component = upperCaserDecorator(spacerDecorator(myComponentFactory()))
 component.setSuffix('END')
 component.printValue('my value')
+component.printValue('invalid value')
 

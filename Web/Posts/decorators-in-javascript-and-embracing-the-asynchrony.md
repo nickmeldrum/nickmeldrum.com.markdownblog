@@ -54,6 +54,326 @@ That sounds an awful lot like "decorator" to me - so we have a new cool word for
 
 so what is middleware?
 middleware is a decorator pattern on an object that knows it is to be decorated - this means it can manage the decorators which gives us some more power:
+
+## Onto the code!
+
+Let's look at varioius ways of implementing the decorator pattern in JavaScript:
+
+### First attempt: Decorating a function
+
+This shows the basic method I would recommend for setting up a decorator in JavaScript. Here we are decorating a simple function rather than a function of an Object. We do it by passing in the next function into the decorator function. The decorator function then returns the wrapper function with the new behaviour. So when the wrapper function is called it can call the next function in the chain that was created as a closure by the decorator function.
+
+    'use strict'
+
+    function printValue(value) {
+        console.log(`value is ${value}`)
+    }
+
+    function decorateWithSpacer(func) {
+        return value => {
+            value = value.split('').join(' ')
+            func(value)
+        }
+    }
+
+    function decorateWithUpperCaser(func) {
+        return value => {
+            value = value.toUpperCase()
+            func(value)
+        }
+    }
+
+    function decorateWithCheckValueIsValid(func) {
+        return value => {
+            const isValid = ~value.indexOf('my')
+
+            setTimeout(() => {
+                if (isValid)
+                    func(value)
+                else
+                    console.log('not valid man...')
+            }, 1000)
+        }
+    }
+
+    let func = printValue
+    func = decorateWithSpacer(func)
+    func = decorateWithUpperCaser(func)
+    func = decorateWithCheckValueIsValid(func)
+
+    func('my value')
+    func('invalid value')
+
+Here we show that we can even have an asynchronous method in the decorator chain (the validator function here emulating a database call via `setTimeout()`) and it all still works.
+
+This will output the following text to the console because the argument "my value" validates fine, is upper cased, then spaced out, then eventually console.logged by the original function. The second valid immediately fails the validate function and we can see the chain is broken by the fact this branch does not make a call to the next function in the decorator chain.
+
+    "value is M Y   V A L U E
+    not valid man..."
+
+This shows the 2 types of middleware: filters and providers. A classic example of filters is logging, whereas the providers are meant to do a specific action, a classic example is the static middleware which will serve a static file on a route that matches a filename. This will, like the validator, stop subsequent functions executing.
+
+### Next example: Decorating a function that is part of an Object by Monkey Patching
+
+What is monkey patching? todo: explain here
+
+    'use strict'
+
+    function myComponentFactory() {
+        let suffix = ''
+
+        return {
+            setSuffix: suf => {
+                suffix = suf
+            },
+            printValue: value => {
+                console.log(`value is ${value + suffix}`)
+            }
+        }
+    }
+
+    function decorateWithSpacer(component) {
+        const originalPrintValue = component.printValue
+
+        component.printValue = value => {
+            originalPrintValue(value.split('').join(' '))
+        }
+    }
+
+    function decorateWithUpperCaser(component) {
+        const originalPrintValue = component.printValue
+
+        component.printValue = value => {
+            originalPrintValue(value.toUpperCase())
+        }
+    }
+
+    function decorateWithCheckValueIsValid(component) {
+        const originalPrintValue = component.printValue
+
+        component.printValue = value => {
+            const isValid = ~value.indexOf('my')
+
+            setTimeout(() => {
+                if (isValid)
+                    originalPrintValue(value)
+                else
+                    console.log('not valid man...')
+            }, 1000)
+        }
+    }
+
+    const component = myComponentFactory()
+    decorateWithSpacer(component)
+    decorateWithUpperCaser(component)
+    decorateWithCheckValueIsValid(component)
+
+    component.setSuffix('END')
+    component.printValue('my value')
+    component.printValue('invalid value')
+
+The output of this will be:
+
+    "value is M Y   V A L U EEND
+    not valid man..."
+
+This method has the advantage that even though the decorator functions only wrap 1 of the objects functions, the component still has all of it's base behaviour available. However some people don't like monkey patching, indeed sometimes monkey patching is evil. if you are in control of the base function you are monkey patching it's probably not so evil, but anyway we can look at another way of wrapping a component that doesn't use monkey patching next. If your wrapped object has alot of properties and methods and you only want to decorate one of them without touching the rest though this may well be the implementation for you.
+
+    'use strict'
+
+    function myComponentFactory() {
+        let suffix = ''
+
+        return {
+            setSuffix: suf => {
+                suffix = suf
+            },
+            printValue: value => {
+                console.log(`value is ${value + suffix}`)
+            }
+        }
+    }
+
+    function spacerDecorator(component) {
+        return {
+            setSuffix: component.setSuffix,
+            printValue: value => {
+                component.printValue(value.split('').join(' '))
+            }
+        }
+    }
+
+    function upperCaserDecorator(component) {
+        return {
+            setSuffix: component.setSuffix,
+            printValue: value => {
+                component.printValue(value.toUpperCase())
+            }
+        }
+    }
+
+    const component = upperCaserDecorator(spacerDecorator(myComponentFactory()))
+    component.setSuffix('END')
+    component.printValue('my value')
+    component.printValue('invalid value')
+
+How is this one different? How do we get away with not monkey patching? Well instead we are passing back a whole new object that is working as a facade against the wrapped object. This has the advantage that we could decorate a number of different functions if we liked very easily. However it also has the downside that we still have to manually expose every inner objects functions and properties in the new wrapped object which could be a real pain. However if you are decorating more functions than you are leaving this still may be the implementation for you.
+
+Can we get the best of both worlds? Can we only require our decorator functions to define the new behaviour without any cruft AND without monkey patching? Well this might be tough in ES5, but as we are in the new world of ES6, sure we can! We can make use of the new Proxy API:
+
+    'use strict'
+
+    function myComponentFactory() {
+        let suffix = ''
+
+        return {
+            setSuffix: suf => {
+                suffix = suf
+            },
+            printValue: value => {
+                console.log(`value is ${value + suffix}`)
+            }
+        }
+    }
+
+    function spacerDecorator(component) {
+        return new Proxy(component, {
+            get: function(target, name) {
+                return (name === 'printValue')
+                    ? function(value) { target.printValue(value.split('').join(' ')) }
+                    : target[name]
+            }
+        })
+    }
+
+    function upperCaserDecorator(component) {
+        return new Proxy(component, {
+            get: function(target, name) {
+                return (name === 'printValue')
+                    ? function(value) { target.printValue(value.toUpperCase()) }
+                    : target[name]
+            }
+        })
+    }
+
+    function validatorDecorator(component) {
+        return new Proxy(component, {
+            get: function(target, name) {
+                return (name === 'printValue')
+                    ? function(value) {
+                        const isValid = ~value.indexOf('my')
+
+                        setTimeout(() => {
+                            if (isValid)
+                                target.printValue(value)
+                            else
+                                console.log('not valid man...')
+                        }, 1000)
+                    }
+                        : target[name]
+            }
+        })
+    }
+
+    const component = validatorDecorator(upperCaserDecorator(spacerDecorator(myComponentFactory())))
+    component.setSuffix('END')
+    component.printValue('my value')
+    component.printValue('invalid value')
+
+Look at that, beautiful. Our decorators now return a proxy object, proxying the wrapped object decorating just 1 function allowing any other call to simply be passed through. 
+
+If you want to run this in node you will need to do 2 things:
+
+ 1. Firstly, `npm install harmony-reflect` then in your node code: `require('harmony-reflect')`
+ 2. Secondly make sure you run node with the following setting: `node --harmony-proxies .\index.js`
+
+If you want to run this in a browser, then be careful as [browser support](http://kangax.github.io/compat-table/es6/#Proxy) is very recent so older browsers won't support it. It obviously can't be transpiled and the polyfills are rare or non-existent, possibly this one works: [but it warns of serious performance issues](https://www.npmjs.com/package/babel-plugin-proxy)
+
+Still if you are fully embracing ES6 (and why not?), are running on the latest browsers, want to decorate just 1 function in an object with a large public surface then this may well be the implementation for you.
+
+### The last implementation
+
+So the last 3 examples of implementing the decorator pattern for a function that belongs to an object all had their downsides:
+
+ 1. requires monkey patching
+ 2. requires facading everything you aren't decorating
+ 3. requires latest browser support of Proxies or some possibly dubious polyfilling
+
+However 1 excellent characteristic of all of them was this: *The original object didn't even need to know it was being decorated* By wrapping it or monkey patching it we were able to extend it's behaviour WITHOUT modifying it - Wow that's the [OCP](http://c2.com/cgi/wiki?OpenClosedPrinciple) of [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) yay :)
+
+Is there a perfect implementation however? 1 that doesn't require monkey patching, doesn't require facading everything we aren't decorating, doesn't require unsupported ES6 features AND is still SOLID?
+
+    'use strict'
+
+    function myComponentFactory() {
+        let suffix = ''
+        const instance = {
+            setSuffix: suf => {
+                suffix = suf
+            },
+            printValue: value => {
+                console.log(`value is ${value + suffix}`)
+            },
+            addDecorators: decorators => {
+                let printValue = instance.printValue
+                decorators.reverse().forEach(decorator => {
+                    printValue = decorator(printValue)
+                })
+                instance.printValue = printValue
+            }
+        }
+        return instance
+    }
+
+    function spacerPrintValueDecorator(next) {
+        return value => {
+            next(value.split('').join(' '))
+        }
+    }
+
+    function upperCaserPrintValueDecorator(next) {
+        return value => {
+            next(value.toUpperCase())
+        }
+    }
+
+    function validatorPrintValueDecorator(next) {
+        return value => {
+            const isValid = ~value.indexOf('my')
+
+            setTimeout(() => {
+                if (isValid)
+                    next(value)
+                else
+                    console.log('not valid man...')
+            }, 1000)
+        }
+    }
+
+    const component = myComponentFactory()
+    component.addDecorators([validatorPrintValueDecorator, spacerPrintValueDecorator, upperCaserPrintValueDecorator])
+    component.setSuffix('END')
+    component.printValue('my value')
+    component.printValue('invalid value')
+
+Notice the main difference? Our original object KNOWS that is to be decorated and provides a specific method for you to add your decorators. A major benefit of this method is just how simple the decorator functions are - they literally return the wrapper function in order to store a closure of the next function to be called. The `addDecorators()` function then loops through the decorators array assigning each next function to the decorator.
+
+So by setting up our object to allow decoration and do the grunt work of setting up the function chain we accomplish many goals:
+
+ 1. Our decorator functions are beautifully simple
+ 2. It's arguably simpler to setup our decorator list, we just pass an ordered array of decorators into a method instead of worrying about the construction mechanics of our particular decorator pattern implementation
+ 3. It's STILL OCP - our base implementation allows us to decorate without further touching the original object
+ 4. and it ain't monkey patching or relying on Proxies
+
+This is actually probably the most complex of implementations in the end, but it satisfies a lot of criteria. If you are setting up some heavy weight decoration then this is probably the implementation for you.
+
+This now looks a lot like [connect middleware for node.js](https://github.com/senchalabs/connect). Change the `addDecorators()` function to a `use()` function which allows you to pass in a decorator 1 at a time and then run the setup after they have all been added and it looks EXACTLY like the connect API.
+
+Bang - middleware is a decorator pattern ;)
+
+todo: learn more connect to expand on this comparison
+
+
 First the original module:
 
     function aModule() {
