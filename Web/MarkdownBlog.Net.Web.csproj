@@ -229,7 +229,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\feed-icon-14x14.png" />
     <Content Include="Content\images\feed-icon-28x28.png" />
-    <Content Include="Content\prettify.css" />
     <Content Include="Content\sunburst-modified.css" />
     <Content Include="errors\404.html" />
     <Content Include="errors\500.html" />
@@ -242,8 +241,7 @@
     <Content Include="scripts\skrollr.js" />
     <Content Include="scripts\visuals.js" />
     <Content Include="scripts\jquery-validate-bootstrap3-overrides.js" />
-    <Content Include="scripts\prettify.js" />
-    <Content Include="scripts\runprettify.js" />
+    <Content Include="scripts\syntax.js" />
     <Content Include="scripts\search.js" />
     <Content Include="Views\Shared\Disqus.cshtml" />
     <Content Include="App_Code\LinkHelpers.cshtml" />

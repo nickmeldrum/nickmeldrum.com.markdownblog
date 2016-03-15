@@ -9,8 +9,7 @@
                 "~/scripts/bootstrap-{version}.js",
                 "~/scripts/jquery.validate-1.13.0.js",
                 "~/scripts/jquery-validate-bootstrap3-overrides.js",
-                "~/scripts/prettify.js",
-                "~/scripts/runprettify.js",
+                "~/scripts/syntax.js",
                 "~/scripts/search.js"
                 );
             bundles.Add(jsBundle);
@@ -24,8 +23,6 @@
             var lessBundle = new Bundle("~/css").Include(
                 "~/content/bootstrap.css",
                 "~/content/body.less",
-                "~/content/prettify.css",
-                "~/content/sunburst-modified.css",
                 "~/content/bootstrap-theme.css"
             );
 
