@@ -264,6 +264,7 @@
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Sitemap.cs" />
     <Compile Include="Models\StackOverflowFlair.cs" />
+    <Compile Include="Models\GithubBadge.cs" />
     <Compile Include="Models\Disqus.cs" />
     <Compile Include="Models\Feed.cs" />
     <Compile Include="Models\FeedResult.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Models\PostsMetadata.cs" />
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\StackOverflowFlairViewModel.cs" />
+    <Compile Include="Models\GithubBadgeViewModel.cs" />
     <Compile Include="Models\TwitterTimeline.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
@@ -294,6 +296,7 @@
     <Content Include="Views\Shared\PostLink.cshtml" />
     <Content Include="Views\Asides\Index.cshtml" />
     <Content Include="Views\Asides\StackOverflowFlair.cshtml" />
+    <Content Include="Views\Asides\GithubBadge.cshtml" />
     <Content Include="Views\Asides\TwitterTimeline.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />

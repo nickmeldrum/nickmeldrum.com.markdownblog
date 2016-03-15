@@ -11,6 +11,7 @@ namespace MarkdownBlog.Net.Web.Controllers
         {
             return PartialView(new Dictionary<string, object>
                             {
+                                {"GithubBadge", new GithubBadgeViewModel(new GithubBadge())},
                                 {"StackOverflowFlair", new StackOverflowFlairViewModel(new StackOverflowFlair())},
                                 {"TwitterTimeline", new TwitterTimeline()},
                                 {"ArchiveLinks", PostsMetadata.Instance.MonthlyArchiveLinks}
