@@ -39,6 +39,7 @@ backups*/
 
 # azure stuff
 *.publishsettings
+logs/
 
 Web/robots.txt
 
