@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 pushd
 cd $psscriptroot
 
-if (test-path logs) { rmdir logs -force -recurse }
+if (test-path logs) { rm logs -force -recurse }
 mkdir logs\nickmeldrum -force
 mkdir logs\nickmeldrum-staging -force
 
