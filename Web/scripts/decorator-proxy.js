@@ -1,7 +1,6 @@
 'use strict'
 
-//node --harmony-proxies .\test-component-no-monkey-or-facade.js
-const Reflect = require('harmony-reflect')
+require('harmony-reflect')
 
 function myComponentFactory() {
     let suffix = ''
