@@ -30,7 +30,7 @@ function validatorDecorator(inner) {
 }
 
 const component = myComponentFactory()
-component.addDecorators([validatorDecorator, toLowerDecorator])
+component.addDecorators([toLowerDecorator, validatorDecorator])
 component.setSuffix('end')
 component.printValue('My Value')
 component.printValue('Invalid Value')
