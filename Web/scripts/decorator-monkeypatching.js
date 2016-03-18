@@ -31,7 +31,7 @@ const component = myComponentFactory()
 decorateWithToLower(component)
 decorateWithValidator(component)
 
-component.setSuffix('end')
+component.setSuffix('!')
 component.printValue('My Value')
 component.printValue('Invalid Value')
 

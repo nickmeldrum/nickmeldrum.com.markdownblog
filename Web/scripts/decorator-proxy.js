@@ -39,7 +39,7 @@ function validatorDecorator(inner) {
 }
 
 const component = toLowerDecorator(validatorDecorator(myComponentFactory()))
-component.setSuffix('end')
+component.setSuffix('!')
 component.printValue('My Value')
 component.printValue('Invalid Value')
 

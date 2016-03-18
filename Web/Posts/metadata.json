@@ -1,11 +1,11 @@
 ﻿[
 	{
-		"Title" : "The decorator pattern in JavaScript",
-        "Slug" : "decorators-in-javascript-and-embracing-the-asynchrony",
+		"Title" : "The decorator pattern in JavaScript aka groking monkey patching, closures, proxies and 'middleware'",
+        "Slug" : "decorators-in-javascript-aka-monkey-patching-closures-proxies-and-middleware",
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Embracing the asynchrony in your JavaScript code",
+		"ShortDescription" : "4 implementations of the decorator pattern in JavaScript for fun and profit.",
         "Published" : false
 	},
 	{
