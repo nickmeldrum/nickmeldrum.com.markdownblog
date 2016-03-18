@@ -7,7 +7,7 @@ function myComponentFactory() {
         printValue: value => console.log(`value is ${value + suffix}`),
         addDecorators: decorators => {
             let printValue = instance.printValue
-            decorators.forEach(decorator => printValue = decorator(printValue))
+            decorators.slice().reverse().forEach(decorator => printValue = decorator(printValue))
             instance.printValue = printValue
         }
     }
@@ -30,7 +30,7 @@ function validatorDecorator(inner) {
 }
 
 const component = myComponentFactory()
-component.addDecorators([toLowerDecorator, validatorDecorator])
+component.addDecorators([validatorDecorator, toLowerDecorator])
 component.setSuffix('!')
 component.printValue('My Value')
 component.printValue('Invalid Value')

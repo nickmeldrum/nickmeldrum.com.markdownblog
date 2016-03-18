@@ -1,11 +1,11 @@
 ﻿[
 	{
-		"Title" : "The decorator pattern in JavaScript aka groking monkey patching, closures, proxies and 'middleware'",
-        "Slug" : "decorators-in-javascript-aka-monkey-patching-closures-proxies-and-middleware",
+		"Title" : "The decorator pattern in JavaScript using closures, monkey patching, prototypes, proxies and 'middleware'",
+        "Slug" : "decorators-in-javascript-using-monkey-patching-closures-prototypes-proxies-and-middleware",
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "4 implementations of the decorator pattern in JavaScript for fun and profit.",
+		"ShortDescription" : "Five implementations of the decorator pattern in JavaScript for fun, profit and improving understanding.",
         "Published" : false
 	},
 	{
@@ -23,7 +23,7 @@
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Aka creating a discrimination and harrassment free workplace",
+		"ShortDescription" : "Aka creating a discrimination and harassment free workplace",
         "Published" : false
 	},
 	{

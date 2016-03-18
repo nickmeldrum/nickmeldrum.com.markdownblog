@@ -14,9 +14,9 @@ The five different decorator implementations are:
  2. Monkey patching
  3. Prototypal inheritance
  4. Proxy object (ES6)
- 5. Closures again but in a sort of IOC way
+ 5. For want of a better word: middleware
 
-At the end I will take a brief diversion into the current hot topic: "middleware" and whether any of these could be called a "middleware" implementation or not. Fun times.
+At the end I will take a brief diversion into the current hot topic: "middleware" and whether any of these could really be called a "middleware" implementation or not. Fun times.
 
 I have put some notes about this post in an appendix so as not to disrupt the flow. So if interested in a) why I am using ES6 syntax or b) why I am NOT using classes or c) a list of the source files for you to play with, check towards the end of this post.
 
@@ -290,13 +290,75 @@ It does have a pro over the previous method though. Our decorator functions only
 
 So if you don't care about monkey patching, your base object has other public methods that need to be maintained and you want to keep the code simple then this technique maybe for you.
 
-Otherwise, is there another method that doesn't employ monkey patching, but also only requires our decorator methods to define the new behaviour instead of having to pass-through every public member?
+Okay what about prototypal inheritance then?
 
-Well the answer is... possibly...
+## Third example: Prototypal inheritance
 
-## Third example: Proxies
+### What is prototype inheritance?
 
-Why possibly? Because Proxies are the new kid on the block, so the support isn't as ubiquitous as we might like yet.
+Most developers are used to classical inheritance from Java or C# where a class is based on another class. Quite simply prototype inheritance is all about objects: "Objects inherit properties from other objects". Simple as that.
+
+It's mechanism is quite simple in JavaScript too. All objects have a prototype. In fact you can have a chain of prototypes leading all the way back to "Object" itself, which is always at the base of all prototype chains.
+
+### Delegation
+
+![Delegation](/media/delegation.jpg)
+
+You can tell 1 object to "base" itself off another object by setting it's prototype. What this really means is: if someone asks to access one of my members, first we will look on my object, but if I don't have it I will delegate the access to my prototype. On this will go, all the way up the prototype chain.
+
+I won't delve into why here, but I don't like the use of the "new" keyword in JavaScript. Go to the end of the article if you care. Therefore the best way to make use of [prototype inheritance is using `Object.create(protoype)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create):
+
+    const myBaseObject = { myProperty: 'oh hai' }
+
+    const myNewObject = Object.create(myBaseObject)
+    myNewObject.newMethod = () => { console.log(myBaseObject.myProperty) }
+
+Here, not only have we set up myNewObject to inherit from myBaseObject as it's prototype, but we show an example of reaching back to access a member on the base object as well. There is no protected or private scope to concern ourselves with. No virtual members either. If you want to hide the base object and only have the new object exposed, just wrap all that in a function and return what you want. Functions always seem to be the answer to any question you have in JavaScript.
+
+### Show me the code:
+
+    function myComponentFactory() {
+        let suffix = ''
+
+        return {
+            setSuffix: suf => suffix = suf,
+            printValue: value => console.log(`value is ${value + suffix}`)
+        }
+    }
+
+    function toLowerDecorator(inner) {
+        const instance = Object.create(inner)
+        instance.printValue = value => inner.printValue(value.toLowerCase())
+        return instance
+    }
+
+    function validatorDecorator(inner) {
+        const instance = Object.create(inner)
+        instance.printValue = value => {
+            const isValid = ~value.indexOf('My')
+
+            setTimeout(() => {
+                if (isValid) inner.printValue(value)
+                else console.log('not valid man...')
+            }, 500)
+        }
+        return instance
+    }
+
+    const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
+    component.setSuffix('!')
+    component.printValue('My Value')
+    component.printValue('Invalid Value')
+
+This example is extremely similar to the first example where we construct a new object that reaches into the inner object. The first example had the down side of having to copy every member to the new wrapper object in order to pass it through though. Here we take advantage of something called delegation in prototypal inheritance. Our new object is created using the inner object as it's prototype. This way I don't have to define "setSuffix" on my new object as when it is asked for my prototype will be checked for the existence of this member as well.
+
+This is an obvious and efficient way of creating a decorator in JavaScript using inheritance. It is interesting because one of the original design goals of the Decorator pattern was to get around some of the limitations of classical inheritance. Namely the problem of using classical inheritance to build up extra behaviour leads to an inflexible hierarchy. I cannot chain together behaviours in different ways. I have to predefine which class will inherit from which other class. Happily prototype inheritance doesn't have this limitation. As you can see from above, I can always choose any Object to use as my prototype.
+
+This makes it a great choice for use as a decorator implementation. Onto more learnin' though...
+
+## Fourth example: Proxies
+
+Proxies are the new kid on the block, specified in ES6, and look like a promising way to do some interesting AOP style programming techniques. So let's see if they can help create a decorator.
 
 ### What are proxies?
 
@@ -379,15 +441,13 @@ Next you will notice the component factory is identical but the decorator method
         })
     }
 
-Look at that, beautiful. Our decorators now return a proxy object, proxying the wrapped object decorating just 1 function allowing any other call to simply be passed through. 
+Proxies give an amazing amount of power and they are worth reading up about in [the Proxy section of mdn](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
-TODO Better detail on setting up this proxy object
-
-The decorator object takes the inner object and returns a Proxy of this object. We only handle 1 thing in our Proxy object: the property accessors. We do this by specifying custom behaviour for the "get" handler.
+Here, the decorator object takes the inner object and returns a Proxy of this object. We only handle 1 thing in our Proxy object: the property accessors. We do this by specifying custom behaviour for the "get" handler.
 
 Here we test to see if the property is the function we want to decorate. If it is then we return our new decorator function (which in this case lower-cases the value and then passes that into the inner printValue function.)
 
-If it doesn't match the name we just return the inner member.
+If it doesn't match the name we just return the inner member. The observant among you will notice that once again we are making use of closures here.
 
 ### Pros and cons of the Proxy technique
 
@@ -398,29 +458,19 @@ So this technique has the 2 great attributes:
  1. it isn't monkey patching and
  2. we don't have to manually redefine every one of the inner objects members
 
-However, as we said earlier, support isn't great yet. If you are in node, then as I showed you earlier you can polyfill it.
+It is probably overkill however, I cannot see what this approach gives us over prototype inheritance. Proxies were created for AOP style stuff rather than decorators.
+
+Also, as we said earlier, support isn't great yet. If you are in node, then as I showed you earlier you *can* polyfill it.
 
 However if you are in the browser, there is still no support in any version of Internet Explorer. Chrome only got support in version 49. Unfortunately it is my understanding that it is very difficult, if not impossible to polyfill this feature well in the browser.
 
 Possibly this one works: [but it warns of serious performance issues](https://www.npmjs.com/package/babel-plugin-proxy).
 
-So unless you are in a recent version of node or you can guarantee your customer's are using latest Chrome, Edge or Firefox only then this technique is probably not for you.
+## The Fifth technique: "Middleware"?
 
-Still if you are fully embracing ES6 (and why not?), are running on the latest browsers, want to decorate just 1 function in an object with a large public surface then this may well be the implementation for you.
+One excellent characteristic of the previous examples was: *The original object didn't even need to know it was being decorated* By wrapping it, monkey patching it, inheriting from it or proxying it we were able to extend it's behaviour WITHOUT modifying it - Wow that's the [OCP](http://c2.com/cgi/wiki?OpenClosedPrinciple) of [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) yay :)
 
-TODO Note weirdness in calling this one wrapping the function calls the other way around
-
-## 4. The final unnamed one : TODO get a name!
-
-So the last 3 examples of implementing the decorator pattern for a function that belongs to an object all had their downsides:
-
- 1. requires facading everything you aren't decorating
- 2. requires monkey patching
- 3. requires latest browser support of Proxies or some possibly dubious polyfilling
-
-However 1 excellent characteristic of all of them was this: *The original object didn't even need to know it was being decorated* By wrapping it or monkey patching it we were able to extend it's behaviour WITHOUT modifying it - Wow that's the [OCP](http://c2.com/cgi/wiki?OpenClosedPrinciple) of [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) yay :)
-
-Is there a perfect implementation however? 1 that doesn't require monkey patching, doesn't require facading everything we aren't decorating, doesn't require unsupported ES6 features AND is still SOLID?
+What if our base object knows from the outset of it's own creation that one particular method will be decorated, and what if we want to enable more interaction between the base functionality and the decorators. What if we want to make our decorator code even more simple by pushing some of the decorator logic down to the base object?
 
 ### Show me the code!
 
@@ -433,7 +483,7 @@ By now you know the drill: I'll show you the whole code then break it down for y
             printValue: value => console.log(`value is ${value + suffix}`),
             addDecorators: decorators => {
                 let printValue = instance.printValue
-                decorators.forEach(decorator => printValue = decorator(printValue))
+                decorators.slice().reverse().forEach(decorator => printValue = decorator(printValue))
                 instance.printValue = printValue
             }
         }
@@ -461,40 +511,76 @@ By now you know the drill: I'll show you the whole code then break it down for y
     component.printValue('My Value')
     component.printValue('Invalid Value')
 
-Notice the main difference? Our original object KNOWS that is to be decorated and provides a specific method for you to add your decorators. A major benefit of this method is just how simple the decorator functions are - they literally return the wrapper function in order to store a closure of the next function to be called. The `addDecorators()` function then loops through the decorators array assigning each next function to the decorator.
+Notice the main difference? Our original object KNOWS that is to be decorated and provides a specific method for you to add your decorators. Here our component sets up the decorator chain itself, you just have to supply it the list of decorators with the method:
 
-So by setting up our object to allow decoration and do the grunt work of setting up the function chain we accomplish many goals:
+    component.addDecorators([toLowerDecorator, validatorDecorator])
+    
+The "addDecorators" method then loops through each decorator passing in the inner function into it. It then take the last decorator method and assigns it to the public member. This way it has set up the decorator chain itself. Notice it is choosing to reverse the order of decoration to make the order in the array passed in more readable:
+
+    addDecorators: decorators => {
+        let printValue = instance.printValue
+        decorators.slice().reverse().forEach(decorator => printValue = decorator(printValue))
+        instance.printValue = printValue
+    }
+
+The decorator method itself can then be extremely simple. All it has to do is return the wrapper function that wraps the function passed in as a parameter:
+
+    function toLowerDecorator(inner) {
+        return value => inner(value.toLowerCase())
+    }
+
+### Pros and cons of the "middleware" approach
+
+We get more control over our decorators by setting up the chaining ourselves. We are making use of this here by changing the order in which we wrap the function using `reverse()` on the decorators array.
+
+Taking more control of setting up the decorator chain also leads to vastly simpler decorator methods.
+
+So by setting up our object to allow decoration and do the grunt work of setting up the function chain we accomplish a few goals:
 
  1. Our decorator functions are beautifully simple
- 2. It's arguably simpler to setup our decorator list, we just pass an ordered array of decorators into a method instead of worrying about the construction mechanics of our particular decorator pattern implementation
- 3. It's STILL OCP - our base implementation allows us to decorate without further touching the original object
- 4. and it ain't monkey patching or relying on Proxies
+ 2. It gives us more control over the decorator chaining
+ 3. It's arguably simpler to setup our decorator list, we just pass an ordered array of decorators into a method instead of worrying about the construction mechanics of our particular decorator pattern implementation
+ 4. It's *still* OCP - our base implementation allows us to decorate without further touching the original object
+ 5. and it ain't monkey patching or relying on Proxies
 
 This is actually probably the most complex of implementations in the end, but it satisfies a lot of criteria. If you are setting up some heavy weight decoration then this is probably the implementation for you.
 
-This now looks a lot like [connect middleware for node.js](https://github.com/senchalabs/connect). Change the `addDecorators()` function to a `use()` function which allows you to pass in a decorator 1 at a time and then run the setup after they have all been added and it looks EXACTLY like the connect API.
-
-TODO: learn more connect to expand on this comparison
+I have called this the "middleware" implementation for want of a better word. It is basically identical to Dan Abramov's [redux middleware](http://redux.js.org/docs/advanced/Middleware.html) implementation.
 
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="643px" height="248px" version="1.1" content="%3CmxGraphModel%20dx%3D%22880%22%20dy%3D%22468%22%20grid%3D%221%22%20gridSize%3D%2210%22%20guides%3D%221%22%20tooltips%3D%221%22%20connect%3D%221%22%20arrows%3D%221%22%20fold%3D%221%22%20page%3D%221%22%20pageScale%3D%221%22%20pageWidth%3D%22826%22%20pageHeight%3D%221169%22%20background%3D%22%23ffffff%22%20math%3D%220%22%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%22114a013724b344ee-1%22%20value%3D%22Call%20doSomething()%22%20style%3D%22ellipse%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22120%22%20y%3D%2260%22%20width%3D%22120%22%20height%3D%2280%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-2%22%20value%3D%22Log%20the%20before%20value%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22460%22%20y%3D%2275%22%20width%3D%22140%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-3%22%20value%3D%22Upper%20case%20the%20value%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22280%22%20y%3D%2275%22%20width%3D%22140%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-4%22%20value%3D%22Do%20the%20original%20function%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22620%22%20y%3D%22160%22%20width%3D%22140%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-5%22%20value%3D%22Log%20the%20after%20value%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22460%22%20y%3D%22240%22%20width%3D%22140%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-6%22%20value%3D%22Upper%20case%20the%20value%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22280%22%20y%3D%22240%22%20width%3D%22140%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-7%22%20value%3D%22End%22%20style%3D%22ellipse%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22120%22%20y%3D%22225%22%20width%3D%22120%22%20height%3D%2280%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-8%22%20value%3D%22%22%20style%3D%22endArrow%3Dclassic%3Bhtml%3D1%3BentryX%3D0%3BentryY%3D0.5%3BexitX%3D1%3BexitY%3D0.5%3B%22%20edge%3D%221%22%20parent%3D%221%22%20source%3D%22114a013724b344ee-1%22%20target%3D%22114a013724b344ee-3%22%3E%3CmxGeometry%20width%3D%2250%22%20height%3D%2250%22%20relative%3D%221%22%20as%3D%22geometry%22%3E%3CmxPoint%20x%3D%2210%22%20y%3D%2260%22%20as%3D%22sourcePoint%22%2F%3E%3CmxPoint%20x%3D%2260%22%20y%3D%2210%22%20as%3D%22targetPoint%22%2F%3E%3C%2FmxGeometry%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-9%22%20value%3D%22%22%20style%3D%22endArrow%3Dclassic%3Bhtml%3D1%3BentryX%3D0%3BentryY%3D0.5%3B%22%20edge%3D%221%22%20parent%3D%221%22%20target%3D%22114a013724b344ee-2%22%3E%3CmxGeometry%20x%3D%22250%22%20y%3D%22110%22%20width%3D%2250%22%20height%3D%2250%22%20as%3D%22geometry%22%3E%3CmxPoint%20x%3D%22420%22%20y%3D%22100%22%20as%3D%22sourcePoint%22%2F%3E%3CmxPoint%20x%3D%22290%22%20y%3D%22110%22%20as%3D%22targetPoint%22%2F%3E%3C%2FmxGeometry%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-10%22%20value%3D%22%22%20style%3D%22endArrow%3Dclassic%3Bhtml%3D1%3BentryX%3D0%3BentryY%3D0.25%3BexitX%3D0.5%3BexitY%3D1%3B%22%20edge%3D%221%22%20parent%3D%221%22%20source%3D%22114a013724b344ee-2%22%20target%3D%22114a013724b344ee-4%22%3E%3CmxGeometry%20x%3D%22260%22%20y%3D%22120%22%20width%3D%2250%22%20height%3D%2250%22%20as%3D%22geometry%22%3E%3CmxPoint%20x%3D%22430%22%20y%3D%22110%22%20as%3D%22sourcePoint%22%2F%3E%3CmxPoint%20x%3D%22470%22%20y%3D%22110%22%20as%3D%22targetPoint%22%2F%3E%3C%2FmxGeometry%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-11%22%20value%3D%22%22%20style%3D%22endArrow%3Dclassic%3Bhtml%3D1%3BentryX%3D0.5%3BentryY%3D0%3BexitX%3D-0.007%3BexitY%3D0.9%3BexitPerimeter%3D0%3B%22%20edge%3D%221%22%20parent%3D%221%22%20source%3D%22114a013724b344ee-4%22%20target%3D%22114a013724b344ee-5%22%3E%3CmxGeometry%20x%3D%22270%22%20y%3D%22130%22%20width%3D%2250%22%20height%3D%2250%22%20as%3D%22geometry%22%3E%3CmxPoint%20x%3D%22540%22%20y%3D%22135%22%20as%3D%22sourcePoint%22%2F%3E%3CmxPoint%20x%3D%22605%22%20y%3D%22170%22%20as%3D%22targetPoint%22%2F%3E%3C%2FmxGeometry%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-12%22%20value%3D%22%22%20style%3D%22endArrow%3Dclassic%3Bhtml%3D1%3BentryX%3D1%3BentryY%3D0.5%3BexitX%3D0%3BexitY%3D0.5%3B%22%20edge%3D%221%22%20parent%3D%221%22%20source%3D%22114a013724b344ee-5%22%20target%3D%22114a013724b344ee-6%22%3E%3CmxGeometry%20x%3D%22280%22%20y%3D%22140%22%20width%3D%2250%22%20height%3D%2250%22%20as%3D%22geometry%22%3E%3CmxPoint%20x%3D%22550%22%20y%3D%22145%22%20as%3D%22sourcePoint%22%2F%3E%3CmxPoint%20x%3D%22615%22%20y%3D%22180%22%20as%3D%22targetPoint%22%2F%3E%3C%2FmxGeometry%3E%3C%2FmxCell%3E%3CmxCell%20id%3D%22114a013724b344ee-13%22%20value%3D%22%22%20style%3D%22endArrow%3Dclassic%3Bhtml%3D1%3BentryX%3D1%3BentryY%3D0.5%3BexitX%3D0%3BexitY%3D0.5%3B%22%20edge%3D%221%22%20parent%3D%221%22%20source%3D%22114a013724b344ee-6%22%20target%3D%22114a013724b344ee-7%22%3E%3CmxGeometry%20x%3D%22290%22%20y%3D%22150%22%20width%3D%2250%22%20height%3D%2250%22%20as%3D%22geometry%22%3E%3CmxPoint%20x%3D%22560%22%20y%3D%22155%22%20as%3D%22sourcePoint%22%2F%3E%3CmxPoint%20x%3D%22625%22%20y%3D%22190%22%20as%3D%22targetPoint%22%2F%3E%3C%2FmxGeometry%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E" style="background-color: rgb(255, 255, 255);"><defs/><g transform="translate(0.5,0.5)"><ellipse cx="61" cy="41" rx="60" ry="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(7.5,34.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="106" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 107px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Call doSomething()</div></div></foreignObject><text x="53" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Call doSomething()</text></switch></g><rect x="341" y="16" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(354.5,34.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="112" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 113px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Log the before value</div></div></foreignObject><text x="56" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Log the before value</text></switch></g><rect x="161" y="16" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(172.5,34.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="116" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 117px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Upper case the value</div></div></foreignObject><text x="58" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Upper case the value</text></switch></g><rect x="501" y="101" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(507.5,119.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="126" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 127px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Do the original function</div></div></foreignObject><text x="63" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Do the original function</text></switch></g><rect x="341" y="181" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(360.5,199.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="101" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 102px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Log the after value</div></div></foreignObject><text x="51" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Log the after value</text></switch></g><rect x="161" y="181" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(172.5,199.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="116" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 117px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Upper case the value</div></div></foreignObject><text x="58" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Upper case the value</text></switch></g><ellipse cx="61" cy="206" rx="60" ry="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(49.5,199.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 23px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">End</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">End</text></switch></g><path d="M 121 41 L 154.63 41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 159.88 41 L 152.88 44.5 L 154.63 41 L 152.88 37.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 301 41 L 334.63 41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 339.88 41 L 332.88 44.5 L 334.63 41 L 332.88 37.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 411 66 L 495.38 111" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 500.01 113.47 L 492.19 113.27 L 495.38 111 L 495.48 107.09 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 500 146 L 416.93 178.67" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 412.04 180.59 L 417.27 174.77 L 416.93 178.67 L 419.84 181.29 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 341 206 L 307.37 206" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 302.12 206 L 309.12 202.5 L 307.37 206 L 309.12 209.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 161 206 L 127.37 206" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 122.12 206 L 129.12 202.5 L 127.37 206 L 129.12 209.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/></g></svg>
 
-### pros and cons
+## Conclusion
 
-## 5. BONUS: Why closures and functional composition? Wouldn't a procedural approach be simpler?
+We looked at five different techniques for implementing the decorator pattern. We learned something along the way.
 
-### The procedural approach
+    1. We did a naive approach which led to us having to manually copy every member from our inner object to our wrapper object. But we learnt about using closures to hide variables as if they were private members.
+    2. We solved the "copy every member" problem by monkey patching, but we introduced monkey patching which many "consider harmful".
+    3. We solved the "copy every member" problem using prototype inheritance. Everything seemed warmer in the world.
+    4. We solved the problem *again* using the ES6 Proxy object. However, we learnt the Proxy object doesn't have great support yet and although is immensely powerful, it's power is probably out of place here. It doesn't really give us anything that prototype inheritance gave us in this instance.
+    5. We looked at a "middleware" type implementation where the base object sets up the decorator chain itself. This led to a powerful and flexible implementation with beautifully simple decorator methods as well.
 
-### Why doesn't this work?
+### What can we conclude from all this?
 
-If you only want synchronous code in your decorators then sure by all means do this approach and you can get your for-each loops back. This is a "Bad Idea"(tm) though as it breaks as soon as you do anything asynchronous, which let's face it is idiomatic in JavaScript.
+**Every single implementation** made use of closures. That should give you some idea of just how important they are in JavaScript. So if you still don't get them and you skipped that bit, go back and read it. Or go read someone else's better description of what they are.
 
-## conclusion
+Which was the clear winner? When I set out to write this I expected each technique to have it's upsides and downsides, it's own justification for when it should be used. Actually in the end I think there are only 2 implementations worth using:
 
-imo No. 4. is best, can't see a con but in the end the differences are mostly stylistic
+ 1. The prototype inheritance one and
+ 2. The "middleware" one
 
-## Redux middleware
+I guess use the middleware one when you need more control of the decorator chain itself. Otherwise the prototype inheritance one seems to me the clear winner. It has all the advantages:
+
+ 1. No modification of the base object required
+ 2. No "copy every member to the new object"
+ 3. No monkey patching
+ 4. No poorly supported code
+ 5. Relatively simple decorator methods
+
+## Postscript: What is middleware
 
 ### Dan Abramov and Redux are AWESOME
+
+[connect middleware for node.js](https://github.com/senchalabs/connect)
 
 not knocking redux or Dan, he is clearly awesome and I am in love with redux.
 
@@ -523,32 +609,34 @@ and
 
 That sounds an awful lot like "decorator" to me - so we have a new cool word for decorator, that's okay with me I guess...
 
+## Addendum
 
-## addendum:
+### ES6
 
-TODO:
+I am using ES6 syntax in this article for a number of reasons:
 
- * talk about using es6
- * talk about not using classes
- * link to the scripts source
+ 1. I have fallen in love with many things about ES6 but especially arrow functions and const
+ 2. It (mostly) works natively now in recent versions of node.js and is a simple babel transpilation step away from working in browsers.
+ 3. It makes it much more easy to write examples in articles like this with less noise getting in the way. (I realise the down side of this is that this is *not* true for readers that haven't learnt the new ES6 syntax yet.)
+ 4. I have spent a while reading and writing React code recently and it is **all** in ES6 nowadays, so it's time for all of us to jump on board!
 
-### ES6 and classes
+The [babel site](https://babeljs.io/docs/learn-es2015/) itself is where I started learning some ES6 if you are looking for a starting place to get your head around it.
 
-You will notice I am using ES6 syntax. Yup, works in node.js and easy to transpile using babel for browser code and is a much nicer version of JavaScript to code in. The [babel site](https://babeljs.io/docs/learn-es2015/) itself is where I started learning some ES6.
+### Classes
 
-Except I'm not using Classes from ES6? Well there are 2 excellent reasons for that:
+I am using ES6 syntax but *not* using the class keyword? There are 2 excellent reasons for that:
 
- 1. Classes in ES6 have alot of problems with them It's a whole other post, so read up about it here: https://medium.com/javascript-scene/how-to-fix-the-es6-class-keyword-2d42bb3f4caf#.osnwj4xq5 (for me one of the real annoyances is the lack of private members and one of the conceptual annoyances is just "what's the point" in this keyword that gives you less than a simple factory function)
+ 1. Classes in ES6 have a lot of problems with them. It's a whole other post, so read up about it here: [https://medium.com/javascript-scene/how-to-fix-the-es6-class-keyword-2d42bb3f4caf#.osnwj4xq5](https://medium.com/javascript-scene/how-to-fix-the-es6-class-keyword-2d42bb3f4caf#.osnwj4xq5) (For me, one of the real annoyances is the lack of private members and one of the conceptual annoyances is just "what's the point" in the keyword that gives you less than a simple factory function does)
 
- 2. Perhaps more importantly for this post: We are talking about decorators, and decorators are *very hard* to do well over the top of the ES6 class syntax. So much so there is a proposal for "decorators" in [ES7](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.3y5ruqbcs) which should solve it. However, as I'm hoping you will see in this post - if you keep to functional syntax, powerful decorators are possible with very simple code in JavaScript.
+ 2. Perhaps more importantly for this post: We are talking about decorators, and decorators are *hard* to do well over the top of the ES6 class syntax. So much so there is a proposal for "decorators" in [ES7](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.3y5ruqbcs) which should solve it. However, as I'm hoping you will see in this post - if you keep to functional syntax, powerful decorators are possible with very simple code in JavaScript.
 
-#### Inheritance
+ 3. Both the "new" keyword and the new "class" keyword in ES6 just confuse things. It seems they have been put in JavaScript to make it feel more comfortable for people coming from classical languages like Java, but the result is clunky and just serves to hide the true power *and* simplicity of prototypes. Here is another excellent [article talking about all that](http://aaditmshah.github.io/why-prototypal-inheritance-matters/).
 
- A side note on no. 2. We are talking about decorators here - NOT subclassing. I lost count of the number of articles I read introducing the decorator pattern by using inheritance. Um wat? 2 of the main points of the decorator pattern are to solve specific issues with inheritance:
+### The scripts
 
- 1. You stop type explosion - functionality can be composed from simple pieces instead of having to build up complex inheritance heirachies to support all combinations and
- 2. you can choose what behaviours to add at runtime instead of at design time
-
- So guys, please please please stop trying to say you are implementing the decorator pattern when you are just subclassing.
-
+ 1. [The "closures" method](/scripts/decorator-closure.js)
+ 2. [The "monkey patching" method](/scripts/decorator-monkeypatching.js)
+ 3. [The "prototype inheritance" method](/scripts/decorator-inheritance.js)
+ 4. [The "proxy" method](/scripts/decorator-proxy.js)
+ 5. [The "middleware" method](/scripts/decorator-middleware.js)
 
