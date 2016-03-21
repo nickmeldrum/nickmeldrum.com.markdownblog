@@ -10,11 +10,11 @@ I thought it was worth sharing what I learnt along the way about some valuable J
 
 The five different decorator implementations are:
 
- 1. Closures
+ 1. A simple wrapper (wherein we investigate closures)
  2. Monkey patching
  3. Prototypal inheritance
  4. Proxy object (ES6)
- 5. For want of a better word: middleware
+ 5. For want of a better word: "middleware"
 
 At the end I will take a brief diversion into the current hot topic: "middleware" and whether any of these could really be called a "middleware" implementation or not. Fun times.
 
@@ -43,32 +43,13 @@ We want to decorate the `printValue(val)` method with a decorator to validate ou
 
 It's worth noting that all my examples here except the last one will work for decorating an isolated function instead of a member function and is a much simpler case.
 
-## First example: decorating using closures
+## First example: decorating using a simple wrapper (wherein we investigate closures)
 
-(Seasoned developers that have read 20 articles in the past describing closures already, feel free to scroll down to the heading "Show me the code" to see the decorator implementation, then scroll to the pretty picture of the dolls.)
-
-### What are closures?
-
->"A closure allows a function to access captured variables through the closure's reference to them, even when the function is invoked outside the scope of those variables." (me, slightly rewording a definition from [wikipedia](https://en.wikipedia.org/wiki/Closure_(computer_programming)))
-
-A simple example:
-
-    function wow() {
-        const val = 5
-        return () => console.log(val)
-    }
-
-    wow()()
-
-(Just in case it wasn't obvious what the double brackets in `wow()()` do: first it executes the "wow" function, which returns an anonymous function which is immediately executed because of the second brackets.)
-
-This is the simplest example I can imagine in JavaScript. The "wow" function returns a function that logs "val". However once "wow" has returned, "val" is no longer in scope.
-
-This works fine though, because when the function that is capturing a locally scoped variable (in this instance "val") is returned, a closure is created which allows access to this variable even though it has gone out of scope.
+What is the most naïve implementation of a decorator I can think of to kick us off? Just wrap an object and return a new object that can do some new behaviour then call the wrapped object. "Simples."
 
 ### Show me the code!
 
-How do you make use of closures to make a decorator? Well, I'll show you. First I'll show the code as a whole then I'll take you through it step by step:
+First I'll show the code as a whole then I'll take you through it step by step:
 
     function myComponentFactory() {
         let suffix = ''
@@ -107,7 +88,7 @@ How do you make use of closures to make a decorator? Well, I'll show you. First 
 
 So what does that do?
 
-The component factory is still the same as described above. However, we decorate it by wrapping the object creation in 2 decorator factory methods:
+The component factory is still the same as described above. However, we decorate it by wrapping the object creation in decorator factory methods:
 
     const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
 
@@ -141,18 +122,41 @@ The first function executed will be from the outer most decorator. In this insta
 
 The second attempt fails validation which shows halting the chain of decorators so the value is never logged.
 
-This is a very simple implementation to describe except possibly for one subtle component: the closure.
+### How do we make use of closures?
 
-In this example we aren't storing a copy of the inner object in our decorated object. So how can we call it's methods when it is no longer in scope? It was just a parameter to the factory method that is long gone!
+As I stated, we could have just stored the inner object on the new object in order to call it later. Why didn't we do that? Because it would have made it public and that would have been weird. I would have confused the user of my object. Do I call `instance.setSuffix()` or `instance._original.setSuffix()`. Far better to make the object a private member.
 
-### Enter closures
+>"But JavaScript doesn't have private members, oh noes!"
+
+We can use closures to give us this private member access though.
+
+### The official bit: What are closures?
+
+>"A closure allows a function to access captured variables through the closure's reference to them, even when the function is invoked outside the scope of those variables." (me, slightly rewording a definition from [wikipedia](https://en.wikipedia.org/wiki/Closure_(computer_programming)))
+
+A simple example:
+
+    function wow() {
+        const val = 5
+        return () => console.log(val)
+    }
+
+    wow()()
+
+(Just in case it wasn't obvious what the double brackets in `wow()()` do: first it executes the "wow" function, which returns an anonymous function which is immediately executed because of the second brackets.)
+
+This is the simplest example I can imagine in JavaScript. The "wow" function returns a function that logs "val". However once "wow" has returned, "val" is no longer in scope.
+
+This works fine though, because when the function that is capturing a locally scoped variable (in this instance "val") is returned, a closure is created which allows access to this variable even though it has gone out of scope.
+
+### Back to our wrapper:
 
 Look again at the decorator:
 
     function toLowerDecorator(inner) {
         return {
             setSuffix: inner.setSuffix,
-            printValue: value => inner.printvalue(value.tolowercase())
+            printValue: value => inner.printValue(value.tolowercase())
         }
     }
 
@@ -164,21 +168,21 @@ but this function is referencing the "inner" object which will go out of scope a
 
 This means the lifetime of the variable referencing our inner function is extended in order for the nested function to be able to be call it a later time.
 
-This means we can take advantage of this "remembering" of the local arguments to the decorator factory methods to store the chain of wrapped methods that need to be called.
+Our own function can use the "inner" object because of the closure but it isn't exposed publicly. BOOM. Our private variable.
 
 Closures are one of the most important and useful feature of JavaScript so it's worth making sure you grok them now if you don't already.
 
 ### Pros and cons of this method
 
-In reality, closures didn't actually have to be used in this example as each time we decorated, we returned a new object which could have just stored the inner object. However, closures give us a way of storing private members. We declare private members in the factory method (in this instance as a parameter) and if the new object returned has a function that uses them a closure is created around them so they aren't publicly accessible but those methods can still use them. We have no interest in polluting our public interface with some "inner" object.
+We introduce closures here but that has little to do with this wrapper method, in fact every technique we show here uses closures to hide variables that would be better off private.
 
-The obvious downside to this method however is that we have to wrap every single method on the inner object, not just the one we are decorating. Like this:
+Other than that this is a very simple implementation which has an obvious downside: we have to wrap every single method on the inner object, not just the one we are decorating. Like this:
 
     return {
         setSuffix: inner.setSuffix,
         ...
     
-That is ugly and a pain. Wouldn't it be great if our decorators could just define the wrapper behaviour they desire and not have to worry about the rest? Happily there are a couple of techniques that will do that. One is monkey patching and the other is prototypal inheritance.
+That is ugly and a pain. Wouldn't it be great if our decorators could just define the wrapper behaviour they desire and not have to worry about the rest? Happily there are a few techniques that will do just that.
 
 First let's look at monkey patching.
 
