@@ -16,8 +16,6 @@ The five different decorator implementations are:
  4. Proxy object (ES6)
  5. For want of a better word: "middleware"
 
-At the end I will take a brief diversion into the current hot topic: "middleware" and whether any of these could really be called a "middleware" implementation or not. Fun times.
-
 I have put some notes about this post in an appendix so as not to disrupt the flow. So if interested in a) why I am using ES6 syntax or b) why I am NOT using classes or c) a list of the source files for you to play with, check towards the end of this post.
 
 ## First, the simple component I want to decorate:
@@ -196,7 +194,7 @@ Our own function can use the "inner" object because of the closure but it isn't 
 
 Closures are one of the most important and useful feature of JavaScript so it's worth making sure you grok them now if you don't already.
 
-![Don't expose your privates](/media/exposes_privates.jpg "Don't expose your privates")
+![Don't expose your privates](/media/soldiers_privates.jpg "Don't expose your privates")
 
 ### Pros and cons of this method
 
@@ -567,8 +565,8 @@ This is the most complex of implementations. If you are setting up some heavy we
 
 I have called this the "middleware" implementation because:
 
- a) I can't think of anything better to call it and
- b) It is the method Dan Abramov uses in his [redux middleware](http://redux.js.org/docs/advanced/Middleware.html) implementation
+ 1. I can't think of anything better to call it and
+ 2. It is the method Dan Abramov uses in his [redux middleware](http://redux.js.org/docs/advanced/Middleware.html) implementation
 
 ## Conclusion
 
@@ -596,46 +594,6 @@ I guess use the middleware one when you need more control of the decorator chain
  3. No monkey patching
  4. No poorly supported code
  5. Relatively simple decorator methods
-
-## Postscript: What is middleware
-
-Well it turns out after a little bit of research that defining what middleware is would be a whole thesis in itself. So I'm not going to do this section the justice I wanted to, but just give a "layman's overview".
-
-
-### Dan Abramov and Redux are AWESOME
-
-[connect middleware for node.js](https://github.com/senchalabs/connect)
-
-[some university course's definition of middleware](http://www.eecg.toronto.edu/~jacobsen/courses/imw/notes/imw1/sld002.htm)
-http://www.eecg.toronto.edu/~jacobsen/courses/imw/notes/imw1/sld005.htm
-examples of middleware: ODBC, CORBA, DCOM...
-
-not knocking redux or Dan, he is clearly awesome and I am in love with redux.
-
-this middleware page confused me for a while though and it wasn't until I started working on a decorator pattern that I realised why.
-
-Middleware comes from Ruby Rack and then used by Node connect - both are the pipeline pattern NOT middleware. However Redux middleware is clearly a decorator and here's why:
-
-IT WRAPS the inner function - so you can do stuff before calling AND afterwards.
-
-The pipeline pattern is subtly different - but think of it more as a 1 way pipe. (TODO: really? can't i do stuff after calling next in connect? - needs more research?)
-
-middleware - define it as a decorator - connect middleware has filters and providers - 
-This shows the 2 types of middleware: filters and providers. A classic example of filters is logging, whereas the providers are meant to do a specific action, a classic example is the static middleware which will serve a static file on a route that matches a filename. This will, like the validator, stop subsequent functions executing.
-
-from http://redux.js.org/docs/advanced/Middleware.html:
-
->"...middleware is some code you can put between the framework receiving a request, and the framework generating a response. For example, Express or Koa middleware may add CORS headers, logging, compression, and more. The best feature of middleware is that it’s composable in a chain. You can use multiple independent third-party middleware in a single project."
-
-from wikipedia entry on decorator pattern:
-
->"...allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.[1] The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern."
-
-and 
-
->"...This pattern is designed so that multiple decorators can be stacked on top of each other, each time adding a new functionality to the overridden method(s)."
-
-That sounds an awful lot like "decorator" to me - so we have a new cool word for decorator, that's okay with me I guess...
 
 ## Addendum
 

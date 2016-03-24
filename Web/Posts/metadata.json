@@ -1,5 +1,14 @@
 ﻿[
 	{
+		"Title" : "What is Middleware? From Redux, ASP.Net, Node.js Connect and Ruby Rack all the way back to ODBC and Corba...",
+        "Slug" : "what-is-middleware-from-redux-aspdotnet-node-connect-and-ruby-rack",
+		"PublishDate" : null,
+		"LastUpdatedDate" : null,
+		"Author" : "Nick Meldrum",
+		"ShortDescription" : "A brief journey into understanding what the hell middleware actually means",
+        "Published" : false
+	},
+	{
 		"Title" : "The decorator pattern in JavaScript using closures, monkey patching, prototypes, proxies and 'middleware'",
         "Slug" : "decorators-in-javascript-using-monkey-patching-closures-prototypes-proxies-and-middleware",
 		"PublishDate" : null,
