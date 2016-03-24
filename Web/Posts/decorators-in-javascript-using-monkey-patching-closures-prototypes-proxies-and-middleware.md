@@ -599,6 +599,9 @@ I guess use the middleware one when you need more control of the decorator chain
 
 ## Postscript: What is middleware
 
+Well it turns out after a little bit of research that defining what middleware is would be a whole thesis in itself. So I'm not going to do this section the justice I wanted to, but just give a "layman's overview".
+
+
 ### Dan Abramov and Redux are AWESOME
 
 [connect middleware for node.js](https://github.com/senchalabs/connect)
