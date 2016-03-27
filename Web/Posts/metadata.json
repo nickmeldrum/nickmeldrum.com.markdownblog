@@ -14,7 +14,7 @@
 		"PublishDate" : null,
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
-		"ShortDescription" : "Five implementations of the decorator pattern in JavaScript for fun, profit and improving understanding.",
+		"ShortDescription" : "Five JavaScript implementations of the decorator pattern for fun, profit and improving understanding.",
         "Published" : false
 	},
 	{

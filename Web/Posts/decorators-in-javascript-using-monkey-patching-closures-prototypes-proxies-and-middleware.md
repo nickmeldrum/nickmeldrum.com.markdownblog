@@ -1,8 +1,8 @@
 ## Huh? What's this all about then?
 
-Recently I had the opportunity to study various different ways of implementing the ["wrapper" pattern also known as the "decorator" pattern](https://en.wikipedia.org/wiki/Decorator_pattern) in JavaScript.
+Recently I had the opportunity to study different methods of implementing the [wrapper pattern aka the decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) in JavaScript.
 
-I thought it was worth sharing what I learnt along the way about some valuable JavaScript techniques as well as the pros and cons of using these techniques to implement a decorator.
+I thought it was worth sharing what I learnt about the pros and cons of using these techniques to implement a decorator.
 
 ### "Okay okay, not *that* type of decorator..."
 
@@ -35,23 +35,23 @@ I have put some notes about this post in an appendix so as not to disrupt the fl
     component.setSuffix('!')
     component.printValue('My Value')
 
-It's a simple component with a `printValue(val)` method which will console log the value with a suffix at the end. The suffix can be set using the `setSuffix(val)` method.
+It's a simple component with a `printValue(val)` method which will log the value with a suffix at the end. The suffix can be set using the `setSuffix(val)` method.
 
-We want to decorate the `printValue(val)` method with a decorator to validate our input and another decorator to lower case the value (in order to show chaining of decorators.) We created the `setSuffix(val)` method in order to show the complications when trying to decorate just 1 method in a component that has other members.
+We want to decorate the `printValue(val)` method with a decorator to validate our input and to lower case the value (in order to show chaining of decorators.) We created the `setSuffix(val)` method in order to flush out any complexities when decorating one method in a component that has other members.
 
 It's worth noting that all my examples here except the last one will work for decorating an isolated function instead of a member function and is a much simpler case.
 
 ### How we are going to decorate this component
 
-Below is a diagram of how we are going to decorate our component. We will wrap our original "printValue" method first in a "lower case" decorator, then in a "validate" decorator. That way when a consumer of our decorated component calls "printValue" *first* we will validate their value, then lower case it, then print it out.
+Below is a diagram of how we are going to decorate our component. We will wrap our original "printValue" method first in a "lower case" decorator, then in a "validate" decorator. When a consumer of our decorated component calls "printValue", *first* we will validate their value, then lower case it, then print it out.
 
-(Note, this diagram shows that we could also add behaviour to our wrapper *after* the original call is made "on the way out", however in these examples we are not doing this.
+(Note, this diagram shows that we could have added behaviour to our wrapper *after* the original call is made "on the way out", however in these examples we are not doing this.
 
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="643px" height="248px" version="1.1"><defs/><g transform="translate(0.5,0.5)"><ellipse cx="61" cy="41" rx="60" ry="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(16.5,34.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="89" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 90px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Call printValue()</div></div></foreignObject><text x="45" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Call printValue()</text></switch></g><rect x="341" y="16" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(353.5,34.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="114" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 115px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">lower case decorator</div></div></foreignObject><text x="57" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">lower case decorator</text></switch></g><rect x="161" y="16" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(181.5,34.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="98" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 99px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">validate decorator</div></div></foreignObject><text x="49" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">validate decorator</text></switch></g><rect x="501" y="101" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(516.5,119.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="108" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 109px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">original printValue()</div></div></foreignObject><text x="54" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">original printValue()</text></switch></g><rect x="341" y="181" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(353.5,199.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="114" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 115px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">lower case decorator</div></div></foreignObject><text x="57" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">lower case decorator</text></switch></g><rect x="161" y="181" width="140" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(181.5,199.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="98" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 99px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">validate decorator</div></div></foreignObject><text x="49" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">validate decorator</text></switch></g><ellipse cx="61" cy="206" rx="60" ry="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(49.5,199.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 23px; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">End</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">End</text></switch></g><path d="M 121 41 L 154.63 41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 159.88 41 L 152.88 44.5 L 154.63 41 L 152.88 37.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 301 41 L 334.63 41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 339.88 41 L 332.88 44.5 L 334.63 41 L 332.88 37.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 411 66 L 495.38 111" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 500.01 113.47 L 492.19 113.27 L 495.38 111 L 495.48 107.09 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 500 146 L 416.93 178.67" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 412.04 180.59 L 417.27 174.77 L 416.93 178.67 L 419.84 181.29 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 341 206 L 307.37 206" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 302.12 206 L 309.12 202.5 L 307.37 206 L 309.12 209.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 161 206 L 127.37 206" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 122.12 206 L 129.12 202.5 L 127.37 206 L 129.12 209.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/></g></svg>
 
 ## First example: decorating using a simple wrapper (wherein we investigate closures)
 
-What is the most naïve implementation of a decorator I can think of to kick us off? Just wrap an object and return a new object that can do some new behaviour then call the wrapped object.
+What is the most naïve implementation of a decorator I can think of? Just wrap an object by returning a new object that does something, then calls the original.
 
 ![Simples!](/media/simples.jpg "Simples!")
 
@@ -59,7 +59,7 @@ What is the most naïve implementation of a decorator I can think of to kick us 
 
 ### Show me the code!
 
-First I'll show the code as a whole then I'll take you through it step by step:
+First I'll show the code as a whole then we'll go through it step by step:
 
     function myComponentFactory() {
         let suffix = ''
@@ -102,7 +102,7 @@ The component factory is still the same as shown above. However, we decorate it 
 
     const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
 
-The decorator factory method takes the original object and returns a wrapper object that just passes the calls through to the original object *except* for the 1 method we want to decorate:
+The decorator factory takes the original object and returns a wrapper object that just passes the calls through to the original object *except* for the 1 method we want to decorate:
 
     function toLowerDecorator(inner) {
         return {
@@ -140,7 +140,7 @@ The second attempt fails validation which shows halting the chain of decorators 
 
 Why am I complicating things with an asynchronous call using setTimeout?
 
-I included a wrapper function here that has some asynchronous code because we are in the land of JavaScript, a single threaded non-blocking language where asynchronous code is king. If your code can't handle "asynchronicity" then it's missing most of the point of the language design of JavaScript.
+I included a wrapper function here that has some asynchronous code because we are in the land of JavaScript: a single threaded, non-blocking language where asynchronous code is king. If your code can't handle "asynchronicity" then it's missing most of the point of the language design of JavaScript.
 
 This "validator" function is emulating going off to a database to check the validity of the value by using setTimeout and calling the inner function in the callback. This way we can test if our implementations are still going to work when dealing with asynchronous code.
 
