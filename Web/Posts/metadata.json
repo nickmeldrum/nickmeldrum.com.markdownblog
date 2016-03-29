@@ -11,11 +11,11 @@
 	{
 		"Title" : "The decorator pattern in JavaScript using closures, monkey patching, prototypes, proxies and 'middleware'",
         "Slug" : "decorators-in-javascript-using-monkey-patching-closures-prototypes-proxies-and-middleware",
-		"PublishDate" : null,
+		"PublishDate" : "2016-03-29T11:13:00Z",
 		"LastUpdatedDate" : null,
 		"Author" : "Nick Meldrum",
 		"ShortDescription" : "Five JavaScript implementations of the decorator pattern for fun, profit and improving understanding.",
-        "Published" : false
+        "Published" : true
 	},
 	{
 		"Title" : "The argument for SASS",
