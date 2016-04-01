@@ -49,13 +49,15 @@ It is *also* a decorator around an application. [This article](https://igor.io/2
 
 > "you can stack these middlewares to extend an app"
 
-Here is a great example showing some Rack middleware decorating an application:
+Here is an example that shows how people talk about Rack middleware:
 
 ![Rack Middleware](/media/rack-middleware.jpg)
 
-So Rack for Ruby is 2 things, a general interface to multiple 3rd party proprietary systems (web servers) *AND* a decorator pattern for composing applications.
+But Rack for Ruby is 2 things, a general interface to multiple 3rd party proprietary systems (web servers) *AND* a decorator pattern for composing applications. It seems that the 1st thing was in line with the original definition of the word middleware, but everyone seems to talk about the Rack user applications (the decorators or pipeline apps) as the middleware like in the diagram above.
 
-Note: some people talk about Rack and the other similar technologies as being the "Pipeline" pattern like composable unix pipelines. I think this is less precise than the decorator analogy as a pipeline is 1 way. A Rack middleware component deals with the HTTP Request on the way in AND the HTTP response on the way out - decorating the application.
+So it seems like Rack's concept of middleware, at least in the web world, got shifted to "this pipeliney/decorator thing" instead of the general interface to a 3rd party system. In Rack's case that being the code that provides the Request object and calls your code with it.
+
+Note: some people talk about Rack and the other similar technologies as being the "pipeline" pattern like composable unix pipelines. I think this is less precise than the decorator analogy as a pipeline (certainly a unix pipeline) is 1 way. A Rack middleware component deals with the HTTP Request on the way in AND the HTTP response on the way out - decorating the application. I guess this is a bit of a pedantic point though and it's very natural to talk about a request pipeline.
 
 ### The newer kids on the block
 
@@ -66,7 +68,6 @@ It seems nowadays every framework is implementing "middleware" like Rack for Rub
 From the Connect documentation:
 
 > "Middleware are added as a "stack" where incoming requests will execute each middleware one-by-one until a middleware does not call next() within it."
-
 
 The new [ASP.Net 5 or "ASP.Net Core"](http://docs.asp.net/en/latest/fundamentals/middleware.html) technology is using the term middleware to describe it's implementation of something that sounds very similar to Connect and Rack as well.
 
@@ -82,7 +83,7 @@ So Connect and ASP.Net Core middleware are clearly both implementing the decorat
 
 They also give you an interface to a web server. In Connect's example it uses Node's built in http server. It's possible Connect allows other http implementations but I'm not sure. ASP.Net Core allows for [different web server implementations](https://docs.asp.net/en/latest/fundamentals/servers.html) by (at a minimum) requiring 2 interfaces: `IHttpRequestFeature` and `IHttpResponseFeature` that must be supported.
 
-So fundamentally Connect and ASP.Net Core implement the web server abstraction *as well* as the decorator.
+So fundamentally Connect and ASP.Net Core implement the web server abstraction *as well* as the decorator just like Rack does. It seems they refer to the user applications as the Middleware just like Rack does as well.
 
 ### So what?
 
@@ -111,5 +112,5 @@ Here is my summary of that potted history then:
 
 Middleware is evolving into "another name for the decorator pattern" then it seems. I think that is a small shame as the original term made sense - it was **software in the *middle* (hence middleware) of your code and some other 3rd party system**. The modern usage is just another word for a decorator.
 
-**Why not just call it a decorator?**
+**Why not just call it a decorator or a pipeline?**
 
