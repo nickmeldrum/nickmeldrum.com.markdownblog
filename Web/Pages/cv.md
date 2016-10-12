@@ -1,43 +1,49 @@
-﻿  * Email: [nick@nickmeldrum.com](mailto:nick@nickmeldrum.com "Email nick")
+﻿  * Email: [nick@nickmeldrum.com](mailto:nick@nickmeldrum.com "Email Nick")
   * Location: Just outside London
  
 <img src="/media/me 128 wide.jpg" style="float: right;padding-left: 20px;" alt="Okay this is a different Gherkin"></img>
-Nick is passionate about software development and passionate about helping teams and businesses succeed. He is an ardent champion of automated testing, tdd, bdd and continuous delivery. He loves web technologies and loves simplicity in design.
 
-He has over 14 years of developer experience including a stint at Microsoft. He leads development teams, acts as an agile agent of change (sometimes known as a ScrumMaster) and sometimes even codes. He is currently a Tech Lead at [Scribestar](http://www.scribestar.com/ "A legal sector tech startup"), a startup disrupting the legal sector.
+Nick is passionate about building web applications well. What does this mean? Huge amounts of waste and expense have engulfed our industry over and over again. Dealing with complexity and dealing with understanding the business or "what we really meant to built" is key to reducing this waste. Nick has extensive experience in designing and implementing systems in the most simple way possible. Nick has extensive experience in employing and practicing the latest agile principles and practices to dealing with a constantly changing business horizon.
 
-##Overview
-  * Passionate about development and passionate about making businesses successful through software
-  * Extensive experience leading teams and successfully delivering projects
-  * Extensive experience facilitating teams and being an agile change agent as a Certified ScrumMaster
-  * Extensive architecture and design experience
-  * Extensive developer coaching and mentoring skills
-  * Over 14 years of developer experience building applications on the Windows platform
-  * Proven object-oriented analysis, design and development skills, advocate of TDD and BDD methodologies
-  * Extensive experience of Agile, Scrum, XP and lean/ Kanban methodologies 
-  * Extensive DevOps experience: collaborating with Ops, automated testing, production monitoring, continuous integration and continuous delivery
+He has over 14 years of developer experience including a stint at Microsoft. He leads development teams, acts as an agile agent of change (i.e. ScrumMaster) and designs systems primarily for web applications. He is currently a Tech Lead at [Scribestar](http://www.scribestar.com/ "A legal sector tech startup") developing a SAAS platform for a startup disrupting the legal side of capital market transactions.
 
-##Work Highlights
-  * Principal developer at [planner.royallondon.com](https://planner.royallondon.com/ "Royal London Financial Planner"), taking on a variety of roles including software architect, technical authority, ScrumMaster, team leader and developer
-  * Led both co-located and offshore teams at The FA, leading a rebuild of [www.thefa.com](http://www.thefa.com/ "The FA") 
-  * Wrote HazWasteOnline: A web based rules engine for classifying chemical analysis as hazardous waste. Based on government regulations for the environmental industry
-  * Developer at [msn.co.uk](http://msn.co.uk/ "msn"): The UK's largest web portal at the time
-  * Worked for Microsoft, supporting Visual Basic and Visual Interdev
+## Hire me!
 
-##Skillset
-  * Extensive architecture and design experience: SOA, REST, Microservices, OO, SOLID, GoF design patterns
-  * Extensive Agile, Scrum and lean/ Kanban, TDD and BDD (NUnit, MSTest, Moq, Gherkin, SpecFlow, Selenium WebDriver etc.) experience
-  * Extensive C# and the .NET Framework
-  * Extensive ASP.NET, MVC, Web API and even Webforms!
-  * Extensive Front-end technologies (JavaScript, AngularJS, CSS, SASS, Less and HTML)
-  * Some node.js experience
-  * Extensive Web services and messaging (WCF, MSMQ, RabbitMQ)
-  * Extensive experience with VCS and DVCS (Git, Mercurial, Subversion, TFS)
-  * Extensive automation, continuous integration and deployment (Gulp/ Grunt, MSBuild, Nant, PowerShell, TeamCity, Octopus Deploy and TFS) experience
-  * Extensive CMS knowledge: Umbraco, Sitecore CMS
-  * Strong NHibernate, Some Entity Framework, NoSQL using Raven DB and Neo4J
-  * Extensive Win32 API, COM, Visual Basic 6, 5 and WinForms
-  * Extensive XML Technologies
+Nick is currently looking for his next fantastic opportunity: leading teams or just writing the next great JavaScript/ .Net web application for you. [Email Nick here to enquire further](mailto:nick@nickmeldrum.com "Email Nick")
+
+## Overview
+
+ * Passionate about software development done well with less waste, helping businesses succeed
+ * Extensive experience leading teams and successfully delivering projects
+ * Extensive architecture and design experience
+ * Extensive developer coaching and mentoring skills
+ * Over 14 years of developer experience building websites and applications
+ * Extensive knowledge of JavaScript: the language, ecosystem, frameworks and best practices
+ * Extensive experience of Agile, Scrum, XP, TDD and lean/ Kanban methodologies  (Certified ScrumMaster)
+
+## Work Highlights
+
+ * Principal developer at [planner.royallondon.com](https://planner.royallondon.com/ "Royal London Financial Planner"), taking on a variety of roles including software architect, technical authority, ScrumMaster, team leader and developer
+ * Led both co-located and offshore teams at The FA, leading a rebuild of [www.thefa.com](http://www.thefa.com/ "The FA") 
+ * Wrote HazWasteOnline: A web based rules engine for classifying chemical analysis as hazardous waste. Based on government regulations for the environmental industry
+ * Developer at [msn.co.uk](http://msn.co.uk/ "msn"): The UK's largest web portal at the time
+ * Worked for Microsoft, supporting Visual Basic and Visual Interdev
+
+## Skills and experience
+
+ * Strong leadership: forging strong teams, aligning people and vision, coaching and mentoring
+ * Extensive agile: Scrum and lean/ Kanban, facilitating process, planning/ feature meetings, retros
+ * Strong architecture and design: SOA, REST, OO, SOLID, design patterns, messaging, functional programming
+ * Extensive testing and TDD: Mocha, Chai, Jasmine, Nunit, MSTest
+ * Strong BDD: Gherkin, SpecFlow, Selenium
+ * Extensive JavaScript: ES2015, React/ Redux, AngularJS 1.4, Knockout.js, many others
+ * Strong JavaScript build tools: Grunt, Gulp, Webpack
+ * Some Server side JavaScript: Node.js, Express, Socket.IO, MongoDB, Mongoose, Passport.js
+ * Extensive Microsoft stack: C#, .NET Framework, ASP.Net MVC, Web Api, WCF
+ * Extensive RDBMS: SQL Server, NHibernate, some Entity Framework
+ * Some NoSQL: MongoDB, Neo4j, RavenDb
+ * Extensive (D)VCS: Git, Mercurial, Subversion, TFS
+ * Strong automation, continuous integration and deployment: PowerShell, TeamCity, Octopus, MSBuild
+ * Some cloud: Azure automation, PAAS Web apps
  
-
-A detailed work history and references are available on [request](mailto:nick@nickmeldrum.com "Email nick").
+A detailed work history and references are available on [request](mailto:nick@nickmeldrum.com "Email Nick").
